@@ -22,65 +22,34 @@
                                 <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
                                     <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Sign in</h4>
                                     <div class="row mt-3">
-                                        <h6 class="text-white text-center">
-                                            <span class="font-weight-normal">Email:</span> admin@material.com
-                                            <br>
-                                            <span class="font-weight-normal">Password:</span> secret
-                                        </h6>
-                                        <div class="col-2 text-center ms-auto">
-                                            <a class="btn btn-link px-3" href="javascript:;">
-                                                <i class="fa fa-facebook text-white text-lg" aria-hidden="true"></i>
-                                            </a>
-                                        </div>
-                                        <div class="col-2 text-center px-1">
-                                            <a class="btn btn-link px-3" href="javascript:;">
-                                                <i class="fa fa-github text-white text-lg" aria-hidden="true"></i>
-                                            </a>
-                                        </div>
-                                        <div class="col-2 text-center me-auto">
-                                            <a class="btn btn-link px-3" href="javascript:;">
-                                                <i class="fa fa-google text-white text-lg" aria-hidden="true"></i>
-                                            </a>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
                             <div class="card-body">
+                                <?php 
+                                    $message = Session::get('message');
+                                    if($message){
+                                        echo($message);
+                                        Session::put('message', null);
+                                    }
+                                ?>
                                 <form role="form" method="POST"
-                                    action="https://material-dashboard-laravel.creative-tim.com/sign-in"
+                                    action={{route('login_dashboard')}}
                                     class="text-start">
-                                    <input type="hidden" name="_token"
-                                        value="r0hf2jxC0cLNxwhV1DlphZvEAzhROaqBZZ1AR7Mz">
+                                    @csrf
                                     <div class="input-group input-group-outline mt-3 is-filled">
                                         <label class="form-label">Email</label>
-                                        <input type="email" class="form-control" name="email"
-                                            value="admin@material.com" onfocus="focused(this)"
-                                            onfocusout="defocused(this)">
+                                        <input type="email" class="form-control" name="admin_email">
                                     </div>
                                     <div class="input-group input-group-outline mt-3 is-filled">
                                         <label class="form-label">Password</label>
-                                        <input type="password" class="form-control" name="password" value="secret"
-                                            onfocus="focused(this)" onfocusout="defocused(this)">
-                                    </div>
-                                    <div class="form-check form-switch d-flex align-items-center my-3">
-                                        <input class="form-check-input" type="checkbox" id="rememberMe">
-                                        <label class="form-check-label mb-0 ms-2" for="rememberMe">Remember
-                                            me</label>
+                                        <input type="password" class="form-control" name="admin_password" >
                                     </div>
                                     <div class="text-center">
                                         <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Sign
                                             in</button>
                                     </div>
-                                    <p class="mt-4 text-sm text-center">
-                                        Don't have an account?
-                                        <a href="https://material-dashboard-laravel.creative-tim.com/sign-up"
-                                            class="text-primary text-gradient font-weight-bold">Sign up</a>
-                                    </p>
-                                    <p class="text-sm text-center">
-                                        Forgot your password? Reset your password
-                                        <a href="https://material-dashboard-laravel.creative-tim.com/verify"
-                                            class="text-primary text-gradient font-weight-bold">here</a>
-                                    </p>
                                 </form>
                             </div>
                         </div>

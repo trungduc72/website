@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryProductController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,5 +26,13 @@ Route::get('/trang-chu', [HomeController::class, 'index'])->name('trang-chu');
 
 
 //BackEnd
-Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+Route::get('/login', [AdminController::class, 'index'])->name('admin_login');
 Route::get('/dashboard', [AdminController::class, 'showDashboard'])->name('dashboard');
+
+Route::post('/dashboard', [AdminController::class, 'login'])->name('login_dashboard');
+Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
+
+//Category Product
+Route::get('/add-category-product', [CategoryProductController::class, 'add'])->name('add-category-product');
+Route::get('/all-category-product', [CategoryProductController::class, 'all'])->name('all-category-product');
+
