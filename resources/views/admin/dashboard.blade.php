@@ -1,5 +1,7 @@
-@extends('admin_layout')
+@extends('adminLayout')
 
-@section('admin_content')
-    <h1>sdfs</h1>
+@section('Dashboard.Admin')
+        
+    
+
 @endsection

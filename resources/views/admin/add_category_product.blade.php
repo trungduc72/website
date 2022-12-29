@@ -1,42 +1,43 @@
-@extends('admin_layout')
-@section('admin_content')
-<div class="row">
-    <div class="col-lg-12">
-            <section class="panel">
-                <header class="panel-heading">
-                    Thêm sản phẩm
+@extends('adminLayout')
+@section('Dashboard.Admin')
+    <div class="card">
+        <div class="table-responsive">
+            <section class="panel" style="margin: 50px" >
+                <header class="d-flex justify-content-center text-uppercase text-secondary text-xxl font-weight-bolder" >
+                    Thêm danh mục sản phẩm
                 </header>
                 <div class="panel-body">
                     <div class="position-center">
-                        <form role="form">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Tên danh mục</label>
-                            <input  type="text" class="form-control" 
-                                    id="exampleInputEmail1" placeholder="Tên danh mục"
-                                    name="category_product_name">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Mô tả danh mục</label>
-                            <textarea style="resize: none" rows="5" class="form-control" 
-                                    id="exampleInputPassword1" placeholder="Mô tả danh mục"
-                                    name="category_product_desc"></textarea>
-                        </div>
+                        <form role="form" action={{ route('save-category-product') }} method="POST">
+                            @csrf
+                            <div class="input-group input-group-dynamic mb-4">
+                                <label class="form-label">Tên danh mục</label>
+                                <input type="text" class="form-control" name="category_product_name">
+                            </div>
+                            <div class="input-group input-group-dynamic mb-4">
+                                <textarea class="form-control" rows="5" placeholder="Mô tả danh mục." spellcheck="false" name="category_product_desc"></textarea>
+                            </div>
+                            <div class="input-group input-group-static mb-4">
+                                <label for="exampleFormControlSelect1" class="ms-0">Trạng thái</label>
+                                <select name="category_product_status" class="form-control" id="exampleFormControlSelect1">
+                                    <option value="0">Ẩn</option>
+                                    <option value="1">Hiển thị</option>
+                                </select>
+                              </div>
 
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Hiển thị</label>
-                            <select class="form-control input-sm m-bot15">
-                                <option>Ẩn</option>
-                                <option>Hiển thị</option>
-                            </select>
-                        </div>
-
-                        <button type="submit" class="btn btn-info"
-                                name="add_category_product">Thêm</button>
-                    </form>
+                            <button type="submit" class="btn btn-primary btn-lg d-flex justify-content-center" name="add_category_product" style="margin: 0 auto">Thêm</button>
+                        </form>
+                        <?php
+                        $message = Session::get('message');
+                        if ($message) {
+                            echo '<span style = "color: green">' . $message . '</span> ';
+                            Session::put('message', null);
+                        }
+                        ?>
                     </div>
 
                 </div>
             </section>
-
+        </div>
     </div>
 @endsection

@@ -18,15 +18,15 @@ use App\Http\Controllers\CategoryProductController;
 */
 
 //FrontEnd
-Route::get('/', function () {
-    return view('layout');
-});
+// Route::get('/', function () {
+//     return view('adminLayout');
+// });
 
-Route::get('/trang-chu', [HomeController::class, 'index'])->name('trang-chu');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 //BackEnd
-Route::get('/login', [AdminController::class, 'index'])->name('admin_login');
+Route::get('/admin_login', [AdminController::class, 'index'])->name('admin_login');
 Route::get('/dashboard', [AdminController::class, 'showDashboard'])->name('dashboard');
 
 Route::post('/dashboard', [AdminController::class, 'login'])->name('login_dashboard');
@@ -35,4 +35,6 @@ Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
 //Category Product
 Route::get('/add-category-product', [CategoryProductController::class, 'add'])->name('add-category-product');
 Route::get('/all-category-product', [CategoryProductController::class, 'all'])->name('all-category-product');
+
+Route::post('/add-category-product', [CategoryProductController::class, 'save'])->name('save-category-product');
 
