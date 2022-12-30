@@ -38,3 +38,13 @@ Route::get('/all-category-product', [CategoryProductController::class, 'all'])->
 
 Route::post('/add-category-product', [CategoryProductController::class, 'save'])->name('save-category-product');
 
+    //active-unactive
+Route::get('/unactive-category-product/{category_product_id}', [CategoryProductController::class, 'unactive_category_product'])->name('unactive-category-product');
+Route::get('/active-category-product/{category_product_id}', [CategoryProductController::class, 'active_category_product'])->name('active-category-product');
+
+    //edit
+Route::get('/edit-category-product/{category_product_id}', [CategoryProductController::class, 'edit'])->name('edit-category-product');
+Route::post('/update-category-product/{category_product_id}', [CategoryProductController::class, 'update'])->name('update-category-product');
+    //delete
+Route::get('/delete-category-product/{category_product_id}', [CategoryProductController::class, 'delete'])->name('delete-category-product');
+
