@@ -1,9 +1,12 @@
 @extends('adminLayout')
+@section('title')
+    {{$title}}
+@endsection
 @section('Dashboard.Admin')
     <div class="card">
         <div class="table-responsive">
             <section class="panel" style="margin: 50px" >
-                <header class="d-flex justify-content-center text-uppercase text-secondary text-xxl font-weight-bolder" >
+                <header class="d-flex justify-content-center text-uppercase text-secondary text-xxl font-weight-bolder mb-4" >
                     Thêm danh mục sản phẩm
                 </header>
                 <div class="panel-body">

@@ -18,7 +18,8 @@ class AdminController extends Controller
 
     public function showDashboard()
     {
-        return view('admin.dashboard');
+        $title = 'Dashboard';
+        return view('admin.dashboard', compact('title'));
     }
 
     public function login(Request $request)

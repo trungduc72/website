@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png"
         href="https://material-dashboard-pro-laravel.creative-tim.com/assets/img/favicon.png">
     <title>
-        Admin Dashboard
+        @yield('title')
     </title>
 
     <meta name="keywords"
@@ -61,10 +61,9 @@
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
                 aria-hidden="true" id="iconSidenav"></i>
-            <a class="navbar-brand m-0 d-flex align-items-center text-wrap"
-                href={{route('dashboard')}}>
-                {{-- <img src="https://material-dashboard-pro-laravel.creative-tim.com/assets/img/logo-ct.png"
-                    class="navbar-brand-img h-100" alt="main_logo"> --}}
+            <a class="navbar-brand m-0 d-flex align-items-center text-wrap" href={{ route('dashboard') }}>
+                <img src="https://material-dashboard-pro-laravel.creative-tim.com/assets/img/logo-ct.png"
+                    class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-2 font-weight-bold text-white">TEA THAINGUYEN</span>
             </a>
         </div>
@@ -74,14 +73,15 @@
                 <li class="nav-item mb-2 mt-0">
                     <a data-bs-toggle="collapse" href="#ProfileNav" class="nav-link text-white"
                         aria-controls="ProfileNav" role="button" aria-expanded="false">
-                        <img src="data:image/png;base64,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" alt="avatar" class="avatar">
+                        <img src="data:image/png;base64,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"
+                            alt="avatar" class="avatar">
                         <span class="nav-link-text ms-2 ps-1">
-                            <?php 
-                                $name = Session::get('admin_name');
-                                if($name){
-                                    echo($name);
-                                }
-                            ?> 
+                            <?php
+                            $name = Session::get('admin_name');
+                            if ($name) {
+                                echo $name;
+                            }
+                            ?>
                         </span>
                     </a>
                     <div class="collapse" id="ProfileNav" style="">
@@ -107,9 +107,7 @@
                                     value="Om2xRNJMUhj5NW9sD2uIAEvzopc9UCfGeCHrUNO1">
                             </form>
                             <li class="nav-item">
-                                <a class="nav-link text-white "
-                                    href= {{route('admin_login')}}
-                                    >
+                                <a class="nav-link text-white " href={{ route('admin_login') }}>
                                     <span class="sidenav-mini-icon"> L </span>
                                     <span class="sidenav-normal  ms-3  ps-1"> Logout </span>
                                 </a>
@@ -119,23 +117,29 @@
                 </li>
                 <hr class="horizontal light mt-0">
                 <li class="nav-item">
+                    <a class="nav-link text-white  " href={{ route('dashboard') }}>
+                        <span class="sidenav-mini-icon"> D </span>
+                        <span class="sidenav-normal  ms-2  ps-1"> Dashboard </span>
+                    </a>
+                </li>
+                <hr class="horizontal light mt-0">
+                <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#dashboardsExamples" class="nav-link text-white collapsed "
                         aria-controls="dashboardsExamples" role="button" aria-expanded="false">
                         {{-- <i class="material-icons-round opacity-10">dashboard</i> --}}
+                        <span class="sidenav-mini-icon"> C </span>
                         <span class="nav-link-text ms-2 ps-1">Category</span>
                     </a>
                     <div class="collapse  " id="dashboardsExamples">
                         <ul class="nav ">
                             <li class="nav-item ">
-                                <a class="nav-link text-white  "
-                                    href= {{route('add-category-product')}} >
+                                <a class="nav-link text-white  " href={{ route('add-category-product') }}>
                                     <span class="sidenav-mini-icon"> A </span>
                                     <span class="sidenav-normal  ms-2  ps-1"> Add Category </span>
                                 </a>
                             </li>
                             <li class="nav-item  ">
-                                <a class="nav-link text-white  "
-                                    href= {{route('all-category-product')}} >
+                                <a class="nav-link text-white  " href={{ route('all-category-product') }}>
                                     <span class="sidenav-mini-icon"> L </span>
                                     <span class="sidenav-normal  ms-2  ps-1"> List Category </span>
                                 </a>
@@ -143,10 +147,9 @@
                         </ul>
                     </div>
                 </li>
-
-            </ul>
-        </div>
+                <hr class="horizontal light mt-0">
     </aside>
+
     <main class="main-content">
         <nav class="navbar navbar-main navbar-expand-lg position-sticky mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky"
             id="navbarBlur" data-scroll="true">
@@ -283,10 +286,10 @@
         <div class="container-fluid my-3 py-3">
             <div class="row mb-5">
                 <div class="col-lg-12 mt-lg-0 mt-4">
-                    @yield("Dashboard.Admin")
+                    @yield('Dashboard.Admin')
                 </div>
             </div>
-           
+
         </div>
     </main>
     <div class="fixed-plugin">
