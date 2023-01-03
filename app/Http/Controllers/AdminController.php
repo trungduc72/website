@@ -18,7 +18,7 @@ class AdminController extends Controller
 
     public function showDashboard()
     {
-        $title = 'Dashboard';
+        $title = 'Bảng điều khiển';
         return view('admin.dashboard', compact('title'));
     }
 

@@ -89,27 +89,27 @@
                             <li class="nav-item">
                                 <a class="nav-link text-white"
                                     href="https://material-dashboard-pro-laravel.creative-tim.com/overview">
-                                    <span class="sidenav-mini-icon"> MP </span>
-                                    <span class="sidenav-normal  ms-3  ps-1"> My Profile </span>
+                                    <span class="sidenav-mini-icon"> HS </span>
+                                    <span class="sidenav-normal  ms-3  ps-1"> Hồ sơ </span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white "
                                     href="https://material-dashboard-pro-laravel.creative-tim.com/settings">
-                                    <span class="sidenav-mini-icon"> S </span>
-                                    <span class="sidenav-normal  ms-3  ps-1"> Settings </span>
+                                    <span class="sidenav-mini-icon"> CD </span>
+                                    <span class="sidenav-normal  ms-3  ps-1"> Cài đặt </span>
                                 </a>
                             </li>
                             <form method="POST"
-                                action="https://material-dashboard-pro-laravel.creative-tim.com/sign-out" class="d-none"
-                                id="logout-form">
+                                action="https://material-dashboard-pro-laravel.creative-tim.com/sign-out"
+                                class="d-none" id="logout-form">
                                 <input type="hidden" name="_token"
                                     value="Om2xRNJMUhj5NW9sD2uIAEvzopc9UCfGeCHrUNO1">
                             </form>
                             <li class="nav-item">
                                 <a class="nav-link text-white " href={{ route('admin_login') }}>
-                                    <span class="sidenav-mini-icon"> L </span>
-                                    <span class="sidenav-normal  ms-3  ps-1"> Logout </span>
+                                    <span class="sidenav-mini-icon"> DX </span>
+                                    <span class="sidenav-normal  ms-3  ps-1"> Đăng xuất </span>
                                 </a>
                             </li>
                         </ul>
@@ -118,30 +118,57 @@
                 <hr class="horizontal light mt-0">
                 <li class="nav-item">
                     <a class="nav-link text-white  " href={{ route('dashboard') }}>
-                        <span class="sidenav-mini-icon"> D </span>
-                        <span class="sidenav-normal  ms-2  ps-1"> Dashboard </span>
+                        <i class="material-icons-round opacity-10">dashboard</i>
+                        <span class="sidenav-normal  ms-2  ps-1"> Bảng điều khiển </span>
                     </a>
                 </li>
                 <hr class="horizontal light mt-0">
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#dashboardsExamples" class="nav-link text-white collapsed "
                         aria-controls="dashboardsExamples" role="button" aria-expanded="false">
-                        {{-- <i class="material-icons-round opacity-10">dashboard</i> --}}
-                        <span class="sidenav-mini-icon"> C </span>
-                        <span class="nav-link-text ms-2 ps-1">Category</span>
+                        <i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">content_paste</i>
+                        <span class="nav-link-text ms-2 ps-1">Danh mục</span>
                     </a>
                     <div class="collapse  " id="dashboardsExamples">
                         <ul class="nav ">
-                            <li class="nav-item ">
-                                <a class="nav-link text-white  " href={{ route('add-category-product') }}>
-                                    <span class="sidenav-mini-icon"> A </span>
-                                    <span class="sidenav-normal  ms-2  ps-1"> Add Category </span>
-                                </a>
-                            </li>
                             <li class="nav-item  ">
                                 <a class="nav-link text-white  " href={{ route('all-category-product') }}>
                                     <span class="sidenav-mini-icon"> L </span>
-                                    <span class="sidenav-normal  ms-2  ps-1"> List Category </span>
+                                    <span class="sidenav-normal  ms-2  ps-1"> Danh mục sản phẩm </span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link text-white  " href={{ route('add-category-product') }}>
+                                    <span class="sidenav-mini-icon"> T </span>
+                                    <span class="sidenav-normal  ms-2  ps-1"> Thêm danh mục </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <hr class="horizontal light mt-0">
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#LaravelExamples" class="nav-link text-white   "
+                        aria-controls="LaravelExamples" role="button" aria-expanded="false">
+                        <i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">shopping_basket</i>
+                        <span class="nav-link-text ms-2 ps-1">Thương hiệu</span>
+                    </a>
+                    <div class="collapse   " id="LaravelExamples">
+                        <ul class="nav ">
+                            <li class="nav-item  ">
+                                <a class="nav-link text-white "
+                                    href={{ route('all-brand') }}>
+                                    <span class="sidenav-mini-icon"> T </span>
+                                    <span class="sidenav-normal  ms-2  ps-1"> Thương hiệu sản phẩm <b
+                                            class="caret"></b></span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link text-white   "
+                                    href={{ route('add-brand') }}>
+                                    <span class="sidenav-mini-icon"> T </span>
+                                    <span class="sidenav-normal  ms-2  ps-1"> Thêm thương hiệu<b
+                                            class="caret"></b></span>
                                 </a>
                             </li>
                         </ul>
@@ -182,9 +209,10 @@
                         </li>
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark"
                                 href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">User Profile</li>
+                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page"> @yield('title')
+                        </li>
                     </ol>
-                    <h6 class="font-weight-bolder mb-0">User Profile</h6>
+                    <h6 class="font-weight-bolder mb-0">@yield('title')</h6>
                 </nav>
                 <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none ">
                     <a href="javascript:;" class="nav-link text-body p-0">
@@ -203,14 +231,14 @@
                         </div>
                     </div>
                     <ul class="navbar-nav  align-items-center">
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="https://material-dashboard-pro-laravel.creative-tim.com/illustration-sign-in"
                                 class="nav-link text-body p-0 position-relative" target="_blank">
                                 <i class="material-icons me-sm-1">
                                     account_circle
                                 </i>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
                                 <div class="sidenav-toggler-inner">
@@ -286,7 +314,7 @@
         <div class="container-fluid my-3 py-3">
             <div class="row mb-5">
                 <div class="col-lg-12 mt-lg-0 mt-4">
-                    @yield('Dashboard.Admin')
+                    @yield('admin_content')
                 </div>
             </div>
 
@@ -370,7 +398,7 @@
                     </div>
                 </div>
                 <hr class="horizontal dark my-sm-4">
-                <a class="btn bg-gradient-primary w-100"
+                {{-- <a class="btn bg-gradient-primary w-100"
                     href="https://www.creative-tim.com/product/material-dashboard-pro-laravel" target="_blank">Buy
                     now</a>
                 <a class="btn btn-outline-dark w-100" href="../../documentation/getting-started/installation.html"
@@ -390,7 +418,7 @@
                         class="btn btn-dark mb-0 me-2" target="_blank">
                         <i class="fab fa-facebook-square me-1" aria-hidden="true"></i> Share
                     </a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

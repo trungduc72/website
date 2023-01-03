@@ -7,23 +7,23 @@
         <div class="table-responsive">
             <section class="panel" style="margin: 50px" >
                 <header class="d-flex justify-content-center text-uppercase text-secondary text-xxl font-weight-bolder mb-4" >
-                    Sửa danh mục sản phẩm
+                    Sửa thương hiệu sản phẩm
                 </header>
                 <div class="panel-body">
-                    @foreach ($edit_category_product as $item)
+                    @foreach ($edit_brand as $item)
                     <div class="position-center">
-                        <form role="form" action="/update-category-product/{{$item->category_id}}" method="POST">
+                        <form role="form" action="/update-brand/{{$item->brand_id}}" method="POST">
                             @csrf
                             <div class="input-group input-group-static mb-4">
-                                <label >Tên danh mục</label>
-                                <input type="text" class="form-control" value={{$item->category_name}} name="category_product_name">
+                                <label >Tên thương hiệu</label>
+                                <input type="text" class="form-control" value={{$item->brand_name}} name="brand_name">
                             </div>
-                            <label style="margin-left: 0">Mô tả danh mục</label>
+                            <label style="margin-left: 0">Mô tả thương hiệu</label>
                             <div class="input-group input-group-dynamic mb-4">
-                                <textarea class="form-control" rows="5" placeholder="Mô tả danh mục." spellcheck="false" name="category_product_desc">{{$item->category_desc}}</textarea>
+                                <textarea class="form-control" rows="5" placeholder="Mô tả thương hiệu." spellcheck="false" name="brand_desc">{{$item->brand_desc}}</textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-primary btn-lg d-flex justify-content-center" name="update_category_product" style="margin: 0 auto">Sửa</button>
+                            <button type="submit" class="btn btn-primary btn-lg d-flex justify-content-center" name="update_brand" style="margin: 0 auto">Sửa</button>
                         </form>
                         <?php
                         $message = Session::get('message');

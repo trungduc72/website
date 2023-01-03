@@ -13,14 +13,14 @@ class CategoryProductController extends Controller
 {
     public function add()
     {
-        $title = 'Add Category';
+        $title = 'Thêm danh mục sản phẩm';
         session()->put('title','Danh muc san pham');
         return view('admin.add_category_product', compact('title'));
     }
 
     public function all()
     {
-        $title = 'List Category';
+        $title = 'Danh mục sản phẩm';
         $all_category_product = DB::table('category_product')->get();
         $manager_category_product = view('admin.all_category_product', compact('title'))
                                     ->with('all_category_product', $all_category_product);
@@ -57,7 +57,7 @@ class CategoryProductController extends Controller
 
     public function edit($category_product_id)
     {
-        $title = 'Edit Category';
+        $title = 'Sửa danh mục sản phẩm';
         $edit_category_product = DB::table('category_product')->where('category_id', $category_product_id)->get();
         $manager_category_product = view('admin.edit_category_product', compact('title'))
                                     ->with('edit_category_product', $edit_category_product);

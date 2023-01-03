@@ -4,7 +4,7 @@
     {{$title}}
 @endsection
 
-@section('Dashboard.Admin')
+@section('admin_content')
         
     
 
