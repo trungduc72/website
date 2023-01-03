@@ -61,7 +61,7 @@
                                 </a>
 
                                 <button type="button" class="btn bg-gradient-danger mb-0" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
+                                    data-bs-target="#exampleModal" >
                                     Xóa
                                 </button>
                                 <!-- Modal -->

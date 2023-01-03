@@ -126,7 +126,8 @@
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#dashboardsExamples" class="nav-link text-white collapsed "
                         aria-controls="dashboardsExamples" role="button" aria-expanded="false">
-                        <i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">content_paste</i>
+                        <i
+                            class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">content_paste</i>
                         <span class="nav-link-text ms-2 ps-1">Danh mục</span>
                     </a>
                     <div class="collapse  " id="dashboardsExamples">
@@ -150,22 +151,21 @@
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#LaravelExamples" class="nav-link text-white   "
                         aria-controls="LaravelExamples" role="button" aria-expanded="false">
-                        <i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">shopping_basket</i>
+                        <i
+                            class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">shopping_basket</i>
                         <span class="nav-link-text ms-2 ps-1">Thương hiệu</span>
                     </a>
                     <div class="collapse   " id="LaravelExamples">
                         <ul class="nav ">
                             <li class="nav-item  ">
-                                <a class="nav-link text-white "
-                                    href={{ route('all-brand') }}>
+                                <a class="nav-link text-white " href={{ route('all-brand') }}>
                                     <span class="sidenav-mini-icon"> T </span>
                                     <span class="sidenav-normal  ms-2  ps-1"> Thương hiệu sản phẩm <b
                                             class="caret"></b></span>
                                 </a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link text-white   "
-                                    href={{ route('add-brand') }}>
+                                <a class="nav-link text-white   " href={{ route('add-brand') }}>
                                     <span class="sidenav-mini-icon"> T </span>
                                     <span class="sidenav-normal  ms-2  ps-1"> Thêm thương hiệu<b
                                             class="caret"></b></span>
@@ -175,6 +175,34 @@
                     </div>
                 </li>
                 <hr class="horizontal light mt-0">
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#pagesExamples" class="nav-link text-white collapsed"
+                        aria-controls="pagesExamples" role="button" aria-expanded="false">
+                        <i
+                            class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">image</i>
+                        <span class="nav-link-text ms-2 ps-1">Sản phẩm</span>
+                    </a>
+                    <div class="collapse" id="pagesExamples" style="">
+                        <ul class="nav ">
+                            <li class="nav-item ">
+                                <a class="nav-link text-white   " href={{ route('all-product') }}>
+                                    <span class="sidenav-mini-icon"> D </span>
+                                    <span class="sidenav-normal  ms-2  ps-1"> Danh sách sản phẩm<b
+                                            class="caret"></b></span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link text-white   " href={{ route('add-product') }}>
+                                    <span class="sidenav-mini-icon"> T </span>
+                                    <span class="sidenav-normal  ms-2  ps-1"> Thêm sản phẩm<b
+                                            class="caret"></b></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <hr class="horizontal light mt-0">
+
     </aside>
 
     <main class="main-content">

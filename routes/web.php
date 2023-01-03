@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ProductController;
 
 
 /*
@@ -65,3 +66,18 @@ use App\Http\Controllers\BrandController;
         //delete
     Route::get('/delete-brand/{brand_id}', [BrandController::class, 'delete'])->name('delete-brand');
 
+//Products
+    Route::get('/all-product', [ProductController::class, 'all'])->name('all-product');
+        //add
+    Route::get('/add-product', [ProductController::class, 'add'])->name('add-product');
+    Route::post('/add-product', [ProductController::class, 'save'])->name('save-product');
+
+        //active-unactive
+    Route::get('/unactive-product/{product_id}', [ProductController::class, 'unactive_product'])->name('unactive-product');
+    Route::get('/active-product/{product_id}', [ProductController::class, 'active_product'])->name('active-product');
+
+        //edit
+    Route::get('/edit-product/{product_id}', [ProductController::class, 'edit'])->name('edit-product');
+    Route::post('/update-product/{product_id}', [ProductController::class, 'update'])->name('update-product');
+        //delete
+    Route::get('/delete-product/{product_id}', [ProductController::class, 'delete'])->name('delete-product');
