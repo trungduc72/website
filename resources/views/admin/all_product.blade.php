@@ -41,7 +41,7 @@
                             <td>
                                 <div class="d-flex px-2 py-1">
                                     <div class="d-flex flex-column justify-content-center">
-                                        <h6 class="mb-0 text-xs">{{ $item->product_image }}</h6>
+                                        <h6 class="mb-0 text-xs"> <img src="upload/product/{{ $item->product_image }}" height="100" width="100" > </h6>
                                         <p class="text-xs text-secondary mb-0"></p>
                                     </div>
                                 </div>
@@ -58,12 +58,12 @@
                             </td>
                             <td>
                                 <div class="d-flex px-2 py-1">
-                                    <p class="text-xs font-weight-bold mb-0">{{ $item->category_id }}</p>
+                                    <p class="text-xs font-weight-bold mb-0">{{ $item->category_name }}</p>
                                 </div>
                             </td>
                             <td>
                                 <div class="d-flex px-2 py-1">
-                                    <p class="text-xs font-weight-bold mb-0">{{ $item->brand_id }}</p>
+                                    <p class="text-xs font-weight-bold mb-0">{{ $item->brand_name }}</p>
                                 </div>
                             </td>
                             <td>

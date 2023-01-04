@@ -11,6 +11,15 @@ session_start();
 
 class AdminController extends Controller
 {
+    public function AuthLogin()
+    {
+        $admin_id = Session::get('admin_id');
+        if($admin_id){
+            return redirect('admin.dashboard');
+        }
+        else return redirect('admin-login')->send();
+    }
+
     public function index()
     {
         return view('adminLogin');
@@ -18,12 +27,14 @@ class AdminController extends Controller
 
     public function showDashboard()
     {
+        $this->AuthLogin();
         $title = 'Bảng điều khiển';
         return view('admin.dashboard', compact('title'));
     }
 
     public function login(Request $request)
     {
+        $this->AuthLogin();
         $admin_email = $request->admin_email;
         $admin_password = md5($request->admin_password);
 
@@ -37,15 +48,17 @@ class AdminController extends Controller
             return Redirect::to('/dashboard');
         }else {
             Session::put('message', 'Sai!');
-            return redirect('login');
+            return redirect('admin-login');
         }
     }
 
     public function logout()
     {
+        $this->AuthLogin();
+        
         Session::put('admin_name', null);
         Session::put('admin_id', null);
         
-        return redirect('login');
+        return redirect('admin-login');
     }
 }

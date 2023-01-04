@@ -11,7 +11,7 @@
                         <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-2">Tên thương hiệu</th>
                         <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-2">Mô tả</th>
                         <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-2">Trạng thái</th>
-                        <th class="text-secondary opacity-7">Hành động</th>
+                        <th class="text-secondary opacity-7">Tùy chọn</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76"
         href="https://material-dashboard-pro-laravel.creative-tim.com/assets/img/apple-icon.png">
-    <link rel="icon" type="image/png"
-        href="https://material-dashboard-pro-laravel.creative-tim.com/assets/img/favicon.png">
+    <link rel="shortcut icon" href="{{ asset('frontend/images/logo.png') }}">
     <title>
         @yield('title')
     </title>
@@ -62,7 +61,7 @@
             <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0 d-flex align-items-center text-wrap" href={{ route('dashboard') }}>
-                <img src="https://material-dashboard-pro-laravel.creative-tim.com/assets/img/logo-ct.png"
+                <img src="{{ asset('frontend/images/logo.png') }}"
                     class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-2 font-weight-bold text-white">TEA THAINGUYEN</span>
             </a>
@@ -107,7 +106,7 @@
                                     value="Om2xRNJMUhj5NW9sD2uIAEvzopc9UCfGeCHrUNO1">
                             </form>
                             <li class="nav-item">
-                                <a class="nav-link text-white " href={{ route('admin_login') }}>
+                                <a class="nav-link text-white " href={{ route('logout') }}>
                                     <span class="sidenav-mini-icon"> DX </span>
                                     <span class="sidenav-normal  ms-3  ps-1"> Đăng xuất </span>
                                 </a>
