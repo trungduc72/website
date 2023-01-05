@@ -152,4 +152,24 @@ class ProductController extends Controller
         DB::table('product')->where('product_id', $product_id)->delete();
         return redirect('all-product');
     }
+    //Admin
+
+    //
+    public function detail($product_id)
+    {
+        $title = 'Chi tiết sản phẩm';
+
+        $cate_product = DB::table('category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $brand_product = DB::table('brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+        
+        $detail_product = DB::table('product')
+                        ->join('category_product', 'category_product.category_id','=','product.category_id')
+                        ->join('brand', 'brand.brand_id','=','product.brand_id')
+                        ->where('product.product_id', $product_id)->get();
+
+        return view('pages.product.show_detail', compact('title'))
+                    ->with('category', $cate_product)->with('brand', $brand_product)
+                    ->with('detail', $detail_product);
+    }
+
 }

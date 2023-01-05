@@ -24,7 +24,17 @@ use App\Http\Controllers\ProductController;
 //     return view('adminLayout');
 // });
 
+    Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+//Category
+    Route::get('/category/{category_id}', [CategoryProductController::class, 'show_category_home'])->name('category');
+
+//Brand
+    Route::get('/brand/{brand_id}', [BrandController::class, 'show_brand_home'])->name('brand');
+    
+//Detail
+    Route::get('/detail/{product_id}', [ProductController::class, 'detail'])->name('detail');
 
 
 //BackEnd

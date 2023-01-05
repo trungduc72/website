@@ -96,4 +96,21 @@ class BrandController extends Controller
         DB::table('brand')->where('brand_id', $brand_id)->delete();
         return redirect('all-brand');
     }
+    //Admin
+
+    //
+    public function show_brand_home($brand_id)
+    {
+        $title = "Thương hiệu sản phẩm";
+
+        $cate_product = DB::table('category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $brand_product = DB::table('brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+        $brand_by_id = DB::table('product')->join('brand', 'product.brand_id', '=', 'brand.brand_id')
+                                                ->where('product.brand_id',$brand_id )->get();
+
+        $brand_name = DB::table('brand')->where('brand.brand_id', $brand_id)->limit(1)->get();
+
+        return view('pages.brand.home_brand', compact('title'))->with('brand_by_id', $brand_by_id)
+                ->with('category', $cate_product)->with('brand', $brand_product)->with('brand_name', $brand_name);
+    }
 }

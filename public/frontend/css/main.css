@@ -9,6 +9,7 @@
 :root{
   --primary-color: #168749;
   --hover-color: #85d585;
+  --black-color: #000;
 }
 
 body {
@@ -50,7 +51,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-toggle {
-  background-color: #000;
+  background-color: var(--black-color);
 }
 
 a#scrollUp {
@@ -73,7 +74,7 @@ a#scrollUp i{
 **************************/
 
 .header_top {
-  background: none repeat scroll 0 0 #F0F0E9;
+  background: none repeat scroll 0 0 #bcffd0;
 }
 
 .contactinfo ul li:first-child{
@@ -82,7 +83,7 @@ a#scrollUp i{
 
 .contactinfo ul li a{
   font-size: 12px;
-  color: #696763;
+  color: var(--black-color);
   font-family: 'Roboto', sans-serif;
 }
 
@@ -95,7 +96,7 @@ a#scrollUp i{
 .social-icons ul li a {
   border: 0 none;
   border-radius: 0;
-  color: #696763;
+  color: var(--black-color);
   padding:0px;
 }
 
@@ -204,7 +205,7 @@ a#scrollUp i{
 
 .shop-menu ul li a {
   background: #FFFFFF;
-  color: #696763;
+  color: var(--black-color);
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   font-weight: 300;
@@ -244,7 +245,7 @@ a#scrollUp i{
 }
 
 .mainmenu ul li a {
-	color: #696763;
+	color: var(--black-color);
 	font-family: 'Roboto', sans-serif;
 	font-size: 17px;
 	font-weight: 300;
@@ -727,7 +728,7 @@ h2.title:before{
 }
 
 .category-products .panel-default .panel-heading .panel-title a {
-  color: #696763;
+  color: var(--black-color);
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   text-decoration: none;
@@ -741,7 +742,7 @@ h2.title:before{
 .category-products .badge {
   background:none;
   border-radius: 10px;
-  color: #696763;
+  color: var(--black-color);
   display: inline-block;
   font-size: 12px;
   font-weight: bold;
@@ -759,7 +760,7 @@ h2.title:before{
 
 
 .panel-body ul li a {
-  color: #696763;
+  color: var(--black-color);
   font-family: 'Roboto', sans-serif;
   font-size: 12px;
   text-transform: uppercase;
@@ -774,7 +775,7 @@ h2.title:before{
 
 .brands-name .nav-stacked li a {
   background-color: #FFFFFF;
-  color: #696763;
+  color: var(--black-color);
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   padding: 5px 25px;
@@ -784,7 +785,7 @@ h2.title:before{
 
 .brands-name .nav-stacked li a:hover{
   background-color: #fff;
-  color: #696763;
+  color: var(--black-color);
 }
 
 .shipping {
@@ -884,7 +885,7 @@ h2.title {
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   font-weight: 400;
-  color: #696763;
+  color: var(--black-color);
 }
 
 .productinfo img{
@@ -950,7 +951,7 @@ h2.title {
   background:#F5F5ED;
   border: 0 none;
   border-radius: 0;
-  color: #696763;
+  color: var(--black-color);
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
   margin-bottom: 25px;
@@ -1242,7 +1243,7 @@ h2.title {
 }
 
 .product-information p {
-  color: #696763;
+  color: var(--black-color);
   font-family: 'Roboto', sans-serif;
   margin-bottom: 5px;
 }
@@ -1264,7 +1265,7 @@ h2.title {
 }
 .product-information span input {
   border: 1px solid #DEDEDC;
-  color: #696763;
+  color: var(--black-color);
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
   font-weight: 700;
@@ -1275,7 +1276,7 @@ h2.title {
 }
 
 .product-information span label {
-  color: #696763;
+  color: var(--black-color);
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
   margin-right: 5px;
@@ -1324,7 +1325,7 @@ h2.title {
 }
 
 #reviews ul li a {
-  color: #696763;
+  color: var(--black-color);
   display: block;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
@@ -1446,7 +1447,7 @@ h2.title {
 }
 
 .login-form h2, .signup-form h2 {
-  color: #696763;
+  color: var(--black-color);
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
   font-weight: 300;
@@ -1457,7 +1458,7 @@ h2.title {
 .login-form form input, .signup-form form input {
   background: #F0F0E9;
   border: medium none;
-  color: #696763;
+  color: var(--black-color);
   display: block;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
@@ -1615,12 +1616,12 @@ h2.title {
 }
 
 #cart_items .cart_info .cart_description p {
-  color:#696763
+  color:var(--black-color)
 }
 
 
 #cart_items .cart_info .cart_price p {
-  color:#696763;
+  color:var(--black-color);
   font-size: 18px
 }
 
@@ -1637,7 +1638,7 @@ h2.title {
 
 .cart_quantity_button a {
   background:#F0F0E9;
-  color: #696763;
+  color: var(--black-color);
   display: inline-block;
   font-size: 16px;
   height: 28px;
@@ -1649,7 +1650,7 @@ h2.title {
 
 
 .cart_quantity_input {
-  color: #696763;
+  color: var(--black-color);
   float: left;
   font-size: 16px;
   text-align: center;
@@ -1702,7 +1703,7 @@ h2.title {
 
 #do_action .total_area, #do_action .chose_area {
   border: 1px solid #E6E4DF;
-  color: #696763;
+  color: var(--black-color);
   padding: 30px 25px 30px 0;
   margin-bottom: 80px;
 }
@@ -1713,14 +1714,14 @@ h2.title {
 
 .total_area ul li {
   background:#E6E4DF;
-  color: #696763;
+  color: var(--black-color);
   margin-top: 10px;
   padding: 7px 20px;
 }
 
 
 .user_option label {
-  color: #696763;
+  color: var(--black-color);
   font-weight: normal;
   margin-left: 10px;
 }
@@ -1734,7 +1735,7 @@ h2.title {
 }
 
 .user_info label {
-  color: #696763;
+  color: var(--black-color);
   display: block;
   font-size: 15px;
   font-weight: normal;
@@ -1761,7 +1762,7 @@ h2.title {
 .user_info input, select, textarea {
   background: #F0F0E9;
   border:0;
-  color: #696763;
+  color: var(--black-color);
   padding: 5px;
   width: 100%;
   border-radius: 0;
@@ -1834,7 +1835,7 @@ h2.title {
 .checkout-options .nav li {
   float: left;
   margin-right: 45px;
-  color: #696763;
+  color: var(--black-color);
   font-size: 18px;
   font-family: 'Roboto', sans-serif;
   font-weight: normal;
@@ -1883,7 +1884,7 @@ h2.title {
 .shopper-info p, 
 .bill-to p, 
 .order-message p {
-  color: #696763;
+  color: var(--black-color);
   font-size: 20px;
   font-weight: 300
 }
@@ -1934,7 +1935,7 @@ h2.title {
 
 .order-message label {
   font-weight:300;
-  color: #696763;
+  color: var(--black-color);
   font-family: 'Roboto', sans-serif;
   margin-left: 10px;
   font-size: 14px
@@ -1942,7 +1943,7 @@ h2.title {
 
 
 .review-payment h2 {
-  color: #696763;
+  color: var(--black-color);
   font-size: 20px;
   font-weight: 300;
   margin-top: 45px;
@@ -1955,7 +1956,7 @@ h2.title {
 }
 
 .payment-options span label {
-  color: #696763;
+  color: var(--black-color);
   font-size: 14px;
   font-weight: 300;
   margin-right: 30px;
@@ -1965,7 +1966,7 @@ h2.title {
 .table.table-condensed.total-result {
   margin-bottom: 10px;
   margin-top: 35px;
-  color: #696763
+  color: var(--black-color)
 }
 
 #cart_items .cart_info 
@@ -1997,7 +1998,7 @@ h2.title {
 
 .blog-post-area 
 .single-blog-post h3 {
-  color: #696763;
+  color: var(--black-color);
   font-size: 16px;
   font-family: 'Roboto',sans-serif;
   text-transform: uppercase;
@@ -2103,7 +2104,7 @@ h2.title {
   background:#F0F0E9;
   border: 0 none;
   border-radius: 0;
-  color: #696763;
+  color: var(--black-color);
   margin-right: 5px;
   padding: 4px 12px;
 }
@@ -2130,7 +2131,7 @@ h2.title {
   background:#F0F0E9;
   border: 0 none;
   border-radius: 0;
-  color: #696763;
+  color: var(--black-color);
   font-size: 12px;
   font-weight: 700;
   padding: 4px;
@@ -2448,7 +2449,7 @@ h2.title {
 #contact-page .form-control {
   background-color: #fff;
   border: 1px solid #ddd;
-  color: #696763;
+  color: var(--black-color);
   height: 46px;
   padding: 6px 12px;
   width: 100%;
@@ -2485,7 +2486,7 @@ h2.title {
 
 #contact-page .contact-info p {
   margin-bottom: 0;
-  color: #696763;
+  color: var(--black-color);
   font-size: 16px;
   line-height: 25px;
 }

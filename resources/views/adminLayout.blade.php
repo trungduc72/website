@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76"
-        href="https://material-dashboard-pro-laravel.creative-tim.com/assets/img/apple-icon.png">
+        href="{{ asset('frontend/images/logo.png') }}">
     <link rel="shortcut icon" href="{{ asset('frontend/images/logo.png') }}">
     <title>
-        @yield('title')
+        @yield('title') | Admin
     </title>
 
     <meta name="keywords"
@@ -48,9 +48,10 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
-    <link id="pagestyle"
+    {{-- <link id="pagestyle"
         href="https://material-dashboard-pro-laravel.creative-tim.com/assets/css/material-dashboard.css?v=3.0.1"
-        rel="stylesheet" />
+        rel="stylesheet" /> --}}
+    <link rel="stylesheet" href="{{asset('themecss/style.css')}}">
 </head>
 
 <body class="g-sidenav-show bg-gray-200">

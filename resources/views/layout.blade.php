@@ -70,7 +70,7 @@
                     <div class="col-sm-4">
                         <div class="logo pull-left">
                             <a href={{ route('home') }} style="font-size: 38px; font-family: 'Passions Conflict', cursive; color: black;">
-                                <img src="frontend/images/logo.png" alt="" style="width: 60px" />Trà Hoa Phúc
+                                <img src="{{asset('frontend/images/logo.png')}}" alt="" style="width: 60px" />Trà Hoa Phúc
                             </a>
                         </div>
                         {{-- <div class="btn-group pull-right">
@@ -165,7 +165,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div id="slider-carousel" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
+                        <ol class="carousel-indicators" style="bottom: -65px">
                             <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
                             <li data-target="#slider-carousel" data-slide-to="1"></li>
                             <li data-target="#slider-carousel" data-slide-to="2"></li>
@@ -173,16 +173,16 @@
 
                         <div class="carousel-inner">
                             <div class="item active">
-                                <div class="col-sm-6">
+                                <div class="col-sm-6" >
                                     <h1><span>TEA</span>-TRÀ HOA PHÚC</h1>
                                     <h2>Tinh Hoa Trà Việt</h2>
                                     <p>Trà Hoa Phúc là đơn vị chuyên cung cấp sỉ lẻ các loại trà khô Thái Nguyên chất lượng cao:
-                                        Trà ĐInh, Tôm Nõn, Trà Móc Câu, Trà Búp, Trà Tân Cương. </p>
-                                    <button type="button" class="btn btn-default get">Get it now</button>
+                                        Trà Đinh, Tôm Nõn, Trà Móc Câu, Trà Búp, Trà Tân Cương. </p>
+                                    {{-- <button type="button" class="btn btn-default get">Get it now</button> --}}
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="frontend/images/che.jpg" class="girl img-responsive" alt="" />
-                                    <img src="frontend/images/che.png" class="pricing" alt="" />
+                                    <img src="{{asset('frontend/images/che.jpg')}}" class="girl img-responsive" alt="" style="max-width: 450px;"/>
+                                    {{-- <img src="{{asset('frontend/images/che.jpg')}}" class="pricing" alt="" /> --}}
                                 </div>
                             </div>
                             <div class="item">
@@ -190,11 +190,11 @@
                                     <h1><span>TEA</span>-TRÀ HOA PHÚC</h1>
                                     <h2>Tầm Nhìn Vươn Xa</h2>
                                     <p>Hợp tác & Kết nối thương hiệu Việt. </p>
-                                    <button type="button" class="btn btn-default get">Get it now</button>
+                                    {{-- <button type="button" class="btn btn-default get">Get it now</button> --}}
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="frontend/images/che.jpg" class="girl img-responsive" alt="" />
-                                    <img src="frontend/images/che.png" class="pricing" alt="" />
+                                    <img src="{{asset('frontend/images/che.jpg')}}" class="girl img-responsive" alt="" style="max-width: 450px;"/>
+                                    {{-- <img src="{{asset('frontend/images/che.jpg')}}" class="pricing" alt="" /> --}}
                                 </div>
                             </div>
 
@@ -203,11 +203,11 @@
                                     <h1><span>TEA</span>-TRÀ HOA PHÚC</h1>
                                     <h2>Đỉnh Cao - Thượng Hạng</h2>
                                     <p>Đưa thương hiệu vươn tầm quốc tế. </p>
-                                    <button type="button" class="btn btn-default get">Get it now</button>
+                                    {{-- <button type="button" class="btn btn-default get">Get it now</button> --}}
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="frontend/images/che.jpg" class="girl img-responsive" alt="" />
-                                    <img src="frontend/images/che.png" class="pricing" alt="" />
+                                    <img src="{{asset('frontend/images/che.jpg')}}" class="girl img-responsive" alt="" style="max-width: 450px;"/>
+                                    {{-- <img src="{{asset('frontend/images/che.jpg')}}" class="pricing" alt="" /> --}}
                                 </div>
                             </div>
 
@@ -229,16 +229,16 @@
 
     <section>
         <div class="container">
-            <div class="row">
+            <div class="row" style="margin-top: 40px">
                 <div class="col-sm-3">
-                    <div class="left-sidebar">
+                    <div class="left-sidebar" style="margin-top: 10px">
                         <h2>Danh mục sản phẩm</h2>
                         <div class="panel-group category-products" id="accordian">
                             <!--category-productsr-->
                             @foreach ($category as $item)
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h4 class="panel-title"><a href="#"> {{ $item->category_name }} </a>
+                                        <h4 class="panel-title"><a href="/category/{{$item->category_id}}"> {{ $item->category_name }} </a>
                                         </h4>
                                     </div>
                                 </div>
@@ -252,7 +252,7 @@
                             <div class="brands-name">
                                 <ul class="nav nav-pills nav-stacked">
                                     @foreach ($brand as $item)
-                                        <li><a href="#"> <span
+                                        <li><a href="/brand/{{$item->brand_id}}"> <span
                                                     class="pull-right">(50)</span>{{ $item->brand_name }}</a></li>
                                     @endforeach
                                 </ul>
@@ -369,7 +369,7 @@
                     </div>
                     <div class="col-sm-2">
                         <div class="single-widget">
-                            <h2>Quock Shop</h2>
+                            <h2>Quick Shop</h2>
                             <ul class="nav nav-pills nav-stacked">
                                 <li><a href="#">T-Shirt</a></li>
                                 <li><a href="#">Mens</a></li>

@@ -20,6 +20,7 @@ class CategoryProductController extends Controller
         else return redirect('admin-login')->send();
     }
 
+    //Admin
     public function add()
     {
         $this->AuthLogin();
@@ -97,4 +98,22 @@ class CategoryProductController extends Controller
         DB::table('category_product')->where('category_id', $category_product_id)->delete();
         return redirect('all-category-product');
     }
+    //Admin
+
+    //
+    public function show_category_home($category_id)
+    {
+        $title = "Danh mục sản phẩm";
+
+        $cate_product = DB::table('category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $brand_product = DB::table('brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+        $category_by_id = DB::table('product')->join('category_product', 'product.category_id', '=', 'category_product.category_id')
+                                                ->where('product.category_id',$category_id )->get();
+
+        $category_name = DB::table('category_product')->where('category_product.category_id', $category_id)->limit(1)->get();
+
+        return view('pages.category.home_category', compact('title'))->with('category_by_id', $category_by_id)
+                ->with('category', $cate_product)->with('brand', $brand_product)->with('category_name', $category_name);
+    }
+
 }
