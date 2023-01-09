@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
 
 /*
@@ -35,6 +36,12 @@ use App\Http\Controllers\ProductController;
     
 //Detail
     Route::get('/detail/{product_id}', [ProductController::class, 'detail'])->name('detail');
+
+//Card
+    Route::post('/save-cart', [CartController::class, 'saveCart'])->name('save-cart');
+    Route::get('/show-cart', [CartController::class, 'showCart'])->name('show-cart');
+    Route::get('/delete-cart/{rowId}', [CartController::class, 'deleteCart'])->name('delete-cart');
+    Route::post('/update-cart-qty/{rowId}', [CartController::class, 'updateCartQty'])->name('update-cart-qty');
 
 
 //BackEnd

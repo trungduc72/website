@@ -18,19 +18,19 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
                         <div class="item active">
-                            <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-                            <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-                            <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
+                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}" style="width: 40px"  alt=""></a>
+                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}" style="width: 40px"  alt=""></a>
+                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}" style="width: 40px"  alt=""></a>
                         </div>
                         <div class="item">
-                            <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-                            <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-                            <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
+                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}" style="width: 40px" alt=""></a>
+                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}" style="width: 40px"  alt=""></a>
+                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}" style="width: 40px"  alt=""></a>
                         </div>
                         <div class="item">
-                            <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-                            <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-                            <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
+                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}" style="width: 40px" alt=""></a>
+                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}" style="width: 40px"  alt=""></a>
+                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}" style="width: 40px"  alt=""></a>
                         </div>
 
                     </div>
@@ -48,23 +48,33 @@
             <div class="col-sm-7">
                 <div class="product-information">
                     <!--/product-information-->
-                    <img src="images/product-details/new.jpg" class="newarrival" alt="" />
+                    <img src="{{asset('frontend/images/product-details/new.jpg')}}" class="newarrival" alt="" />
                     <h2>{{ $item->product_name }}</h2>
                     <p>Mã ID: {{ $item->product_id }}</p>
-                    <img src="images/product-details/rating.png" alt="" />
-                    <span>
-                        <span>{{ number_format($item->product_price) }}VND</span>
-                        <label>Số lượng:</label>
-                        <input type="number" value="1" min="1" />
-                        <button type="button" class="btn btn-fefault cart">
-                            <i class="fa fa-shopping-cart"></i>
-                            Thêm vào giỏ hàng
-                        </button>
-                    </span>
+                    <img src="{{asset('frontend/images/product-details/rating.png')}}" alt="" />
+                    <form action={{route('save-cart')}} method="POST">
+                        @csrf
+                        <span>
+                            <div>
+                                <span>{{ number_format($item->product_price) }}VND</span>
+                            </div>
+                            <div>
+                                <label>Số lượng:</label>
+                                <input name="qty" type="number" value="1" min="1" />
+                                <input name="productid_hidden" type="hidden" value={{ $item->product_id }}  />
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-fefault cart" style="margin: 20px 0; ">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    Thêm vào giỏ hàng
+                                </button>
+                            </div>
+                        </span>
+                    </form>
                     <p><b>Tình trạng:</b> Còn hàng</p>
                     <p><b>Danh mục:</b> {{ $item->category_name }}</p>
                     <p><b>Thương hiệu:</b> {{ $item->brand_name }}</p>
-                    <a href=""><img src="images/product-details/share.png" class="share img-responsive"
+                    <a href=""><img src="{{asset('frontend/images/product-details/share.png')}}" class="share img-responsive"
                             alt="" /></a>
                 </div>
                 <!--/product-information-->
@@ -83,11 +93,11 @@
             </div>
             <div class="tab-content">
                 <div class="tab-pane fade active in" id="details">
-                    {{$item->product_desc}}
+                    {{ $item->product_desc }}
                 </div>
 
                 <div class="tab-pane fade" id="companyprofile">
-                    {{$item->product_content}}
+                    {{ $item->product_content }}
                 </div>
 
                 <div class="tab-pane fade" id="reviews">
@@ -126,39 +136,29 @@
 
     <div class="recommended_items">
         <!--recommended_items-->
-        <h2 class="title text-center">recommended items</h2>
+        <h2 class="title text-center">Sản phẩm liên quan</h2>
 
         <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="item active">
-                    <div class="col-sm-4">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="images/home/recommend1.jpg" alt="" />
-                                    <h2>$56</h2>
-                                    <p>Easy Polo Black Edition</p>
-                                    <button type="button" class="btn btn-default add-to-cart"><i
-                                            class="fa fa-shopping-cart"></i>Add to cart</button>
+                    @foreach ($related as $item)
+                        <div class="col-sm-4">
+                            <a href='/detail/{{ $item->product_id }}'>
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{ URL::to('/upload/product/' . $item->product_image) }}"
+                                                alt="" style="max-height: 150px" />
+                                            <h2>{{ number_format($item->product_price) }}VND</h2>
+                                            <p>{{ $item->product_name }}</p>
+                                            <button type="button" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i>Add to cart</button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                                <a>
                         </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="col-sm-4">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="images/home/recommend1.jpg" alt="" />
-                                    <h2>$56</h2>
-                                    <p>Easy Polo Black Edition</p>
-                                    <button type="button" class="btn btn-default add-to-cart"><i
-                                            class="fa fa-shopping-cart"></i>Add to cart</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">

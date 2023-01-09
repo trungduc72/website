@@ -136,12 +136,12 @@ class ProductController extends Controller
             DB::table('product')->where('product_id', $product_id)->update($data);
             Session::put('message', 'Cập nhật thành công!');
 
-            return redirect('add-product');
+            return redirect('all-product');
         }
 
         $data['product_image'] = '';
         DB::table('product')->where('product_id', $product_id)->update($data);
-        Session::put('message', 'Thêm thành công!');
+        Session::put('message', 'Cập nhật thành công!');
 
         return redirect('all-product');
     }
@@ -167,9 +167,19 @@ class ProductController extends Controller
                         ->join('brand', 'brand.brand_id','=','product.brand_id')
                         ->where('product.product_id', $product_id)->get();
 
+        foreach($detail_product as $item){
+            $category_id = $item->category_id;
+        }
+
+        $related_product = DB::table('product')
+                        ->join('category_product', 'category_product.category_id','=','product.category_id')
+                        ->join('brand', 'brand.brand_id','=','product.brand_id')
+                        ->where('category_product.category_id', $category_id)
+                        ->whereNotIn('product.product_id', [$product_id])->get();
+
         return view('pages.product.show_detail', compact('title'))
                     ->with('category', $cate_product)->with('brand', $brand_product)
-                    ->with('detail', $detail_product);
+                    ->with('detail', $detail_product)->with('related', $related_product);
     }
 
 }
