@@ -41,7 +41,14 @@ class BrandController extends Controller
     public function save(Request $request)
     {
         $this->AuthLogin();
-        $title = 'Add Category';
+        
+        $validate = $request->validate([
+            'brand_name' => 'required',
+            'brand_desc' => 'required'
+        ], [
+            'brand_name.required' => 'Vui lòng nhập tên thương hiệu!',
+            'brand_desc.required' => 'Vui lòng nhập mô tả thương hiệu!'
+        ]);
 
         $data = array();
         $data['brand_name'] = $request->brand_name;
@@ -82,6 +89,15 @@ class BrandController extends Controller
     public function update(Request $request, $brand_id)
     {
         $this->AuthLogin();
+
+        $validate = $request->validate([
+            'brand_name' => 'required',
+            'brand_desc' => 'required'
+        ], [
+            'brand_name.required' => 'Vui lòng nhập tên thương hiệu!',
+            'brand_desc.required' => 'Vui lòng nhập mô tả thương hiệu!'
+        ]);
+
         $data = array();
         $data['brand_name'] = $request->brand_name;
         $data['brand_desc'] = $request->brand_desc;

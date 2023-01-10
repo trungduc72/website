@@ -50,6 +50,18 @@ class ProductController extends Controller
         $this->AuthLogin();
         $title = 'Add Category';
 
+        $validate = $request->validate([
+            'product_name' => 'required',
+            'product_price' => 'required',
+            'product_desc' => 'required',
+            'product_content' => 'required',
+        ], [
+            'product_name.required' => 'Vui lòng nhập tên sản phẩm!',
+            'product_price.required' => 'Vui lòng nhập giá sản phẩm!',
+            'product_desc.required' => 'Vui lòng nhập mô tả sản phẩm!',
+            'product_content.required' => 'Vui lòng nhập nội dung sản phẩm!'
+        ]);
+
         $data = array();
         $data['product_name'] = $request->product_name;
         $data['product_price'] = $request->product_price;
@@ -115,6 +127,19 @@ class ProductController extends Controller
     public function update(Request $request, $product_id)
     {
         $this->AuthLogin();
+
+        $validate = $request->validate([
+            'product_name' => 'required',
+            'product_price' => 'required',
+            'product_desc' => 'required',
+            'product_content' => 'required',
+        ], [
+            'product_name.required' => 'Vui lòng nhập tên sản phẩm!',
+            'product_price.required' => 'Vui lòng nhập giá sản phẩm!',
+            'product_desc.required' => 'Vui lòng nhập mô tả sản phẩm!',
+            'product_content.required' => 'Vui lòng nhập nội dung sản phẩm!'
+        ]);
+        
         $data = array();
         $data['product_name'] = $request->product_name;
         $data['product_price'] = $request->product_price;

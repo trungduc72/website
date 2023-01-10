@@ -8,7 +8,8 @@
             <table class="table align-items-center mb-0">
                 <thead>
                     <tr>
-                        <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-2">Tên thương hiệu</th>
+                        <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-2">Tên thương hiệu
+                        </th>
                         <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-2">Mô tả</th>
                         <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-2">Trạng thái</th>
                         <th class="text-secondary opacity-7">Tùy chọn</th>
@@ -55,40 +56,17 @@
                                 <a href="/edit-brand/{{ $item->brand_id }}"
                                     class="text-secondary font-weight-normal text-xs" data-toggle="tooltip"
                                     data-original-title="Edit user">
-                                    <button type="button" class="btn bg-gradient-primary mb-0" >
-                                    Sửa
-                                </button>
+                                    <button type="button" class="btn bg-gradient-primary mb-0">
+                                        Sửa
+                                    </button>
+                                </a>
+                                <a href="/delete-brand/{{ $item->brand_id }}">
+                                    <button type="button" class="btn bg-gradient-danger mb-0"
+                                        onclick="return confirm('Bạn có chắc là muốn xóa danh mục này không?')">
+                                        Xóa
+                                    </button>
                                 </a>
 
-                                <button type="button" class="btn bg-gradient-danger mb-0" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                    Xóa
-                                </button>
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Xác nhận xóa</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Bạn có chắc là muốn xóa thương hiệu này không?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn bg-gradient-secondary"
-                                                    data-bs-dismiss="modal">Đóng</button>
-                                                <a href="/delete-brand/{{ $item->brand_id }}">
-                                                <button type="button" class="btn bg-gradient-primary">Đồng ý</button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </td>
                         </tr>
                     @endforeach

@@ -1538,7 +1538,7 @@ h2.title {
 
 .breadcrumbs .breadcrumb {
   background:transparent;
-  margin-bottom: 75px;
+  margin-bottom: 20px;
   padding-left: 0;
 }
 
@@ -1909,10 +1909,10 @@ h2.title {
 .form-two > form > select, 
 .form-two > form > input, 
 .form-one > form > input {
-  background:#F0F0E9;
-  border: 0 none;
-  margin-bottom:10px;
-  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top:15px;
+  padding: 20px 10px;
   width: 100%;
   font-weight: 300
 }
@@ -2400,7 +2400,6 @@ h2.title {
 .btn.btn-primary {
   background:var(--primary-color);
   border: 0 none;
-  border-radius: 0;
   margin-top: 16px;
 }
 

@@ -35,6 +35,15 @@ class AdminController extends Controller
     public function login(Request $request)
     {
         $this->AuthLogin();
+
+        $validate = $request->validate([
+            'admin_email' => 'required',
+            'admin_password' => 'required'
+        ], [
+            'admin_email.required' => 'Vui lòng nhập email của bạn!',
+            'admin_password.required' => 'Vui lòng nhập mật khẩu của bạn!'
+        ]);
+
         $admin_email = $request->admin_email;
         $admin_password = md5($request->admin_password);
 
@@ -44,7 +53,7 @@ class AdminController extends Controller
                     ->first();
         if($result){
             Session::put('admin_name', $result->admin_name);
-            Session::put('admin_id', $result->admin_id);
+            Session::put('admin_id', $result->admin_id); 
             return Redirect::to('/dashboard');
         }else {
             Session::put('message', 'Sai!');

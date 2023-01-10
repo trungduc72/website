@@ -69,8 +69,10 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="logo pull-left">
-                            <a href={{ route('home') }} style="font-size: 38px; font-family: 'Passions Conflict', cursive; color: black;">
-                                <img src="{{asset('frontend/images/logo.png')}}" alt="" style="width: 60px" />Trà Hoa Phúc
+                            <a href={{ route('home') }}
+                                style="font-size: 38px; font-family: 'Passions Conflict', cursive; color: black;">
+                                <img src="{{ asset('frontend/images/logo.png') }}" alt=""
+                                    style="width: 60px" />Trà Hoa Phúc
                             </a>
                         </div>
                         {{-- <div class="btn-group pull-right">
@@ -102,11 +104,26 @@
                     <div class="col-sm-8">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
-                                <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
-                                <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-                                <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                                <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                                <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+                                <li><a href="#"><i class="fa fa-star"></i> Yêu thích</a></li>
+                                <li><a href={{ route('checkout') }}><i class="fa fa-crosshairs"></i> Thanh toán</a>
+                                </li>
+                                <li><a href={{ route('show-cart') }}><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+                                </li>
+
+                                <?php
+                                    $customer_id = Session::get('customer_id');
+                                    if($customer_id != null){
+                                ?>
+                                    <li><a href={{ route('logout-checkout') }}><i class="fa fa-lock"></i> Đăng xuất</a></li>
+                                <?php    
+                                }
+                                else{
+                                ?>
+                                    <li><a href={{ route('login-checkout') }}><i class="fa fa-lock"></i> Đăng nhập</a></li>
+
+                                <?php
+                                }
+                                ?>
                             </ul>
                         </div>
                     </div>
@@ -131,7 +148,7 @@
                         </div>
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
-                                <li><a href={{ route('home') }} class="active">Trang chủ</a></li>
+                                <li><a href={{ route('home') }}>Trang chủ</a></li>
                                 <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="shop.html">Products</a></li>
@@ -142,7 +159,7 @@
                                         <li><a href="blog.html">Blog List</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="404.html">Giỏ hàng</a></li>
+                                <li><a href={{ route('show-cart') }}>Giỏ hàng</a></li>
                                 <li><a href="contact-us.html">Liên hệ</a></li>
                             </ul>
                         </div>
@@ -173,40 +190,44 @@
 
                         <div class="carousel-inner">
                             <div class="item active">
-                                <div class="col-sm-6" >
-                                    <h1><span>TEA</span>-TRÀ HOA PHÚC</h1>
+                                <div class="col-sm-6">
+                                    <h1><span>TRÀ</span>-HOA PHÚC</h1>
                                     <h2>Tinh Hoa Trà Việt</h2>
-                                    <p>Trà Hoa Phúc là đơn vị chuyên cung cấp sỉ lẻ các loại trà khô Thái Nguyên chất lượng cao:
+                                    <p>Trà Hoa Phúc là đơn vị chuyên cung cấp sỉ lẻ các loại trà khô Thái Nguyên chất
+                                        lượng cao:
                                         Trà Đinh, Tôm Nõn, Trà Móc Câu, Trà Búp, Trà Tân Cương. </p>
                                     {{-- <button type="button" class="btn btn-default get">Get it now</button> --}}
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="{{asset('frontend/images/che.jpg')}}" class="girl img-responsive" alt="" style="max-width: 450px;"/>
+                                    <img src="{{ asset('frontend/images/che.jpg') }}" class="girl img-responsive"
+                                        alt="" style="max-width: 450px;" />
                                     {{-- <img src="{{asset('frontend/images/che.jpg')}}" class="pricing" alt="" /> --}}
                                 </div>
                             </div>
                             <div class="item">
                                 <div class="col-sm-6">
-                                    <h1><span>TEA</span>-TRÀ HOA PHÚC</h1>
+                                    <h1><span>TRÀ</span>-HOA PHÚC</h1>
                                     <h2>Tầm Nhìn Vươn Xa</h2>
                                     <p>Hợp tác & Kết nối thương hiệu Việt. </p>
                                     {{-- <button type="button" class="btn btn-default get">Get it now</button> --}}
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="{{asset('frontend/images/che.jpg')}}" class="girl img-responsive" alt="" style="max-width: 450px;"/>
+                                    <img src="{{ asset('frontend/images/che.jpg') }}" class="girl img-responsive"
+                                        alt="" style="max-width: 450px;" />
                                     {{-- <img src="{{asset('frontend/images/che.jpg')}}" class="pricing" alt="" /> --}}
                                 </div>
                             </div>
 
                             <div class="item">
                                 <div class="col-sm-6">
-                                    <h1><span>TEA</span>-TRÀ HOA PHÚC</h1>
+                                    <h1><span>TRÀ</span>-HOA PHÚC</h1>
                                     <h2>Đỉnh Cao - Thượng Hạng</h2>
                                     <p>Đưa thương hiệu vươn tầm quốc tế. </p>
                                     {{-- <button type="button" class="btn btn-default get">Get it now</button> --}}
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="{{asset('frontend/images/che.jpg')}}" class="girl img-responsive" alt="" style="max-width: 450px;"/>
+                                    <img src="{{ asset('frontend/images/che.jpg') }}" class="girl img-responsive"
+                                        alt="" style="max-width: 450px;" />
                                     {{-- <img src="{{asset('frontend/images/che.jpg')}}" class="pricing" alt="" /> --}}
                                 </div>
                             </div>
@@ -238,7 +259,8 @@
                             @foreach ($category as $item)
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h4 class="panel-title"><a href="/category/{{$item->category_id}}"> {{ $item->category_name }} </a>
+                                        <h4 class="panel-title"><a href="/category/{{ $item->category_id }}">
+                                                {{ $item->category_name }} </a>
                                         </h4>
                                     </div>
                                 </div>
@@ -252,7 +274,7 @@
                             <div class="brands-name">
                                 <ul class="nav nav-pills nav-stacked">
                                     @foreach ($brand as $item)
-                                        <li><a href="/brand/{{$item->brand_id}}"> <span
+                                        <li><a href="/brand/{{ $item->brand_id }}"> <span
                                                     class="pull-right">(50)</span>{{ $item->brand_name }}</a></li>
                                     @endforeach
                                 </ul>
@@ -408,7 +430,7 @@
                             <h2>About Shopper</h2>
                             <form action="#" class="searchform">
                                 <input type="text" placeholder="Your email address" />
-                                <button type="submit" class="btn btn-default"><i
+                                <button type="submit" class="btn btn-default" style="margin-left: 0"><i
                                         class="fa fa-arrow-circle-o-right"></i></button>
                                 <p>Get the most recent updates from <br />our site and be updated your self...</p>
                             </form>

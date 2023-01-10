@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Đăng nhập | Admin</title>
+    <title>Đăng nhập</title>
     <link rel="stylesheet" href="{{ asset('backend/css/DashboardAdmin.css') }}">
     <link rel="shortcut icon" href="{{ asset('frontend/images/logo.png') }}">
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
@@ -37,21 +37,21 @@
                                     Session::put('message', null);
                                 }
                                 ?>
-                                <form role="form" method="POST" action={{ route('login_dashboard') }}
+                                <form role="form" method="POST" action={{ route('login-customer') }}
                                     class="text-start">
                                     @csrf
-                                    <div class="input-group input-group-dynamic mt-3  is-filled">
+                                    <div class="input-group input-group-dynamic mt-3 is-filled">
                                         <label class="form-label">Email</label>
-                                        <input type="email" class="form-control mb-3" name="admin_email">
+                                        <input type="email" class="form-control mb-3" name="customer_email">
                                     </div>
-                                    @error('admin_email')
+                                    @error('customer_email')
                                         <span style="color: red">{{ $message }}</span>
                                     @enderror
                                     <div class="input-group input-group-dynamic mt-3 is-filled">
                                         <label class="form-label">Mật khẩu</label>
-                                        <input type="password" class="form-control" name="admin_password">
+                                        <input type="password" class="form-control" name="customer_password">
                                     </div>
-                                    @error('admin_password')
+                                    @error('customer_password')
                                         <span style="color: red">{{ $message }}</span>
                                     @enderror
                                     <div class="text-center">
@@ -59,6 +59,21 @@
                                             nhập</button>
                                     </div>
                                 </form>
+                                <p class="text-sm text-center mt-3">
+                                    Quên mật khẩu? Cài lại mật khẩu
+                                    <a href="https://material-dashboard-pro-laravel.creative-tim.com/verify"
+                                        class="text-dark text-gradient font-weight-bold">tại đây</a>
+                                </p>
+                                <p class="mt-4 text-sm text-center">
+                                    Bạn chưa có tài khoản?
+                                    <a href={{route('signup')}}
+                                        class="text-dark text-gradient font-weight-bold">Đăng kí</a>
+                                </p>
+                                <p class="mt-4 text-sm text-center">
+                                    Quay lại
+                                    <a href= {{route('home')}}
+                                        class="text-dark text-gradient font-weight-bold">Trang chủ</a>
+                                </p>
                             </div>
                         </div>
                     </div>

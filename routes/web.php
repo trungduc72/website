@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckOutController;
 
 
 /*
@@ -21,10 +22,6 @@ use App\Http\Controllers\CartController;
 */
 
 //FrontEnd
-// Route::get('/', function () {
-//     return view('adminLayout');
-// });
-
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -42,6 +39,20 @@ use App\Http\Controllers\CartController;
     Route::get('/show-cart', [CartController::class, 'showCart'])->name('show-cart');
     Route::get('/delete-cart/{rowId}', [CartController::class, 'deleteCart'])->name('delete-cart');
     Route::post('/update-cart-qty/{rowId}', [CartController::class, 'updateCartQty'])->name('update-cart-qty');
+
+//Checkout
+    Route::get('/login-checkout', [CheckOutController::class, 'loginCheckOut'])->name('login-checkout');
+    Route::post('/login-customer', [CheckOutController::class, 'loginCustomer'])->name('login-customer');
+    
+    //Signup
+    Route::get('/signup', [CheckOutController::class, 'signup'])->name('signup');
+    Route::post('/add-customer', [CheckOutController::class, 'addCustomer'])->name('add-customer');
+    //Logout
+    Route::get('/logout-checkout', [CheckOutController::class, 'logoutCheckout'])->name('logout-checkout');
+
+    //Checkout
+    Route::get('/checkout', [CheckOutController::class, 'checkout'])->name('checkout');
+    Route::post('/save-checkout-customer', [CheckOutController::class, 'saveCheckoutCustomer'])->name('save-checkout-customer');
 
 
 //BackEnd

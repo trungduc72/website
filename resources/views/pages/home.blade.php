@@ -27,9 +27,15 @@
                                         style="width: 100%" />
                                     <h2>{{ number_format($item->product_price) }}đ</h2>
                                     <p>{{ $item->product_name }}</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i
-                                            class="fa fa-shopping-cart"></i>Add
-                                        to cart</a>
+                                    <form action={{ route('save-cart') }} method="POST">
+                                        @csrf
+                                        <input name="qty" type="hidden" value="1" min="1" />
+                                        <input name="productid_hidden" type="hidden" value={{ $item->product_id }} />
+
+                                        <button type="submit" class="btn btn-default add-to-cart"><i
+                                                class="fa fa-shopping-cart"></i>Add
+                                            to cart</button>
+                                    </form>
                                 </div>
                             </div>
                         </a>

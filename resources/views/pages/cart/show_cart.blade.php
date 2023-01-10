@@ -7,7 +7,7 @@
 @section('content')
     <section id="cart_items">
         <div class="breadcrumbs">
-            <ol class="breadcrumb">
+            <ol class="breadcrumb" >
                 <li><a href={{ route('home') }}>Trang chủ</a></li>
                 <li class="active">Giỏ hàng của bạn</li>
             </ol>
@@ -45,8 +45,9 @@
                                 <div class="cart_quantity_button">
                                     <form action='update-cart-qty/{{ $item->rowId }}' method="POST">
                                         @csrf
-                                        <input class="cart_quantity_input" type="text" name="cart_quantity"
-                                            value={{ $item->qty }} autocomplete="off" size="2">
+                                        <input class="cart_quantity_input" type="number" min="1"
+                                            name="cart_quantity" value={{ $item->qty }} autocomplete="off" size="2"
+                                            style="width: 40px">
                                         <input type="hidden" value={{ $item->rowId }} name="rowId_cart"
                                             class="form-control">
                                         <input type="submit" value="Cập nhật" name="update_qty"
@@ -81,7 +82,7 @@
                 delivery cost.</p>
         </div>
         <div class="row">
-            <div class="col-sm-6">
+            {{-- <div class="col-sm-6">
                 <div class="chose_area">
                     <ul class="user_option">
                         <li>
@@ -134,17 +135,32 @@
                     <a class="btn btn-default update" href="">Get Quotes</a>
                     <a class="btn btn-default check_out" href="">Continue</a>
                 </div>
-            </div>
-            <div class="col-sm-6">
+            </div> --}}
+            <div class="col-sm-12">
                 <div class="total_area">
                     <ul>
-                        <li>Tổng <span>{{ Cart::priceTotal(0, ',', '.') . '' . 'VND' }}</span></li>
-                        <li>Thuế <span>{{ Cart::tax(0, ',', '.') . '' . 'VND' }}</span></li>
+                        <li>Tổng <span>{{ Cart::priceTotal(0) . '' . 'VND' }}</span></li>
+                        <li>Thuế <span>{{ Cart::tax(0) . '' . 'VND' }}</span></li>
                         <li>Phí vận chuyển <span>Free</span></li>
-                        <li>Thành tiền <span>{{ Cart::total(0, ',', '.') . '' . 'VND' }}</span></li>
+                        <li>Thành tiền <span>{{ Cart::total(0) . '' . 'VND' }}</span></li>
                     </ul>
-                    <a class="btn btn-default update" href="">Update</a>
-                    <a class="btn btn-default check_out" href="">Check Out</a>
+
+                    <?php
+                        $customer_id = Session::get('customer_id');
+                        if($customer_id != null){
+                    ?>
+                    <a class="btn btn-default check_out" style="margin-left: 40px" href={{ route('checkout') }}>Thanh
+                        toán</a>
+                    <?php    
+                    }
+                    else{
+                    ?>
+                    <a class="btn btn-default check_out" style="margin-left: 40px" href={{ route('login-checkout') }}>Thanh
+                        toán</a>
+                    <?php
+                    }
+                    ?>
+                    
                 </div>
             </div>
         </div>

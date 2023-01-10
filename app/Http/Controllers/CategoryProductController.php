@@ -43,7 +43,14 @@ class CategoryProductController extends Controller
     public function save(Request $request)
     {
         $this->AuthLogin();
-        $title = 'Add Category';
+
+        $validate = $request->validate([
+            'category_product_name' => 'required',
+            'category_product_desc' => 'required'
+        ], [
+            'category_product_name.required' => 'Vui lòng nhập tên danh mục!',
+            'category_product_desc.required' => 'Vui lòng nhập mô tả danh mục!'
+        ]);
 
         $data = array();
         $data['category_name'] = $request->category_product_name;
@@ -84,6 +91,13 @@ class CategoryProductController extends Controller
     public function update(Request $request, $category_product_id)
     {
         $this->AuthLogin();
+
+        $validate = $request->validate([
+            'category_product_name' => 'required'
+        ], [
+            'category_product_name.required' => 'Vui lòng nhập tên danh mục!'
+        ]);
+
         $data = array();
         $data['category_name'] = $request->category_product_name;
         $data['category_desc'] = $request->category_product_desc;
