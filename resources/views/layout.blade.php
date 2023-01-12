@@ -105,8 +105,22 @@
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
                                 <li><a href="#"><i class="fa fa-star"></i> Yêu thích</a></li>
-                                <li><a href={{ route('checkout') }}><i class="fa fa-crosshairs"></i> Thanh toán</a>
+                                <?php 
+                                    $customer_id = Session::get('customer_id');
+                                    $shipping_id = Session::get('shipping_id');
+                                    if($customer_id != null && $shipping_id == null){
+                                ?>
+                                <li><a href={{ route('checkout') }}><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
+                                    <?php
+                                    }
+                                    elseif($customer_id != null && $shipping_id != null){
+                                ?>
+                                <li><a href={{ route('payment') }}><i class="fa fa-crosshairs"></i> Thanh toán</a>
                                 </li>
+                                    <?php
+                                    }
+                                ?>
+                                
                                 <li><a href={{ route('show-cart') }}><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
                                 </li>
 
@@ -114,12 +128,13 @@
                                     $customer_id = Session::get('customer_id');
                                     if($customer_id != null){
                                 ?>
-                                    <li><a href={{ route('logout-checkout') }}><i class="fa fa-lock"></i> Đăng xuất</a></li>
+                                <li><a href={{ route('logout-checkout') }}><i class="fa fa-lock"></i> Đăng xuất</a>
+                                </li>
                                 <?php    
                                 }
                                 else{
                                 ?>
-                                    <li><a href={{ route('login-checkout') }}><i class="fa fa-lock"></i> Đăng nhập</a></li>
+                                <li><a href={{ route('login-checkout') }}><i class="fa fa-lock"></i> Đăng nhập</a></li>
 
                                 <?php
                                 }
@@ -165,9 +180,10 @@
                         </div>
                     </div>
                     <div class="col-sm-3">
-                        <div class="search_box pull-right">
-                            <input type="text" placeholder="Search" />
-                        </div>
+                        <form action={{ route('search') }} method="POST">
+                            @csrf
+                            <input class="form-control" type="text" name="keyword" placeholder="Tìm kiếm" />
+                        </form>
                     </div>
                 </div>
             </div>

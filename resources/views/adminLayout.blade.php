@@ -4,8 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76"
-        href="{{ asset('frontend/images/logo.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('frontend/images/logo.png') }}">
     <link rel="shortcut icon" href="{{ asset('frontend/images/logo.png') }}">
     <title>
         @yield('title') | Admin
@@ -51,7 +50,7 @@
     {{-- <link id="pagestyle"
         href="https://material-dashboard-pro-laravel.creative-tim.com/assets/css/material-dashboard.css?v=3.0.1"
         rel="stylesheet" /> --}}
-    <link rel="stylesheet" href="{{asset('themecss/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('themecss/style.css') }}">
 </head>
 
 <body class="g-sidenav-show bg-gray-200">
@@ -62,8 +61,7 @@
             <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0 d-flex align-items-center text-wrap" href={{ route('dashboard') }}>
-                <img src="{{ asset('frontend/images/logo.png') }}"
-                    class="navbar-brand-img h-100" alt="main_logo">
+                <img src="{{ asset('frontend/images/logo.png') }}" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-2 font-weight-bold text-white">TEA THAINGUYEN</span>
             </a>
         </div>
@@ -101,8 +99,8 @@
                                 </a>
                             </li>
                             <form method="POST"
-                                action="https://material-dashboard-pro-laravel.creative-tim.com/sign-out"
-                                class="d-none" id="logout-form">
+                                action="https://material-dashboard-pro-laravel.creative-tim.com/sign-out" class="d-none"
+                                id="logout-form">
                                 <input type="hidden" name="_token"
                                     value="Om2xRNJMUhj5NW9sD2uIAEvzopc9UCfGeCHrUNO1">
                             </form>
@@ -196,6 +194,33 @@
                                     <span class="sidenav-mini-icon"> T </span>
                                     <span class="sidenav-normal  ms-2  ps-1"> Thêm sản phẩm<b
                                             class="caret"></b></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <hr class="horizontal light mt-0">
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#applicationsExamples" class="nav-link text-white"
+                        aria-controls="applicationsExamples" role="button" aria-expanded="false">
+                        <i
+                            class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">apps</i>
+                        <span class="nav-link-text ms-2 ps-1">Đơn hàng</span>
+                    </a>
+                    <div class="collapse" id="applicationsExamples" style="">
+                        <ul class="nav ">
+                            <li class="nav-item ">
+                                <a class="nav-link text-white "
+                                    href={{route('manage-order')}}>
+                                    <span class="sidenav-mini-icon"> Q </span>
+                                    <span class="sidenav-normal  ms-2  ps-1"> Quản lí đơn hàng </span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link text-white "
+                                    href="#">
+                                    <span class="sidenav-mini-icon"> K </span>
+                                    <span class="sidenav-normal  ms-2  ps-1"> Kanban </span>
                                 </a>
                             </li>
                         </ul>

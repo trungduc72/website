@@ -8,9 +8,19 @@ use App\Http\Requests;
 use Session;
 use Illuminate\Support\Facades\Redirect;
 session_start();
+use Cart;
 
 class CheckOutController extends Controller
 {
+    public function AuthLogin()
+    {
+        $admin_id = Session::get('admin_id');
+        if($admin_id){
+            return redirect('admin.dashboard');
+        }
+        else return redirect('admin-login')->send();
+    }
+
     public function loginCheckOut()
     {
         
@@ -62,8 +72,8 @@ class CheckOutController extends Controller
         $data['customer_phone'] = $request->customer_phone;
         $data['customer_password'] = md5($request->customer_password);
 
-        $customer_id = DB::table('customer')->insertgetId($data);
-
+        $customer_id = DB::table('customer')->insertGetId($data);
+        
         Session::put('customer_id', $customer_id);
         Session::put('customer_name', $request->customer_name);
 
@@ -92,7 +102,8 @@ class CheckOutController extends Controller
             'shipping_name.required' => 'Vui lòng nhập họ và tên!',
             'shipping_email.required' => 'Vui lòng nhập email!',
             'shipping_phone.required' => 'Vui lòng nhập số điện thoại!',
-            'shipping_note.required' => 'Vui lòng nhập ghi chú!'
+            'shipping_note.required' => 'Vui lòng nhập ghi chú!',
+            'shipping_address.required' => 'Vui lòng nhập địa chỉ!'
         ]);
 
         $data = array();
@@ -102,11 +113,76 @@ class CheckOutController extends Controller
         $data['shipping_email'] = $request->shipping_email;
         $data['shipping_note'] = $request->shipping_note;
 
-        $shipping_id = DB::table('shipping')->insertgetId($data);
+        $shipping_id = DB::table('shipping')->insertGetId($data);
 
         Session::put('shipping_id', $shipping_id);
 
-        return redirect('login-checkout');
+        return redirect('payment');
+    }
+
+    public function payment()
+    {
+        $title = 'Thanh toán';
+        $cate_product = DB::table('category_product')->orderby('category_id', 'desc')->get();
+        $brand_product = DB::table('brand')->orderby('brand_id', 'desc')->get();
+
+        return view('pages.checkout.payment', compact('title'))
+                ->with('category', $cate_product)->with('brand', $brand_product);
+    }
+
+    public function orderPlace(Request $request)
+    {
+        $title = 'Đặt hàng';
+        $cate_product = DB::table('category_product')->orderby('category_id', 'desc')->get();
+        $brand_product = DB::table('brand')->orderby('brand_id', 'desc')->get();
+
+        // $validate = $request->validate([
+        //     'payment_method' => 'required'
+        // ], [
+        //     'payment_method.required' => 'Vui lòng chọn phương thức thanh toán!'
+        // ]);
+
+        //nhập hình thức thanh toán
+        $payment_data = array();
+        $payment_data['payment_method'] = $request->payment_option;
+        $payment_data['payment_status'] = 'Đang chờ xử lí';
+
+        $payment_id = DB::table('payment')->insertGetId($payment_data);
+
+        //insert order
+        $order_data = array();
+        $order_data['customer_id'] = Session::get('customer_id');
+        $order_data['shipping_id'] = Session::get('shipping_id');
+        $order_data['payment_id'] = $payment_id;
+        $order_data['order_total'] = Cart::total();
+        $order_data['order_status'] = 'Đang chờ xử lí';
+
+        $order_id = DB::table('order')->insertGetId($order_data);
+
+        //inset oder detail
+        $content = Cart::content();
+        foreach($content as $con){
+            $order_detail_data = array();
+            $order_detail_data['order_id'] = $order_id;
+            $order_detail_data['product_id'] = $con->id;
+            $order_detail_data['product_name'] = $con->name;
+            $order_detail_data['product_price'] = $con->price;
+            $order_detail_data['product_qty'] = $con->qty;
+    
+            $order_detail_id = DB::table('order_detail')->insert($order_detail_data);
+        }
+
+        if($payment_data['payment_method'] == 1){
+            echo '1';
+        }elseif ($payment_data['payment_method'] == 2) {
+            Cart::destroy();
+            return view('pages.checkout.handcash', compact('title'))
+            ->with('category', $cate_product)->with('brand', $brand_product);
+        }else{
+            echo '3';
+        }
+
+        // return redirect('payment');
     }
 
     public function logoutCheckout()
@@ -115,4 +191,26 @@ class CheckOutController extends Controller
 
         return redirect('home');
     }
+
+    public function manageOrder()
+    {
+        $this->AuthLogin();
+        $title = 'Quản lí đơn hàng';
+
+        $all_order = DB::table('order')
+                        ->join('customer', 'order.customer_id','=','customer.customer_id')
+                        ->select('order.*', 'customer.customer_name')
+                        ->orderby('order.order_id', 'desc')->get();
+        $manager_order = view('admin.manage_order', compact('title'))
+                                    ->with('all_order', $all_order);
+
+        return view('adminLayout')->with('manager_order', $manager_order);
+    }
+
+    public function viewOrder($orderId)
+    {
+        $title = 'Chi tiết đơn hàng';
+        return view('admin.view_order', compact('title'));
+    }
+
 }

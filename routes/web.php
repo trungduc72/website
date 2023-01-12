@@ -25,6 +25,9 @@ use App\Http\Controllers\CheckOutController;
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+    //Search
+    Route::post('/search', [HomeController::class, 'search'])->name('search');
+
 //Category
     Route::get('/category/{category_id}', [CategoryProductController::class, 'show_category_home'])->name('category');
 
@@ -53,6 +56,8 @@ use App\Http\Controllers\CheckOutController;
     //Checkout
     Route::get('/checkout', [CheckOutController::class, 'checkout'])->name('checkout');
     Route::post('/save-checkout-customer', [CheckOutController::class, 'saveCheckoutCustomer'])->name('save-checkout-customer');
+    Route::get('/payment', [CheckOutController::class, 'payment'])->name('payment');
+    Route::post('/order-place', [CheckOutController::class, 'orderPlace'])->name('order-place');
 
 
 //BackEnd
@@ -109,3 +114,12 @@ use App\Http\Controllers\CheckOutController;
     Route::post('/update-product/{product_id}', [ProductController::class, 'update'])->name('update-product');
         //delete
     Route::get('/delete-product/{product_id}', [ProductController::class, 'delete'])->name('delete-product');
+
+//Order
+    Route::get('/manage-order', [CheckOutController::class, 'manageOrder'])->name('manage-order');
+
+    Route::get('/view-order/{order_id}', [CheckOutController::class, 'viewOrder'])->name('view-order');
+
+
+
+

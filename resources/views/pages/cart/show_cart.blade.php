@@ -7,7 +7,7 @@
 @section('content')
     <section id="cart_items">
         <div class="breadcrumbs">
-            <ol class="breadcrumb" >
+            <ol class="breadcrumb">
                 <li><a href={{ route('home') }}>Trang chủ</a></li>
                 <li class="active">Giỏ hàng của bạn</li>
             </ol>
@@ -147,20 +147,28 @@
 
                     <?php
                         $customer_id = Session::get('customer_id');
+                        $shipping_id = Session::get('shipping_id');
                         if($customer_id != null){
+                            if($customer_id != null && $shipping_id == null){
                     ?>
-                    <a class="btn btn-default check_out" style="margin-left: 40px" href={{ route('checkout') }}>Thanh
+                        <a class="btn btn-default check_out" style="margin-left: 40px" href={{ route('checkout') }}>Thanh
                         toán</a>
-                    <?php    
+                    <?php
+                        }
+                        elseif($customer_id != null && $shipping_id != null){
+                    ?>
+                        <a class="btn btn-default check_out" style="margin-left: 40px" href={{ route('payment') }}> Thanh toán</a>
+                    <?php
+                        }  
                     }
                     else{
                     ?>
-                    <a class="btn btn-default check_out" style="margin-left: 40px" href={{ route('login-checkout') }}>Thanh
+                        <a class="btn btn-default check_out" style="margin-left: 40px" href={{ route('login-checkout') }}>Thanh
                         toán</a>
                     <?php
                     }
                     ?>
-                    
+
                 </div>
             </div>
         </div>
