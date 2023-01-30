@@ -115,7 +115,7 @@ class BrandController extends Controller
     //Admin
 
     //
-    public function show_brand_home($brand_id)
+    public function show_brand_home($brand_id, Request $request)
     {
         $title = "Thương hiệu sản phẩm";
 
@@ -124,9 +124,16 @@ class BrandController extends Controller
         $brand_by_id = DB::table('product')->join('brand', 'product.brand_id', '=', 'brand.brand_id')
                                                 ->where('product.brand_id',$brand_id )->get();
 
+        foreach ($brand_by_id as $value) {
+            //seo
+            $meta_desc = $value->brand_desc;
+            $meta_keywords = $value->brand_name;
+            $url_canonical = $request->url();
+        }
+        
         $brand_name = DB::table('brand')->where('brand.brand_id', $brand_id)->limit(1)->get();
 
-        return view('pages.brand.home_brand', compact('title'))->with('brand_by_id', $brand_by_id)
+        return view('pages.brand.home_brand', compact('title', 'meta_desc', 'url_canonical', 'meta_keywords'))->with('brand_by_id', $brand_by_id)
                 ->with('category', $cate_product)->with('brand', $brand_product)->with('brand_name', $brand_name);
     }
 }

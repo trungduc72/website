@@ -43,7 +43,7 @@
                             <div>
                                 <label class="mt-4" style="margin-left: 0">Mô tả danh mục</label>
                                 <div class="input-group input-group-dynamic">
-                                    <textarea class="form-control" rows="5" placeholder="Mô tả danh mục." spellcheck="false"
+                                    <textarea id="ckeditor" class="form-control" rows="5" placeholder="Mô tả danh mục." spellcheck="false"
                                         name="category_product_desc"></textarea>
                                 </div>
                             </div>

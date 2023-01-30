@@ -11,8 +11,13 @@ session_start();
 
 class HomeController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         $title = 'Trang chủ';
+
+        //seo
+        $meta_desc = "Trà Thái Nguyên Thượng Hạng";
+        $meta_keywords = "Trà Thái Nguyên Thượng Hạng";
+        $url_canonical = $request->url();
 
         $cate_product = DB::table('category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
@@ -24,7 +29,7 @@ class HomeController extends Controller
         
         $all_product = DB::table('product')->where('product_status', '1')->orderby('product_id', 'desc')->limit(3)->get();
 
-        return view('pages.home', compact('title'))
+        return view('pages.home', compact('title', 'url_canonical', 'meta_desc', 'meta_keywords'))
                 ->with('category', $cate_product)->with('brand', $brand_product)->with('all_product', $all_product);
     }
 

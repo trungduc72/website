@@ -18,19 +18,28 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
                         <div class="item active">
-                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}" style="width: 40px"  alt=""></a>
-                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}" style="width: 40px"  alt=""></a>
-                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}" style="width: 40px"  alt=""></a>
+                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}"
+                                    style="width: 40px" alt=""></a>
+                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}"
+                                    style="width: 40px" alt=""></a>
+                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}"
+                                    style="width: 40px" alt=""></a>
                         </div>
                         <div class="item">
-                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}" style="width: 40px" alt=""></a>
-                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}" style="width: 40px"  alt=""></a>
-                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}" style="width: 40px"  alt=""></a>
+                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}"
+                                    style="width: 40px" alt=""></a>
+                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}"
+                                    style="width: 40px" alt=""></a>
+                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}"
+                                    style="width: 40px" alt=""></a>
                         </div>
                         <div class="item">
-                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}" style="width: 40px" alt=""></a>
-                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}" style="width: 40px"  alt=""></a>
-                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}" style="width: 40px"  alt=""></a>
+                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}"
+                                    style="width: 40px" alt=""></a>
+                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}"
+                                    style="width: 40px" alt=""></a>
+                            <a href=""><img src="{{ URL::to('/upload/product/' . $item->product_image) }}"
+                                    style="width: 40px" alt=""></a>
                         </div>
 
                     </div>
@@ -48,11 +57,11 @@
             <div class="col-sm-7">
                 <div class="product-information">
                     <!--/product-information-->
-                    <img src="{{asset('frontend/images/product-details/new.jpg')}}" class="newarrival" alt="" />
+                    <img src="{{ asset('frontend/images/product-details/new.jpg') }}" class="newarrival" alt="" />
                     <h2>{{ $item->product_name }}</h2>
                     <p>Mã ID: {{ $item->product_id }}</p>
-                    <img src="{{asset('frontend/images/product-details/rating.png')}}" alt="" />
-                    <form action={{route('save-cart')}} method="POST">
+                    <img src="{{ asset('frontend/images/product-details/rating.png') }}" alt="" />
+                    <form action={{ route('save-cart') }} method="POST">
                         @csrf
                         <span>
                             <div>
@@ -61,7 +70,7 @@
                             <div>
                                 <label>Số lượng:</label>
                                 <input name="qty" type="number" value="1" min="1" />
-                                <input name="productid_hidden" type="hidden" value={{ $item->product_id }}  />
+                                <input name="productid_hidden" type="hidden" value={{ $item->product_id }} />
                             </div>
                             <div>
                                 <button type="submit" class="btn btn-fefault cart" style="margin: 20px 0; ">
@@ -74,8 +83,13 @@
                     <p><b>Tình trạng:</b> Còn hàng</p>
                     <p><b>Danh mục:</b> {{ $item->category_name }}</p>
                     <p><b>Thương hiệu:</b> {{ $item->brand_name }}</p>
-                    <a href=""><img src="{{asset('frontend/images/product-details/share.png')}}" class="share img-responsive"
-                            alt="" /></a>
+                    <a href=""><img src="{{ asset('frontend/images/product-details/share.png') }}"
+                            class="share img-responsive" alt="" /></a>
+
+                    <div class="fb-share-button" data-href="http://127.0.0.1:8000/home" data-layout="button"
+                        data-size="small"><a target="_blank"
+                            href="https://www.facebook.com/sharer/sharer.php?u={{$url_canonical}}&amp;src=sdkpreparse"
+                            class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
                 </div>
                 <!--/product-information-->
             </div>
@@ -156,7 +170,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            <a>
+                                <a>
                         </div>
                     @endforeach
                 </div>

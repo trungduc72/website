@@ -180,7 +180,7 @@ class ProductController extends Controller
     //Admin
 
     //
-    public function detail($product_id)
+    public function detail($product_id, Request $request)
     {
         $title = 'Chi tiết sản phẩm';
 
@@ -194,6 +194,9 @@ class ProductController extends Controller
 
         foreach($detail_product as $item){
             $category_id = $item->category_id;
+            $meta_desc = $item->product_desc;
+            $meta_keywords = $item->product_name;
+            $url_canonical = $request->url();
         }
 
         $related_product = DB::table('product')
@@ -202,7 +205,7 @@ class ProductController extends Controller
                         ->where('category_product.category_id', $category_id)
                         ->whereNotIn('product.product_id', [$product_id])->get();
 
-        return view('pages.product.show_detail', compact('title'))
+        return view('pages.product.show_detail', compact('title', 'meta_desc', 'url_canonical', 'meta_keywords'))
                     ->with('category', $cate_product)->with('brand', $brand_product)
                     ->with('detail', $detail_product)->with('related', $related_product);
     }

@@ -115,7 +115,7 @@ class CategoryProductController extends Controller
     //Admin
 
     //
-    public function show_category_home($category_id)
+    public function show_category_home($category_id, Request $request)
     {
         $title = "Danh mục sản phẩm";
 
@@ -123,10 +123,17 @@ class CategoryProductController extends Controller
         $brand_product = DB::table('brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
         $category_by_id = DB::table('product')->join('category_product', 'product.category_id', '=', 'category_product.category_id')
                                                 ->where('product.category_id',$category_id )->get();
-
+                                                
+        foreach ($category_by_id as $value) {
+            //seo
+            $meta_desc = $value->category_desc;
+            $meta_keywords = $value->category_name;
+            $url_canonical = $request->url();
+        }
+       
         $category_name = DB::table('category_product')->where('category_product.category_id', $category_id)->limit(1)->get();
 
-        return view('pages.category.home_category', compact('title'))->with('category_by_id', $category_by_id)
+        return view('pages.category.home_category', compact('title', 'meta_desc', 'url_canonical', 'meta_keywords'))->with('category_by_id', $category_by_id)
                 ->with('category', $cate_product)->with('brand', $brand_product)->with('category_name', $category_name);
     }
 

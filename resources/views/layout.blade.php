@@ -4,9 +4,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="{{$meta_desc}}">
+    <meta name="keywords" content="{{$meta_keywords}}">
+    <link rel="cononical" content="{{$url_canonical}}">
+
     <title> @yield('title') | Trà Hoa Phúc</title>
+
+    <meta property="og:site_name" content="http://127.0.0.1:8000/home">
+    <meta property="og:description" content="{{$meta_desc}}">
+    <meta property="og:title" content= @yield('title')>
+    <meta property="og:url" content="{{$url_canonical}}">
+    <meta property="og:type" content="website">
+
     <link href="{{ asset('frontend/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/prettyPhoto.css') }}" rel="stylesheet">
@@ -15,7 +24,7 @@
     <link href="{{ asset('frontend/css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/responsive.css') }}" rel="stylesheet">
     <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
+    <script src="js/html5shiv.js"></script> 
     <script src="js/respond.min.js"></script>
     <![endif]-->
     <link rel="shortcut icon" href="{{ asset('frontend/images/logo.png') }}">
@@ -477,6 +486,10 @@
     <script src="{{ asset('frontend/js/price-range.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
+
+    <div id = "fb-root" ></div> 
+    <script async defer crossorigin = "anonymous" 
+            src = "https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v15.0" nonce = "2xCe8MZT" ></script> 
 </body>
 
 </html>

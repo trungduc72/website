@@ -34,14 +34,16 @@ class CartController extends Controller
         return redirect('show-cart');
     }
 
-    public function showCart()
+    public function showCart(Request $request)
     {
         $title = 'Giỏ hàng';
+        $meta_desc = "Giỏ hàng";
+        $url_canonical = $request->url();
 
         $cate_product = DB::table('category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
-        return view('pages.cart.show_cart', compact('title'))
+        return view('pages.cart.show_cart', compact('title', 'meta_desc', 'url_canonical'))
                     ->with('category', $cate_product)->with('brand', $brand_product);
     }
 

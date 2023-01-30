@@ -122,6 +122,33 @@
                 </li>
                 <hr class="horizontal light mt-0">
                 <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#applicationsExamples" class="nav-link text-white"
+                        aria-controls="applicationsExamples" role="button" aria-expanded="false">
+                        <i
+                            class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">apps</i>
+                        <span class="nav-link-text ms-2 ps-1">Đơn hàng</span>
+                    </a>
+                    <div class="collapse" id="applicationsExamples" style="">
+                        <ul class="nav ">
+                            <li class="nav-item ">
+                                <a class="nav-link text-white "
+                                    href={{route('manage-order')}}>
+                                    <span class="sidenav-mini-icon"> Q </span>
+                                    <span class="sidenav-normal  ms-2  ps-1"> Quản lí đơn hàng </span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link text-white "
+                                    href="#">
+                                    <span class="sidenav-mini-icon"> K </span>
+                                    <span class="sidenav-normal  ms-2  ps-1"> Kanban </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <hr class="horizontal light mt-0">
+                <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#dashboardsExamples" class="nav-link text-white collapsed "
                         aria-controls="dashboardsExamples" role="button" aria-expanded="false">
                         <i
@@ -194,33 +221,6 @@
                                     <span class="sidenav-mini-icon"> T </span>
                                     <span class="sidenav-normal  ms-2  ps-1"> Thêm sản phẩm<b
                                             class="caret"></b></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <hr class="horizontal light mt-0">
-                <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#applicationsExamples" class="nav-link text-white"
-                        aria-controls="applicationsExamples" role="button" aria-expanded="false">
-                        <i
-                            class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">apps</i>
-                        <span class="nav-link-text ms-2 ps-1">Đơn hàng</span>
-                    </a>
-                    <div class="collapse" id="applicationsExamples" style="">
-                        <ul class="nav ">
-                            <li class="nav-item ">
-                                <a class="nav-link text-white "
-                                    href={{route('manage-order')}}>
-                                    <span class="sidenav-mini-icon"> Q </span>
-                                    <span class="sidenav-normal  ms-2  ps-1"> Quản lí đơn hàng </span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link text-white "
-                                    href="#">
-                                    <span class="sidenav-mini-icon"> K </span>
-                                    <span class="sidenav-normal  ms-2  ps-1"> Kanban </span>
                                 </a>
                             </li>
                         </ul>
@@ -484,7 +484,12 @@
     <script src="https://material-dashboard-pro-laravel.creative-tim.com/assets/js/plugins/jkanban/jkanban.js"></script>
     <script src="https://material-dashboard-pro-laravel.creative-tim.com/assets/js/plugins/perfect-scrollbar.min.js">
     </script>
-
+    <script src="https://material-dashboard-pro-laravel.creative-tim.com/assets/js/plugins/jkanban/jkanban.js"></script>
+    <script src="{{asset('backend/ckeditor/ckeditor.js')}}"></script>
+    <script >
+        CKEDITOR.replace('ckeditor');
+        CKEDITOR.replace('ckeditor1');
+    </script>
     <script>
         function showPreview(event) {
             if (event.target.files.length > 0) {

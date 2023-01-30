@@ -80,13 +80,17 @@ class CheckOutController extends Controller
         return redirect('login-checkout');
     }
 
-    public function checkout()
+    public function checkout(Request $request)
     {
         $title = 'Thanh toán';
+        $meta_desc = "Thanh toán";
+        $meta_keywords = "Thanh toán";
+        $url_canonical = $request->url();
+
         $cate_product = DB::table('category_product')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('brand')->orderby('brand_id', 'desc')->get();
 
-        return view('pages.checkout.checkout', compact('title'))
+        return view('pages.checkout.checkout', compact('title', 'meta_desc', 'url_canonical', 'meta_keywords'))
                 ->with('category', $cate_product)->with('brand', $brand_product);
     }
 
@@ -120,13 +124,17 @@ class CheckOutController extends Controller
         return redirect('payment');
     }
 
-    public function payment()
+    public function payment(Request $request)
     {
         $title = 'Thanh toán';
+        $meta_desc = "Thanh toán";
+        $meta_keywords = "Thanh toán";
+        $url_canonical = $request->url();
+
         $cate_product = DB::table('category_product')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('brand')->orderby('brand_id', 'desc')->get();
 
-        return view('pages.checkout.payment', compact('title'))
+        return view('pages.checkout.payment', compact('title', 'meta_desc', 'url_canonical', 'meta_keywords'))
                 ->with('category', $cate_product)->with('brand', $brand_product);
     }
 
@@ -209,8 +217,18 @@ class CheckOutController extends Controller
 
     public function viewOrder($orderId)
     {
+        $this->AuthLogin();
         $title = 'Chi tiết đơn hàng';
-        return view('admin.view_order', compact('title'));
+
+        $order_by_id = DB::table('order')
+                        ->join('customer', 'order.customer_id','=','customer.customer_id')
+                        ->join('shipping', 'order.shipping_id','=','shipping.shipping_id')
+                        ->join('order_detail', 'order.order_id','=','order_detail.order_id')
+                        ->select('order.*', 'customer.*', 'shipping.*', 'order_detail.*')->first();
+        $manager_order_by_id = view('admin.view_order', compact('title'))
+                                    ->with('order_by_id', $order_by_id);
+
+        return view('adminLayout')->with('admin.view_order', $manager_order_by_id);
     }
 
 }
