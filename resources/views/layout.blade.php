@@ -4,17 +4,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{$meta_desc}}">
+    {{-- <meta name="description" content="{{$meta_desc}}">
     <meta name="keywords" content="{{$meta_keywords}}">
-    <link rel="cononical" content="{{$url_canonical}}">
+    <link rel="cononical" content="{{$url_canonical}}"> --}}
 
     <title> @yield('title') | Trà Hoa Phúc</title>
 
-    <meta property="og:site_name" content="http://127.0.0.1:8000/home">
+    {{-- <meta property="og:site_name" content="http://127.0.0.1:8000/home">
     <meta property="og:description" content="{{$meta_desc}}">
     <meta property="og:title" content= @yield('title')>
     <meta property="og:url" content="{{$url_canonical}}">
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="website"> --}}
 
     <link href="{{ asset('frontend/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/font-awesome.min.css') }}" rel="stylesheet">
@@ -23,6 +23,7 @@
     <link href="{{ asset('frontend/css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/responsive.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/css/sweetalert.css') }}" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script> 
     <script src="js/respond.min.js"></script>
@@ -130,7 +131,7 @@
                                     }
                                 ?>
                                 
-                                <li><a href={{ route('show-cart') }}><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+                                <li><a href={{ route('show-cart-ajax') }}><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
                                 </li>
 
                                 <?php
@@ -183,7 +184,7 @@
                                         <li><a href="blog.html">Blog List</a></li>
                                     </ul>
                                 </li>
-                                <li><a href={{ route('show-cart') }}>Giỏ hàng</a></li>
+                                <li><a href={{ route('show-cart-ajax') }}>Giỏ hàng</a></li>
                                 <li><a href="contact-us.html">Liên hệ</a></li>
                             </ul>
                         </div>
@@ -490,6 +491,45 @@
     <div id = "fb-root" ></div> 
     <script async defer crossorigin = "anonymous" 
             src = "https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v15.0" nonce = "2xCe8MZT" ></script> 
+
+    <script src="{{ asset('frontend/js/sweetalert.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.add-to-cart').click(function(){
+                var id = $(this).data('id_product');
+                
+                var cart_product_id = $('.cart_product_id_' + id).val();
+                var cart_product_name = $('.cart_product_name_' + id).val();
+                var cart_product_image = $('.cart_product_image_' + id).val();
+                var cart_product_price = $('.cart_product_price_' + id).val();
+                var cart_product_qty = $('.cart_product_qty_' + id).val();
+                var _token = $('input[name = "_token"]').val();
+
+                $.ajax({
+                    url: '{{url('/add-cart-ajax')}}',
+                    method: 'POST',
+                    data: {cart_product_id:cart_product_id, cart_product_name:cart_product_name,
+                        cart_product_image:cart_product_image, cart_product_price:cart_product_price, 
+                        cart_product_qty:cart_product_qty, _token:_token},
+                    success:function(data){
+                        swal({
+                            title: "Đã thêm sản phẩm vào giỏ hàng",
+                            text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
+                            showCancelButton: true,
+                            cancelButtonText: "Xem tiếp",
+                            confirmButtonClass: "btn-success",
+                            confirmButtonText: "Đi đến giỏ hàng",
+                            closeOnConfirm: false
+                            },
+                            function() {
+                            window.location.href = "{{url('/show-cart-ajax')}}";
+                            });
+                    }
+                });
+            });
+        })
+    </script>
 </body>
 
 </html>

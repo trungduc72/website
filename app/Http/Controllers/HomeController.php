@@ -27,7 +27,7 @@ class HomeController extends Controller
         //                 ->join('brand', 'brand.brand_id','=','product.brand_id')
         //                 ->orderby('product.product_id', 'desc')->get();
         
-        $all_product = DB::table('product')->where('product_status', '1')->orderby('product_id', 'desc')->limit(3)->get();
+        $all_product = DB::table('product')->where('product_status', '1')->orderby('product_id', 'desc')->get();
 
         return view('pages.home', compact('title', 'url_canonical', 'meta_desc', 'meta_keywords'))
                 ->with('category', $cate_product)->with('brand', $brand_product)->with('all_product', $all_product);

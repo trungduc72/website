@@ -123,7 +123,10 @@ class CategoryProductController extends Controller
         $brand_product = DB::table('brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
         $category_by_id = DB::table('product')->join('category_product', 'product.category_id', '=', 'category_product.category_id')
                                                 ->where('product.category_id',$category_id )->get();
-                                                
+        
+        $meta_desc = '';
+        $meta_keywords = '';
+        $url_canonical = $request->url();                    
         foreach ($category_by_id as $value) {
             //seo
             $meta_desc = $value->category_desc;

@@ -43,6 +43,14 @@ use App\Http\Controllers\CheckOutController;
     Route::get('/delete-cart/{rowId}', [CartController::class, 'deleteCart'])->name('delete-cart');
     Route::post('/update-cart-qty/{rowId}', [CartController::class, 'updateCartQty'])->name('update-cart-qty');
 
+    //ajax
+    Route::post('/add-cart-ajax', [CartController::class, 'addCartAjax'])->name('add-cart-ajax');
+    Route::get('/show-cart-ajax', [CartController::class, 'showCartAjax'])->name('show-cart-ajax');
+    Route::get('/delete-cart-product/{session_id}', [CartController::class, 'deleteCartProduct'])->name('delete-cart-product');
+    Route::post('/update-cart', [CartController::class, 'updateCart'])->name('update-cart');
+    Route::get('/delete-all-cart-product', [CartController::class, 'deleteAllCartProduct'])->name('delete-all-cart-product');
+
+    
 //Checkout
     Route::get('/login-checkout', [CheckOutController::class, 'loginCheckOut'])->name('login-checkout');
     Route::post('/login-customer', [CheckOutController::class, 'loginCustomer'])->name('login-customer');
