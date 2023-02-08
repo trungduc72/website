@@ -131,15 +131,13 @@
                     <div class="collapse" id="applicationsExamples" style="">
                         <ul class="nav ">
                             <li class="nav-item ">
-                                <a class="nav-link text-white "
-                                    href={{route('manage-order')}}>
+                                <a class="nav-link text-white " href={{ route('manage-order') }}>
                                     <span class="sidenav-mini-icon"> Q </span>
                                     <span class="sidenav-normal  ms-2  ps-1"> Quản lí đơn hàng </span>
                                 </a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link text-white "
-                                    href="#">
+                                <a class="nav-link text-white " href="#">
                                     <span class="sidenav-mini-icon"> K </span>
                                     <span class="sidenav-normal  ms-2  ps-1"> Kanban </span>
                                 </a>
@@ -221,6 +219,32 @@
                                     <span class="sidenav-mini-icon"> T </span>
                                     <span class="sidenav-normal  ms-2  ps-1"> Thêm sản phẩm<b
                                             class="caret"></b></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <hr class="horizontal light mt-0">
+                <li class="nav-item ">
+                    <a class="nav-link text-white collapsed" data-bs-toggle="collapse" aria-expanded="false"
+                        href="#accountExample">
+                        <i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">upcoming</i>
+                        <span class="sidenav-normal  ms-2  ps-1"> Mã giảm giá <b class="caret"></b></span>
+                    </a>
+                    <div class="collapse" id="accountExample" style="">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-white   "
+                                    href="{{route('list-coupon')}}">
+                                    <span class="sidenav-mini-icon"> L </span>
+                                    <span class="sidenav-normal  ms-2  ps-1"> Danh sách mã giảm giá </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white  "
+                                    href="{{route('insert-coupon')}}">
+                                    <span class="sidenav-mini-icon"> T </span>
+                                    <span class="sidenav-normal  ms-2  ps-1"> Thêm mã giảm giá</span>
                                 </a>
                             </li>
                         </ul>
@@ -485,8 +509,8 @@
     <script src="https://material-dashboard-pro-laravel.creative-tim.com/assets/js/plugins/perfect-scrollbar.min.js">
     </script>
     <script src="https://material-dashboard-pro-laravel.creative-tim.com/assets/js/plugins/jkanban/jkanban.js"></script>
-    <script src="{{asset('backend/ckeditor/ckeditor.js')}}"></script>
-    <script >
+    <script src="{{ asset('backend/ckeditor/ckeditor.js') }}"></script>
+    <script>
         CKEDITOR.replace('ckeditor');
         CKEDITOR.replace('ckeditor1');
     </script>

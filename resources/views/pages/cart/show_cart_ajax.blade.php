@@ -79,57 +79,76 @@
                             <tr>
                                 <td>
                                     <input type="submit" value="Cập nhật " name="update_qty" class="btn btn-primary">
-                                </td>
-                                <td>
+
                                     <a class="cart_quantity_delete btn btn-primary"
                                         href="{{ url('delete-all-cart-product/') }}"> Xóa tất cả</a>
                                 </td>
                                 <td>
-                                    <li>Tổng: <span>{{ number_format($total) }}VND</span></li>
-                                    <li>Thuế: <span></span></li>
-                                    <li>Phí vận chuyển: <span>Free</span></li>
-                                    <li>Tổng cộng: <span></span></li>
-                                </td>
-                                <td>
-                                    <a class="btn btn-primary" href="">Thanh toán</a>
-                                    {{-- <a class="btn btn-primary" href="">Tính mã giảm giá</a> --}}
-                                </td>
-                            </tr>
-                        @else
-                            <tr>
-                                <td colspan="2">
-                                    <p>Không có sản phẩm nào trong giỏ hàng</p>
-                                </td>
-                            </tr>
+                                    <li>Tổng: <span>{{ number_format($total) }} VND</span></li>
+                                    @if (Session::get('coupon'))
+                                        <li>
+                                            @foreach (Session::get('coupon') as $item => $cou)
+                                                @if ($cou['coupon_condition'] == 1)
+                                                    Mã giảm: {{ $cou['coupon_number'] }} %
+                                                    <p>
+                                                        @php
+                                                            $total_coupon = ($total * $cou['coupon_number']) / 100;
+                                                            echo '<p><li>Tổng giảm: ' . number_format($total_coupon) . 'VND</li></p>';
+                                                        @endphp
+                                                    </p>
+                                                    <p>
+                                        <li>Tổng: {{ number_format($total - $total_coupon) }} VND</li>
+                                        </p>
+                                    @elseif($cou['coupon_condition'] == 2)
+                                        Mã giảm: {{ $cou['coupon_number'] }} VND
+                                        <p>
+                                            @php
+                                                $total_coupon = $total - $cou['coupon_number'];
+                                                
+                                            @endphp
+                                        </p>
+                                        <p>
+                                            <li>Tổng: {{ number_format($total_coupon) }} VND</li>
+                                        </p>
+                                    @endif
+                                @endforeach
+                            </li>
+                        @endif
+                        {{-- <li>Thuế: <span></span></li>
+                                    <li>Phí vận chuyển: <span>Free</span></li> --}}
+                        {{-- <li>Tổng cộng: <span></span></li> --}}
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" href="">Thanh toán</a>
+                        </td>
+                        </tr>
+                    @else
+                        <tr>
+                            <td colspan="2">
+                                <p>Không có sản phẩm nào trong giỏ hàng</p>
+                            </td>
+                        </tr>
                         @endif
                     </tbody>
                 </form>
+                @if (Session::get('cart'))
+                    <tr>
+                        <td colspan="2">
+                            <form method="POST" action="{{ url('/check-coupon') }}">
+                                @csrf
+                                <input type="text" class="form-control" placeholder="Nhập mã giảm giá" name="coupon">
+                                <input type="submit" class="btn btn-primary" name="check_coupon" href=""
+                                    value="Tính mã giảm giá">
+                                
+                                @if (Session::get('coupon'))
+                                    <a class="cart_quantity_delete btn btn-primary"
+                                        href="{{ url('unset-coupon/') }}"> Xóa mã giảm giá</a>
+                                @endif
+                            </form>
+                        </td>
+                    </tr>
+                @endif
             </table>
         </div>
     </section>
-    <!--/#cart_items-->
-    {{-- <section id="do_action">
-        <div class="heading">
-            <h3>What would you like to do next?</h3>
-            <p>Choose if you have a discount code or reward points you want to use or would like to estimate your
-                delivery cost.</p>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="total_area">
-                    <ul>
-                        <li>Tổng <span>{{ number_format($total) }}</span></li>
-                        <li>Thuế <span></span></li>
-                        <li>Phí vận chuyển <span>Free</span></li>
-                        <li>Tổng cộng <span></span></li>
-                    </ul>
-
-                    <a class="btn btn-default check_out" style="margin-left: 40px" href="">Thanh
-                        toán</a>
-
-                </div>
-            </div>
-        </div>
-    </section> --}}
-    <!--/#do_action-->
 @endsection

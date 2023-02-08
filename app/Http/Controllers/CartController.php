@@ -9,6 +9,7 @@ use Session;
 use Illuminate\Support\Facades\Redirect;
 session_start();
 use Cart;
+use App\Models\Coupon;
 
 class CartController extends Controller
 {
@@ -156,8 +157,46 @@ class CartController extends Controller
         if($cart == true){
             // Session::destroy();
             Session::forget('cart');
+            Session::forget('coupon');
             return redirect('show-cart-ajax')->with('message', 'Xóa thành công!');
             
         }
     }
+
+    //coupon
+    public function checkCoupon(Request $request)
+    {
+        $data = $request->all();
+        $coupon = Coupon::where('coupon_code', $data['coupon'])->first();
+        
+        if($coupon){
+            $count_coupon = $coupon->count();
+            if($count_coupon > 0){
+                $coupon_session = Session::get('coupon');
+                if($coupon_session == true){
+                    $is_avaiable = 0;
+                    if($is_avaiable == 0){
+                        $cou[] = array(
+                            'coupon_code' => $coupon->coupon_code,
+                            'coupon_condition' => $coupon->coupon_condition,
+                            'coupon_number' => $coupon->coupon_number
+                        );
+                        Session::put('coupon', $cou);
+                    }
+                }else{
+                    $cou[] = array(
+                        'coupon_code' => $coupon->coupon_code,
+                        'coupon_condition' => $coupon->coupon_condition,
+                        'coupon_number' => $coupon->coupon_number
+                    );
+                    Session::put('coupon', $cou);
+                }
+                Session::save();
+                return redirect('show-cart-ajax')->with('message', 'Thêm mã giảm giá thành công!');
+            }
+        }else{
+            return redirect('show-cart-ajax')->with('message', 'Thêm mã giảm giá thất bại!');
+        }
+    }
+
 }

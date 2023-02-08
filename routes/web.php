@@ -8,6 +8,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckOutController;
+use App\Http\Controllers\CouponController;
 
 
 /*
@@ -36,6 +37,10 @@ use App\Http\Controllers\CheckOutController;
     
 //Detail
     Route::get('/detail/{product_id}', [ProductController::class, 'detail'])->name('detail');
+
+//Coupon
+    Route::post('/check-coupon', [CartController::class, 'checkCoupon'])->name('check-coupon');
+
 
 //Card
     Route::post('/save-cart', [CartController::class, 'saveCart'])->name('save-cart');
@@ -128,6 +133,14 @@ use App\Http\Controllers\CheckOutController;
 
     Route::get('/view-order/{order_id}', [CheckOutController::class, 'viewOrder'])->name('view-order');
 
+//Coupon
+    Route::get('/list-coupon', [CouponController::class, 'listCoupon'])->name('list-coupon');
 
+    Route::get('/insert-coupon', [CouponController::class, 'insertCoupon'])->name('insert-coupon');
+    Route::post('/insert-coupon-code', [CouponController::class, 'insertCouponCode'])->name('insert-coupon-code');
+
+    Route::get('/delete-coupon/{coupon_id}', [CouponController::class, 'deleteCoupon'])->name('delete-coupon');
+
+    Route::get('/unset-coupon', [CouponController::class, 'unsetCoupon'])->name('unset-coupon');
 
 
