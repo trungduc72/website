@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\DeliveryController;
 
 
 /*
@@ -71,6 +72,12 @@ use App\Http\Controllers\CouponController;
     Route::post('/save-checkout-customer', [CheckOutController::class, 'saveCheckoutCustomer'])->name('save-checkout-customer');
     Route::get('/payment', [CheckOutController::class, 'payment'])->name('payment');
     Route::post('/order-place', [CheckOutController::class, 'orderPlace'])->name('order-place');
+
+    //ajax
+    Route::post('/select-delivery-home', [CheckOutController::class, 'selectDeliveryHome'])->name('select-delivery-home');
+    Route::post('/caculate-fee', [CheckOutController::class, 'caculateFee'])->name('caculate-fee');
+    Route::get('/delete-fee', [CheckOutController::class, 'deleteFee'])->name('delete-fee');
+    Route::post('/confirm-order', [CheckOutController::class, 'confirmOrder'])->name('confirm-order');
 
 
 //BackEnd
@@ -143,4 +150,15 @@ use App\Http\Controllers\CouponController;
 
     Route::get('/unset-coupon', [CouponController::class, 'unsetCoupon'])->name('unset-coupon');
 
+//Delivery
+    Route::get('/delivery', [DeliveryController::class, 'delivery'])->name('delivery');
+    Route::post('/select-delivery', [DeliveryController::class, 'selectDelivery'])->name('select-delivery');
+
+    Route::post('/insert-delivery', [DeliveryController::class, 'insertDelivery'])->name('insert-delivery');
+
+    Route::post('/select-feeship', [DeliveryController::class, 'selectFeeship'])->name('select-feeship');
+
+    Route::post('/update-delivery', [DeliveryController::class, 'updateDelivery'])->name('update-delivery');
+
+    
 

@@ -228,23 +228,48 @@
                 <li class="nav-item ">
                     <a class="nav-link text-white collapsed" data-bs-toggle="collapse" aria-expanded="false"
                         href="#accountExample">
-                        <i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">upcoming</i>
+                        <i
+                            class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">upcoming</i>
                         <span class="sidenav-normal  ms-2  ps-1"> Mã giảm giá <b class="caret"></b></span>
                     </a>
                     <div class="collapse" id="accountExample" style="">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-white   "
-                                    href="{{route('list-coupon')}}">
+                                <a class="nav-link text-white   " href="{{ route('list-coupon') }}">
                                     <span class="sidenav-mini-icon"> L </span>
                                     <span class="sidenav-normal  ms-2  ps-1"> Danh sách mã giảm giá </span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white  "
-                                    href="{{route('insert-coupon')}}">
+                                <a class="nav-link text-white  " href="{{ route('insert-coupon') }}">
                                     <span class="sidenav-mini-icon"> T </span>
                                     <span class="sidenav-normal  ms-2  ps-1"> Thêm mã giảm giá</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <hr class="horizontal light mt-0">
+                <li class="nav-item ">
+                    <a class="nav-link text-white" data-bs-toggle="collapse" aria-expanded="false"
+                        href="#projectsExample">
+                        <i
+                            class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">view_in_ar</i>
+                        <span class="sidenav-normal  ms-2  ps-1"> Vận chuyển <b class="caret"></b></span>
+                    </a>
+                    <div class="collapse" id="projectsExample" style="">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-white  " href="{{ URL::to('/delivery') }}">
+                                    <span class="sidenav-mini-icon"> Q </span>
+                                    <span class="sidenav-normal  ms-2  ps-1"> Quản lí vận chuyển </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white  "
+                                    href="https://material-dashboard-pro-laravel.creative-tim.com/timeline">
+                                    <span class="sidenav-mini-icon"> T </span>
+                                    <span class="sidenav-normal  ms-2  ps-1"> Timeline </span>
                                 </a>
                             </li>
                         </ul>
@@ -509,11 +534,11 @@
     <script src="https://material-dashboard-pro-laravel.creative-tim.com/assets/js/plugins/perfect-scrollbar.min.js">
     </script>
     <script src="https://material-dashboard-pro-laravel.creative-tim.com/assets/js/plugins/jkanban/jkanban.js"></script>
-    <script src="{{ asset('backend/ckeditor/ckeditor.js') }}"></script>
+    {{-- <script src="{{ asset('backend/ckeditor/ckeditor.js') }}"></script>
     <script>
         CKEDITOR.replace('ckeditor');
         CKEDITOR.replace('ckeditor1');
-    </script>
+    </script> --}}
     <script>
         function showPreview(event) {
             if (event.target.files.length > 0) {
@@ -542,6 +567,101 @@
         integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA=="
         data-cf-beacon='{"rayId":"7810c0fcdb756c09","version":"2022.11.3","r":1,"token":"1b7cbb72744b40c580f8633c6b62637e","si":100}'
         crossorigin="anonymous"></script>
+    
+    {{-- delivery --}}
+    <script src="{{ asset('frontend/js/jquery.js') }}"></script>
+    <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/jquery.scrollUp.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/jquery.prettyPhoto.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            fetch_delivery();
+            function fetch_delivery(){
+                var _token = $('input[name = "_token"]').val();
+
+                $.ajax({
+                    url: '{{url('/select-feeship')}}',
+                    method: 'POST',
+                    data: { 
+                        "_token":_token, 
+                        "_token": "{{ csrf_token() }}"},
+                    success: function(data){
+                        $('#load_delivery').html(data);
+                    }
+                });
+            }
+
+            $('.add_delivery').click(function() {
+                var city = $('.city').val();
+                var province = $('.province').val();
+                var wards = $('.wards').val();
+                var fee_ship = $('.fee_ship').val();
+                var _token = $('input[name = "_token"]').val();
+
+                $.ajax({
+                    url: '{{url('/insert-delivery')}}',
+                    method: 'POST',
+                    data: {
+                        "city": city, 
+                        "province": province, 
+                        "wards": wards, 
+                        "fee_ship": fee_ship, 
+                        "_token":_token, 
+                        "_token": "{{ csrf_token() }}"},
+                    success: function(data){
+                        fetch_delivery();
+                    }
+                });
+
+            });
+
+            $('.choose').on('change', function(){
+                var action = $(this).attr('id');
+                var ma_id = $(this).val();
+                var _token = $('input[name = "_token"]').val();
+                var result = '';
+
+                if(action == 'city'){
+                    result = 'province';
+                } else{
+                    result = 'wards';
+                }
+
+                $.ajax({
+                    url: '{{url('/select-delivery')}}',
+                    method: 'POST',
+                    data: {
+                        "action": action, 
+                        "ma_id": ma_id, 
+                        "_token":_token, 
+                        "_token": "{{ csrf_token() }}"},
+                    success: function(data){
+                        $('#' + result).html(data);
+                    }
+                });
+            });
+
+            $(document).on('blur', '.fee_feeship_edit', function(){
+                var feeship_id = $(this).data('feeship_id');
+                var fee_value = $(this).text();
+                var _token = $('input[name = "_token"]').val();
+                
+                $.ajax({
+                    url: '{{url('/update-delivery')}}',
+                    method: 'POST',
+                    data: {
+                        "feeship_id": feeship_id, 
+                        "fee_value": fee_value,
+                        "_token":_token, 
+                        "_token": "{{ csrf_token() }}"},
+                    success: function(data){
+                        fetch_delivery();
+                    }
+                });
+            })
+        });
+    </script>
+    {{-- end-delivery  --}}
 </body>
 
 </html>

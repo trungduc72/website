@@ -43,7 +43,7 @@
                             <div>
                                 <label class="mt-4" style="margin-left: 0">Mô tả danh mục</label>
                                 <div class="input-group input-group-dynamic">
-                                    <textarea id="ckeditor" class="form-control" rows="5" placeholder="Mô tả danh mục." spellcheck="false"
+                                    <textarea  class="form-control" rows="5" placeholder="Mô tả danh mục." spellcheck="false"
                                         name="category_product_desc"></textarea>
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-primary btn-lg d-flex justify-content-center"
-                                name="add_category_product" style="margin: 0 auto">Thêm</button>
+                                name="add_category_product" style="margin: 0 auto">Thêm danh mục</button>
                         </form>
 
                     </div>

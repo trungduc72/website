@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('shipping', function (Blueprint $table) {
-            $table->Increments('shipping_id');
-            $table->string('shipping_name');
-            $table->string('shipping_address');
-            $table->string('shipping_phone');
-            $table->string('shipping_email');
-            $table->string('shipping_note');
-            $table->integer('shipping_method');
+        Schema::create('feeship', function (Blueprint $table) {
+            $table->Increments('fee_id');
+            $table->integer('fee_matp');
+            $table->integer('fee_maqh');
+            $table->integer('fee_xaid');
+            $table->string('fee_feeship');
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shipipng');
+        Schema::dropIfExists('feeship');
     }
 };

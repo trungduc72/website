@@ -44,8 +44,8 @@
                                             class="fa fa-shopping-cart"></i>Add
                                         to cart</button>
                                 </form>
-                                </div>
                             </div>
+                        </div>
                     </div>
                     <div class="choose">
                         <ul class="nav nav-pills nav-justified">

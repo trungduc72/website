@@ -61,23 +61,31 @@
                     <h2>{{ $item->product_name }}</h2>
                     <p>Mã ID: {{ $item->product_id }}</p>
                     <img src="{{ asset('frontend/images/product-details/rating.png') }}" alt="" />
-                    <form action={{ route('save-cart') }} method="POST">
+                    <form >
                         @csrf
                         <span>
+                            <input type="hidden" value="{{ $item->product_id }}"  class="cart_product_id_{{ $item->product_id }}" />
+                            <input type="hidden" value="{{ $item->product_name }}" 
+                                    class="cart_product_name_{{ $item->product_id }}" />
+                            <input type="hidden" value="{{ $item->product_image }}" 
+                                    class="cart_product_image_{{ $item->product_id }}" />
+                            <input type="hidden" value="{{ $item->product_price }}" 
+                                    class="cart_product_price_{{ $item->product_id }}" />
+    
                             <div>
                                 <span>{{ number_format($item->product_price) }}VND</span>
                             </div>
                             <div>
                                 <label>Số lượng:</label>
-                                <input name="qty" type="number" value="1" min="1" />
-                                <input name="productid_hidden" type="hidden" value={{ $item->product_id }} />
+                                <input name="qty" type="number" value="1" min="1" class="cart_product_qty_{{ $item->product_id }}"/>
                             </div>
+    
                             <div>
-                                <button type="submit" class="btn btn-fefault cart" style="margin: 20px 0; ">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    Thêm vào giỏ hàng
-                                </button>
+                                <button type="button" class="btn btn-fefault cart add-to-cart" data-id_product="{{ $item->product_id }}" style="margin: 20px 0; "><i
+                                        class="fa fa-shopping-cart"></i>Add
+                                    to cart</button>
                             </div>
+
                         </span>
                     </form>
                     <p><b>Tình trạng:</b> Còn hàng</p>
@@ -88,7 +96,7 @@
 
                     <div class="fb-share-button" data-href="http://127.0.0.1:8000/home" data-layout="button"
                         data-size="small"><a target="_blank"
-                            href="https://www.facebook.com/sharer/sharer.php?u={{$url_canonical}}&amp;src=sdkpreparse"
+                            href="https://www.facebook.com/sharer/sharer.php?u={{ $url_canonical }}&amp;src=sdkpreparse"
                             class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
                 </div>
                 <!--/product-information-->

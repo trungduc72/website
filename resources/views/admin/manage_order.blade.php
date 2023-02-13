@@ -40,7 +40,7 @@
                                     class="text-secondary font-weight-normal text-xs" data-toggle="tooltip"
                                     data-original-title="Edit user">
                                     <button type="button" class="btn bg-gradient-primary mb-0">
-                                        Xem
+                                        Xem chi tiết
                                     </button>
                                 </a>
 

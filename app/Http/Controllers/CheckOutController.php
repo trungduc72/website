@@ -9,6 +9,13 @@ use Session;
 use Illuminate\Support\Facades\Redirect;
 session_start();
 use Cart;
+use App\Models\City;
+use App\Models\Province;
+use App\Models\Wards;
+use App\Models\Feeship;
+use App\Models\Shipping;
+use App\Models\Order;
+use App\Models\OrderDetails;
 
 class CheckOutController extends Controller
 {
@@ -90,7 +97,8 @@ class CheckOutController extends Controller
         $cate_product = DB::table('category_product')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('brand')->orderby('brand_id', 'desc')->get();
 
-        return view('pages.checkout.checkout', compact('title', 'meta_desc', 'url_canonical', 'meta_keywords'))
+        $city = City::orderby('matp', 'ASC')->get();
+        return view('pages.checkout.checkout', compact('title', 'meta_desc', 'url_canonical', 'meta_keywords', 'city'))
                 ->with('category', $cate_product)->with('brand', $brand_product);
     }
 
@@ -231,4 +239,80 @@ class CheckOutController extends Controller
         return view('adminLayout')->with('admin.view_order', $manager_order_by_id);
     }
 
+
+    //ajax
+    public function selectDeliveryHome(Request $request)
+    {
+        $data = $request->all();
+        if($data['action']){
+            $output = '';
+            if($data['action'] == "city"){
+                $select_province = Province::where('matp', $data['ma_id'])->orderby('maqh', 'ASC')->get();
+                $output .= '<option>---Chọn quận huyện---</option>';
+                foreach($select_province as $key => $province){
+                    $output .= '<option value="'.$province->maqh.'">'.$province->name_qh.'</option>';
+
+                }
+            }else{
+                $select_wards = Wards::where('maqh', $data['ma_id'])->orderby('xaid', 'ASC')->get();
+                $output .= '<option>---Chọn xã phường---</option>';
+                foreach($select_wards as $key => $wards){
+                    $output .= '<option value="'.$wards->xaid.'">'.$wards->name_xa.'</option>';
+
+                }
+            }
+        }
+        echo $output;
+    }
+
+    public function caculateFee(Request $request)
+    {
+        $data = $request->all();
+        if($data['matp']){
+            $feeship = Feeship::where('fee_matp', $data['matp'])->where('fee_maqh', $data['maqh'])->where('fee_xaid', $data['xaid'])->get();
+            if ($feeship) {
+                $count_feeship = $feeship->count();
+                if ($count_feeship > 0) {
+                    foreach ($feeship as $key => $fee) {
+                       Session::put('fee', $fee->fee_feeship);
+                       Session::save();               
+                    }
+                }else{
+                    Session::put('fee', 10000);
+                    Session::save();
+                }
+            }
+        }
+    }
+
+    public function deleteFee(Request $request)
+    {
+        Session::forget('fee');
+        return redirect()->back();
+    }
+
+    public function confirmOrder(Request $request)
+    {
+        $data = $request->all();
+        $shipping = new Shipping();
+        $shipping->shipping_name = $data['shipping_name'];
+        $shipping->shipping_email = $data['shipping_email'];
+        $shipping->shipping_phone = $data['shipping_phone'];
+        $shipping->shipping_address = $data['shipping_address'];
+        $shipping->shipping_note = $data['shipping_note'];
+        $shipping->shipping_method = $data['shipping_method'];
+        $shipping->save();
+        $shipping_id = $shipping->shipping_id;
+
+        $checkout_code = substr(md5(microtime()), rand(0, 26), 5);
+
+        $order = new Order();
+        $order->customer_id = Session::get('customer_id');
+        $order->shipping_id = $shipping_id;
+        $order->order_status = 1;
+        $order->order_code = $checkout_code;
+        $order->save();
+
+    }
+    
 }

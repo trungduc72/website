@@ -15,11 +15,13 @@ return new class extends Migration
     {
         Schema::create('order_detail', function (Blueprint $table) {
             $table->Increments('order_detail_id');
-            $table->integer('order_id');
+            $table->string('order_code');
             $table->integer('product_id');
             $table->string('product_name');
             $table->string('product_price');
             $table->integer('product_qty');
+            $table->string('product_coupon');
+            $table->string('product_feeship');
             $table->timestamps();
         });
     }

@@ -505,7 +505,6 @@
                 var cart_product_price = $('.cart_product_price_' + id).val();
                 var cart_product_qty = $('.cart_product_qty_' + id).val();
                 var _token = $('input[name = "_token"]').val();
-
                 $.ajax({
                     url: '{{url('/add-cart-ajax')}}',
                     method: 'POST',
@@ -528,6 +527,83 @@
                     }
                 });
             });
+
+            $('.chooses').on('change', function(){
+                var action = $(this).attr('id');
+                var ma_id = $(this).val();
+                var _token = $('input[name = "_token"]').val();
+                var result = '';
+
+                if(action == 'city'){
+                    result = 'province';
+                } else{
+                    result = 'wards';
+                }
+
+                $.ajax({
+                    url: '{{url('/select-delivery-home')}}',
+                    method: 'POST',
+                    data: {
+                        "action": action, 
+                        "ma_id": ma_id, 
+                        "_token":_token, 
+                        "_token": "{{ csrf_token() }}"},
+                    success: function(data){
+                        $('#' + result).html(data);
+                    }
+                });
+            });
+
+            $('.caculate_delivery').click(function () {
+                var matp = $('.city').val();
+                var maqh = $('.province').val();
+                var xaid = $('.wards').val();
+                var _token = $('input[name = "_token"]').val();
+
+                if( matp == '' && maqh == '' && xaid == ''){
+                    alert('Chọn địa chỉ!');
+                }else{
+                    $.ajax({
+                        url: '{{url('/caculate-fee')}}',
+                        method: 'POST',
+                        data: {
+                            "matp": matp, 
+                            "maqh": maqh, 
+                            "xaid": xaid, 
+                            "_token":_token, 
+                            "_token": "{{ csrf_token() }}"},
+                        success: function(data){
+                            location.reload();
+                        }
+                    });
+                }
+            });
+
+            $('.send-order').click(function(){
+                var id = $(this).data('id_product');
+                
+                var shipping_email = $('.shipping_email').val();
+                var shipping_name = $('.shipping_name').val();
+                var shipping_address = $('.shipping_address').val();
+                var shipping_phone = $('.shipping_phone').val();
+                var shipping_note = $('.shipping_note').val();
+                var shipping_method = $('.payment_select').val();
+                var order_fee = $('.order_fee').val();
+                var order_coupon = $('.order_coupon').val();
+                var _token = $('input[name = "_token"]').val();
+                $.ajax({
+                    url: '{{url('/confirm-order')}}',
+                    method: 'POST',
+                    data: {shipping_email:shipping_email, shipping_name:shipping_name,
+                        shipping_address:shipping_address, shipping_phone:shipping_phone, 
+                        shipping_note:shipping_note, order_fee:order_fee, shipping_method:shipping_method,
+                        order_coupon:order_coupon, _token:_token},
+                    success:function(data){
+                        alert('dgdfg');
+                    }
+                });
+            });
+
         })
     </script>
 </body>

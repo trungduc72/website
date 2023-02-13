@@ -53,7 +53,7 @@
                             </div>
                             <label style="margin-left: 0">Mô tả sản phẩm</label>
                             <div class="input-group input-group-dynamic">
-                                <textarea id="ckeditor" class="form-control" rows="5" placeholder="Mô tả sản phẩm." spellcheck="false" name="product_desc"></textarea>
+                                <textarea class="form-control" rows="5" placeholder="Mô tả sản phẩm." spellcheck="false" name="product_desc"></textarea>
                             </div>
                             @error('product_desc')
                                 <span style="color: red">{{ $message }}</span>
@@ -61,7 +61,7 @@
                             <div class="mt-4">
                                 <label style="margin-left: 0">Nội dung sản phẩm</label>
                                 <div class="input-group input-group-dynamic">
-                                    <textarea id="ckeditor1" class="form-control" rows="5" placeholder="Nội dung sản phẩm." spellcheck="false"
+                                    <textarea class="form-control" rows="5" placeholder="Nội dung sản phẩm." spellcheck="false"
                                         name="product_content"></textarea>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-primary btn-lg d-flex justify-content-center"
-                                name="add_product" style="margin: 0 auto">Thêm</button>
+                                name="add_product" style="margin: 0 auto">Thêm sản phẩm</button>
                         </form>
                         <?php
                         $message = Session::get('message');

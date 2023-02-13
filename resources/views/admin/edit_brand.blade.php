@@ -30,7 +30,7 @@
                                 </div>
 
                                 <button type="submit" class="btn btn-primary btn-lg d-flex justify-content-center"
-                                    name="update_brand" style="margin: 0 auto">Sửa</button>
+                                    name="update_brand" style="margin: 0 auto">Sửa thương hiệu</button>
                             </form>
                             <?php
                             $message = Session::get('message');

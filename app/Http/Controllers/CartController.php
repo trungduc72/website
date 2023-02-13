@@ -126,9 +126,9 @@ class CartController extends Controller
                 }
             }
             Session::put('cart', $cart);
-            return redirect('show-cart-ajax')->with('message', 'Xóa thành công!');
+            return redirect()->back()->with('message', 'Xóa thành công!');
         }
-        return redirect('show-cart-ajax')->with('message', 'Xóa thất bại!');
+        return redirect()->back()->with('message', 'Xóa thất bại!');
     }
 
     public function updateCart(Request $request)
@@ -144,9 +144,9 @@ class CartController extends Controller
                 }
             }
             Session::put('cart', $cart);
-            return redirect('show-cart-ajax')->with('message', 'Cập nhật giỏ hàng thành công!');
+            return redirect()->back()->with('message', 'Cập nhật giỏ hàng thành công!');
         }else{
-        return redirect('show-cart-ajax')->with('message', 'Cập nhật giỏ hàng thất bại!');
+        return redirect()->back()->with('message', 'Cập nhật giỏ hàng thất bại!');
 
         }
     }
@@ -158,7 +158,7 @@ class CartController extends Controller
             // Session::destroy();
             Session::forget('cart');
             Session::forget('coupon');
-            return redirect('show-cart-ajax')->with('message', 'Xóa thành công!');
+            return redirect()->back()->with('message', 'Xóa thành công!');
             
         }
     }
@@ -192,10 +192,10 @@ class CartController extends Controller
                     Session::put('coupon', $cou);
                 }
                 Session::save();
-                return redirect('show-cart-ajax')->with('message', 'Thêm mã giảm giá thành công!');
+                return redirect()->back()->with('message', 'Thêm mã giảm giá thành công!');
             }
         }else{
-            return redirect('show-cart-ajax')->with('message', 'Thêm mã giảm giá thất bại!');
+            return redirect()->back()->with('message', 'Thêm mã giảm giá thất bại!');
         }
     }
 

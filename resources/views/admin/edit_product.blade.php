@@ -96,7 +96,7 @@
                                 </div>
 
                                 <button type="submit" class="btn btn-primary btn-lg d-flex justify-content-center"
-                                    name="add_product" style="margin: 0 auto"> Sửa </button>
+                                    name="add_product" style="margin: 0 auto"> Sửa sản phẩm </button>
                             </form>
                         @endforeach
                         <?php

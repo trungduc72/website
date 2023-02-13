@@ -32,7 +32,7 @@
                                 <span style="color: red">{{ $message }}</span>
                             @enderror
 
-                            <button type="submit" class="btn btn-primary btn-lg d-flex justify-content-center mt-4" name="update_category_product" style="margin: 0 auto">Sửa</button>
+                            <button type="submit" class="btn btn-primary btn-lg d-flex justify-content-center mt-4" name="update_category_product" style="margin: 0 auto">Sửa danh mục</button>
                         </form>
                     </div>
                     @endforeach

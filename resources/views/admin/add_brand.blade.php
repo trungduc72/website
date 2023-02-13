@@ -42,7 +42,7 @@
                             <div>
                                 <label class="mt-4" style="margin-left: 0">Mô tả thương hiệu</label>
                                 <div class="input-group input-group-dynamic">
-                                    <textarea id="ckeditor" class="form-control" rows="5" placeholder="Mô tả thương hiệu." spellcheck="false" name="brand_desc"></textarea>
+                                    <textarea class="form-control" rows="5" placeholder="Mô tả thương hiệu." spellcheck="false" name="brand_desc"></textarea>
                                 </div>
                                 @error('brand_desc')
                                     <span style="color: red">{{ $message }}</span>
@@ -57,7 +57,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-primary btn-lg d-flex justify-content-center"
-                                name="add_brand" style="margin: 0 auto">Thêm</button>
+                                name="add_brand" style="margin: 0 auto">Thêm thương hiệu</button>
                         </form>
                     </div>
 
