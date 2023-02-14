@@ -311,8 +311,26 @@ class CheckOutController extends Controller
         $order->shipping_id = $shipping_id;
         $order->order_status = 1;
         $order->order_code = $checkout_code;
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $order->created_at = now();
         $order->save();
 
+        if(Session::get('cart')){
+            foreach (Session::get('cart') as $key => $cart) {
+                $order_detail = new OrderDetails;
+                $order_detail->order_code = $checkout_code;
+                $order_detail->product_id = $cart['product_id'];
+                $order_detail->product_name = $cart['product_name'];
+                $order_detail->product_price = $cart['product_price'];
+                $order_detail->product_qty = $cart['product_qty'];
+                $order_detail->product_coupon = $data['order_coupon'];
+                $order_detail->product_feeship = $data['order_fee'];
+                $order_detail->save();
+            }
+        }
+        Session::forget('fee');
+        Session::forget('coupon');
+        Session::forget('cart');
     }
     
 }

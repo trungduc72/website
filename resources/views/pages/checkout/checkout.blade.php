@@ -64,7 +64,6 @@
                                 @if (Session::get('coupon'))
                                     @foreach (Session::get('coupon') as $item)
                                         <input type="hidden" name="order_coupon" class="order_coupon" value="{{$item['coupon_code']}}">
-                                    
                                     @endforeach
                                 @else
                                     <input type="hidden" name="order_coupon" class="order_coupon" value="no">
@@ -73,7 +72,7 @@
 
                                 <div class=" mt-4 mb-4">
                                     <label for="exampleFormControlSelect1" class="ms-0">Chọn hình thức thanh toán</label>
-                                    <select name="payment_select" id="province" class="form-control chooses province payment_select"
+                                    <select name="payment_select" id="payment_select" class="form-control payment_select"
                                         id="exampleFormControlSelect1">
                                         <option value="0">Chuyển khoản</option>
                                         <option value="1">COD</option>
@@ -235,12 +234,12 @@
                                                     class="fa fa-times"></i></a>
                                             Phí vận chuyển: <span>{{ number_format(Session::get('fee')) }} VND</span>
                                             @php
-                                                $total_after_fee = $total - Session::get('fee');
+                                                $total_after_fee = $total + Session::get('fee');
                                             @endphp
                                         </li>
                                     @endif
 
-                                    <li>Tổng còn: <span>
+                                    <li>Tổng cộng: <span>
                                             @php
                                                 if (Session::get('fee') && !Session::get('coupon')) {
                                                     $total_after = $total_after_fee;
@@ -250,7 +249,7 @@
                                                     echo number_format($total_after);
                                                 } elseif (Session::get('fee') && Session::get('coupon')) {
                                                     $total_after = $total_after_coupon;
-                                                    $total_after = $total_after - Session::get('fee');
+                                                    $total_after = $total_after + Session::get('fee');
                                                     echo number_format($total_after);
                                                 } elseif (!Session::get('fee') && !Session::get('coupon')) {
                                                     $total_after = $total;

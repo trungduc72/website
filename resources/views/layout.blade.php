@@ -25,7 +25,7 @@
     <link href="{{ asset('frontend/css/responsive.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/sweetalert.css') }}" rel="stylesheet">
     <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script> 
+    <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->
     <link rel="shortcut icon" href="{{ asset('frontend/images/logo.png') }}">
@@ -120,18 +120,20 @@
                                     $shipping_id = Session::get('shipping_id');
                                     if($customer_id != null && $shipping_id == null){
                                 ?>
-                                <li><a href={{ route('checkout') }}><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-                                    <?php
+                                <li><a href={{ route('checkout') }}><i class="fa fa-crosshairs"></i> Thanh toán</a>
+                                </li>
+                                <?php
                                     }
                                     elseif($customer_id != null && $shipping_id != null){
                                 ?>
                                 <li><a href={{ route('payment') }}><i class="fa fa-crosshairs"></i> Thanh toán</a>
                                 </li>
-                                    <?php
+                                <?php
                                     }
                                 ?>
-                                
-                                <li><a href={{ route('show-cart-ajax') }}><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+
+                                <li><a href={{ route('show-cart-ajax') }}><i class="fa fa-shopping-cart"></i> Giỏ
+                                        hàng</a>
                                 </li>
 
                                 <?php
@@ -488,17 +490,17 @@
     <script src="{{ asset('frontend/js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
 
-    <div id = "fb-root" ></div> 
-    <script async defer crossorigin = "anonymous" 
-            src = "https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v15.0" nonce = "2xCe8MZT" ></script> 
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v15.0"
+        nonce="2xCe8MZT"></script>
 
     <script src="{{ asset('frontend/js/sweetalert.js') }}"></script>
 
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('.add-to-cart').click(function(){
+        $(document).ready(function() {
+            $('.add-to-cart').click(function() {
                 var id = $(this).data('id_product');
-                
+
                 var cart_product_id = $('.cart_product_id_' + id).val();
                 var cart_product_name = $('.cart_product_name_' + id).val();
                 var cart_product_image = $('.cart_product_image_' + id).val();
@@ -506,102 +508,136 @@
                 var cart_product_qty = $('.cart_product_qty_' + id).val();
                 var _token = $('input[name = "_token"]').val();
                 $.ajax({
-                    url: '{{url('/add-cart-ajax')}}',
+                    url: '{{ url('/add-cart-ajax') }}',
                     method: 'POST',
-                    data: {cart_product_id:cart_product_id, cart_product_name:cart_product_name,
-                        cart_product_image:cart_product_image, cart_product_price:cart_product_price, 
-                        cart_product_qty:cart_product_qty, _token:_token},
-                    success:function(data){
+                    data: {
+                        cart_product_id: cart_product_id,
+                        cart_product_name: cart_product_name,
+                        cart_product_image: cart_product_image,
+                        cart_product_price: cart_product_price,
+                        cart_product_qty: cart_product_qty,
+                        _token: _token
+                    },
+                    success: function(data) {
                         swal({
-                            title: "Đã thêm sản phẩm vào giỏ hàng",
-                            text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
-                            showCancelButton: true,
-                            cancelButtonText: "Xem tiếp",
-                            confirmButtonClass: "btn-success",
-                            confirmButtonText: "Đi đến giỏ hàng",
-                            closeOnConfirm: false
+                                title: "Đã thêm sản phẩm vào giỏ hàng",
+                                text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
+                                showCancelButton: true,
+                                cancelButtonText: "Xem tiếp",
+                                confirmButtonClass: "btn-success",
+                                confirmButtonText: "Đi đến giỏ hàng",
+                                closeOnConfirm: false
                             },
                             function() {
-                            window.location.href = "{{url('/show-cart-ajax')}}";
+                                window.location.href = "{{ url('/show-cart-ajax') }}";
                             });
                     }
                 });
             });
 
-            $('.chooses').on('change', function(){
+            $('.chooses').on('change', function() {
                 var action = $(this).attr('id');
                 var ma_id = $(this).val();
                 var _token = $('input[name = "_token"]').val();
                 var result = '';
 
-                if(action == 'city'){
+                if (action == 'city') {
                     result = 'province';
-                } else{
+                } else {
                     result = 'wards';
                 }
 
                 $.ajax({
-                    url: '{{url('/select-delivery-home')}}',
+                    url: '{{ url('/select-delivery-home') }}',
                     method: 'POST',
                     data: {
-                        "action": action, 
-                        "ma_id": ma_id, 
-                        "_token":_token, 
-                        "_token": "{{ csrf_token() }}"},
-                    success: function(data){
+                        "action": action,
+                        "ma_id": ma_id,
+                        "_token": _token,
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success: function(data) {
                         $('#' + result).html(data);
                     }
                 });
             });
 
-            $('.caculate_delivery').click(function () {
+            $('.caculate_delivery').click(function() {
                 var matp = $('.city').val();
                 var maqh = $('.province').val();
                 var xaid = $('.wards').val();
                 var _token = $('input[name = "_token"]').val();
 
-                if( matp == '' && maqh == '' && xaid == ''){
+                if (matp == '' && maqh == '' && xaid == '') {
                     alert('Chọn địa chỉ!');
-                }else{
+                } else {
                     $.ajax({
-                        url: '{{url('/caculate-fee')}}',
+                        url: '{{ url('/caculate-fee') }}',
                         method: 'POST',
                         data: {
-                            "matp": matp, 
-                            "maqh": maqh, 
-                            "xaid": xaid, 
-                            "_token":_token, 
-                            "_token": "{{ csrf_token() }}"},
-                        success: function(data){
+                            "matp": matp,
+                            "maqh": maqh,
+                            "xaid": xaid,
+                            "_token": _token,
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        success: function(data) {
                             location.reload();
                         }
                     });
                 }
             });
 
-            $('.send-order').click(function(){
-                var id = $(this).data('id_product');
-                
-                var shipping_email = $('.shipping_email').val();
-                var shipping_name = $('.shipping_name').val();
-                var shipping_address = $('.shipping_address').val();
-                var shipping_phone = $('.shipping_phone').val();
-                var shipping_note = $('.shipping_note').val();
-                var shipping_method = $('.payment_select').val();
-                var order_fee = $('.order_fee').val();
-                var order_coupon = $('.order_coupon').val();
-                var _token = $('input[name = "_token"]').val();
-                $.ajax({
-                    url: '{{url('/confirm-order')}}',
-                    method: 'POST',
-                    data: {shipping_email:shipping_email, shipping_name:shipping_name,
-                        shipping_address:shipping_address, shipping_phone:shipping_phone, 
-                        shipping_note:shipping_note, order_fee:order_fee, shipping_method:shipping_method,
-                        order_coupon:order_coupon, _token:_token},
-                    success:function(data){
-                        alert('dgdfg');
+            $('.send-order').click(function() {
+                swal({
+                    title: "Xác nhận đơn hàng?",
+                    text: "Đơn hàng sẽ không được hủy sau khi đặt hàng!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: "Mua hàng!",
+                    cancelButtonText: "Hủy!",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                function(isConfirm) {
+                    if (isConfirm) {
+                        var id = $(this).data('id_product');
+                        var shipping_email = $('.shipping_email').val();
+                        var shipping_name = $('.shipping_name').val();
+                        var shipping_address = $('.shipping_address').val();
+                        var shipping_phone = $('.shipping_phone').val();
+                        var shipping_note = $('.shipping_note').val();
+                        var shipping_method = $('.payment_select').val();
+                        var order_fee = $('.order_fee').val();
+                        var order_coupon = $('.order_coupon').val();
+                        var _token = $('input[name = "_token"]').val();
+                        $.ajax({
+                            url: '{{ url('/confirm-order') }}',
+                            method: 'POST',
+                            data: {
+                                shipping_email: shipping_email,
+                                shipping_name: shipping_name,
+                                shipping_address: shipping_address,
+                                shipping_phone: shipping_phone,
+                                shipping_note: shipping_note,
+                                order_fee: order_fee,
+                                shipping_method: shipping_method,
+                                order_coupon: order_coupon,
+                                _token: _token
+                            },
+                            success: function(data) {
+                                swal("Thành công!", "Bạn đã đặt hàng thành công.", "success");
+                            }
+                        });
+                        window.setTimeout(() => {
+                            location.reload();
+                        }, 3000);
+                    } else {
+                        swal("Đóng", "Hủy thành công :)", "error");
                     }
                 });
+                
             });
 
         })

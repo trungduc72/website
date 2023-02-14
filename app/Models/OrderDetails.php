@@ -15,4 +15,9 @@ class OrderDetails extends Model
     ];
     protected $primaryKey = 'order_detail_id';
     protected $table = 'order_detail';
+
+    public function product()
+    {
+        return $this->belongsTo('App\Models\Product', 'product_id');
+    }
 }

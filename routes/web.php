@@ -10,6 +10,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\DeliveryController;
+use App\Http\Controllers\OrderController;
 
 
 /*
@@ -136,9 +137,12 @@ use App\Http\Controllers\DeliveryController;
     Route::get('/delete-product/{product_id}', [ProductController::class, 'delete'])->name('delete-product');
 
 //Order
-    Route::get('/manage-order', [CheckOutController::class, 'manageOrder'])->name('manage-order');
+    // Route::get('/manage-order', [CheckOutController::class, 'manageOrder'])->name('manage-order');
+    // Route::get('/view-order/{order_id}', [CheckOutController::class, 'viewOrder'])->name('view-order');
+    Route::get('/manage-order', [OrderController::class, 'manageOrder'])->name('manage-order');
+    Route::get('/view-order/{order_id}', [OrderController::class, 'viewOrder'])->name('view-order');
+    Route::get('/print-order/{checkout_code}', [OrderController::class, 'printOrder'])->name('print-order');
 
-    Route::get('/view-order/{order_id}', [CheckOutController::class, 'viewOrder'])->name('view-order');
 
 //Coupon
     Route::get('/list-coupon', [CouponController::class, 'listCoupon'])->name('list-coupon');
