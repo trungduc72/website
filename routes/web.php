@@ -142,6 +142,8 @@ use App\Http\Controllers\OrderController;
     Route::get('/manage-order', [OrderController::class, 'manageOrder'])->name('manage-order');
     Route::get('/view-order/{order_id}', [OrderController::class, 'viewOrder'])->name('view-order');
     Route::get('/print-order/{checkout_code}', [OrderController::class, 'printOrder'])->name('print-order');
+    Route::post('/update-order-qty', [OrderController::class, 'updateOrderQty'])->name('update-order-qty');
+    Route::post('/update-qty', [OrderController::class, 'updateQty'])->name('update-qty');
 
 
 //Coupon

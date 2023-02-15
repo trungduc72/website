@@ -52,11 +52,13 @@ class ProductController extends Controller
 
         $validate = $request->validate([
             'product_name' => 'required',
+            'product_quantity' => 'required',
             'product_price' => 'required',
             'product_desc' => 'required',
             'product_content' => 'required',
         ], [
             'product_name.required' => 'Vui lòng nhập tên sản phẩm!',
+            'product_quantity.required' => 'Vui lòng nhập số lượng sản phẩm!',
             'product_price.required' => 'Vui lòng nhập giá sản phẩm!',
             'product_desc.required' => 'Vui lòng nhập mô tả sản phẩm!',
             'product_content.required' => 'Vui lòng nhập nội dung sản phẩm!'
@@ -64,6 +66,7 @@ class ProductController extends Controller
 
         $data = array();
         $data['product_name'] = $request->product_name;
+        $data['product_quantity'] = $request->product_quantity;
         $data['product_price'] = $request->product_price;
         $data['product_desc'] = $request->product_desc;
         $data['product_content'] = $request->product_content;
@@ -130,11 +133,13 @@ class ProductController extends Controller
 
         $validate = $request->validate([
             'product_name' => 'required',
+            'product_quantity' => 'required',
             'product_price' => 'required',
             'product_desc' => 'required',
             'product_content' => 'required',
         ], [
             'product_name.required' => 'Vui lòng nhập tên sản phẩm!',
+            'product_quantity.required' => 'Vui lòng nhập số lượng sản phẩm!',
             'product_price.required' => 'Vui lòng nhập giá sản phẩm!',
             'product_desc.required' => 'Vui lòng nhập mô tả sản phẩm!',
             'product_content.required' => 'Vui lòng nhập nội dung sản phẩm!'
@@ -142,6 +147,7 @@ class ProductController extends Controller
         
         $data = array();
         $data['product_name'] = $request->product_name;
+        $data['product_quantity'] = $request->product_quantity;
         $data['product_price'] = $request->product_price;
         $data['product_desc'] = $request->product_desc;
         $data['product_content'] = $request->product_content;
@@ -164,7 +170,6 @@ class ProductController extends Controller
             return redirect('all-product');
         }
 
-        $data['product_image'] = '';
         DB::table('product')->where('product_id', $product_id)->update($data);
         Session::put('message', 'Cập nhật thành công!');
 

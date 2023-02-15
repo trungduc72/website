@@ -24,6 +24,14 @@
                                     <span style="color: red">{{ $message }}</span>
                                 @enderror
                                 <div class="input-group input-group-static mt-4">
+                                    <label>Số lượng sản phẩm</label>
+                                    <input type="text" class="form-control" name="product_quantity"
+                                        value={{ $item->product_quantity }}>
+                                </div>
+                                @error('product_quantity')
+                                    <span style="color: red">{{ $message }}</span>
+                                @enderror
+                                <div class="input-group input-group-static mt-4">
                                     <label>Giá sản phẩm</label>
                                     <input type="number" min="1" class="form-control" name="product_price"
                                         value={{ $item->product_price }}>
@@ -60,7 +68,8 @@
                                     <select name="product_cate" class="form-control" id="exampleFormControlSelect1">
                                         @foreach ($cate_product as $cate)
                                             @if ($cate->category_id == $item->category_id)
-                                                <option selected value={{ $cate->category_id }}> {{ $cate->category_name }}
+                                                <option selected value={{ $cate->category_id }}>
+                                                    {{ $cate->category_name }}
                                                 </option>
                                             @else
                                                 <option value={{ $cate->category_id }}> {{ $cate->category_name }}
@@ -99,13 +108,13 @@
                                     name="add_product" style="margin: 0 auto"> Sửa sản phẩm </button>
                             </form>
                         @endforeach
-                        <?php
-                        $message = Session::get('message');
-                        if ($message) {
-                            echo '<span style = "color: green">' . $message . '</span> ';
-                            Session::put('message', null);
-                        }
-                        ?>
+                        {{-- <?php
+                        // $message = Session::get('message');
+                        // if ($message) {
+                        //     echo '<span style = "color: green">' . $message . '</span> ';
+                        //     Session::put('message', null);
+                        // }
+                        ?> --}}
                     </div>
 
                 </div>

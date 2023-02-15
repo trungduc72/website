@@ -18,6 +18,8 @@ return new class extends Migration
             $table->integer('category_id');
             $table->integer('brand_id');
             $table->text('product_name');
+            $table->string('product_quantity');
+            $table->string('product_sold');
             $table->text('product_desc');
             $table->text('product_content');
             $table->string('product_price');

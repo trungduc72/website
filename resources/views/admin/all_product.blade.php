@@ -9,6 +9,7 @@
                 <thead>
                     <tr>
                         <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Tên sản phẩm</th>
+                        <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Số lượng sản phẩm</th>
                         <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Giá</th>
                         <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Hình ảnh</th>
                         <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Mô tả sản phẩm
@@ -29,6 +30,14 @@
                                 <div class="d-flex px-2 py-1">
                                     <div class="d-flex flex-column justify-content-center">
                                         <h6 class="mb-0 text-xs">{{ $item->product_name }}</h6>
+                                        <p class="text-xs text-secondary mb-0"></p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex px-2 py-1">
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <h6 class="mb-0 text-xs">{{ $item->product_quantity }}</h6>
                                         <p class="text-xs text-secondary mb-0"></p>
                                     </div>
                                 </div>

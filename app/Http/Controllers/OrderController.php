@@ -15,6 +15,7 @@ use App\Models\Order;
 use App\Models\OrderDetails;
 use App\Models\Customer;
 use App\Models\Coupon;
+use App\Models\Product;
 use PDF;
 
 class OrderController extends Controller
@@ -66,7 +67,7 @@ class OrderController extends Controller
             $coupon_number = 0;
         }
         
-        return view('admin.view_order', compact('title', 'order_detail', 'customer', 'shipping', 'coupon_condition', 'coupon_number'));
+        return view('admin.view_order', compact('title', 'order', 'order_detail', 'customer', 'shipping', 'coupon_condition', 'coupon_number'));
     }
 
     public function printOrder($checkout_code)
@@ -222,7 +223,41 @@ class OrderController extends Controller
                 </tr>
             </thead>
         </table>';
-    return $output;
+        return $output;
+    }
+
+    public function updateOrderQty(Request $request)
+    {
+        $data = $request->all();
+
+        $order = Order::find($data['order_id']);
+        $order->order_status = $data["order_status"];
+        $order->save();
+
+        if ($order->order_status == 2) {
+            foreach ($data['order_product_id'] as $key => $product_id) {
+                $product = Product::find($product_id);
+                $product_quantity = $product->product_quantity;
+                $product_sold = $product->product_sold;
+                foreach ($data['quantity'] as $key2 => $qty) {
+                    if($key == $key2){
+                        $pro_remain = $product_quantity - $qty;
+                        $product->product_quantity = $pro_remain;
+                        $product->product_sold = $product_sold +$qty;
+                        $product->save();
+                    }
+                }
+            }
+        }
+    }
+
+    public function updateQty(Request $request)
+    {
+        $data = $request->all();
+        $order_details = OrderDetails::where('product_id', $data['order_product_id'])->where('order_code', $data['order_code'])->first();
+
+        $order_details->product_qty = $data['order_qty'];
+        $order_details->save();
 
     }
 }

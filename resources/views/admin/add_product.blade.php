@@ -41,6 +41,13 @@
                                 <span style="color: red">{{ $message }}</span>
                             @enderror
                             <div class="input-group input-group-static mt-4">
+                                <label>Số lượng sản phẩm</label>
+                                <input type="text" class="form-control" name="product_quantity">
+                            </div>
+                            @error('product_quantity')
+                                <span style="color: red">{{ $message }}</span>
+                            @enderror
+                            <div class="input-group input-group-static mt-4">
                                 <label>Giá sản phẩm</label>
                                 <input type="number" min="1" class="form-control" name="product_price">
                             </div>
