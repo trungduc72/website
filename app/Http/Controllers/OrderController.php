@@ -44,11 +44,12 @@ class OrderController extends Controller
         $this->AuthLogin();
         $title = 'Chi tiết đơn hàng';
 
-        $order_detail = OrderDetails::where('order_code', $order_code)->get();
+        $order_detail = OrderDetails::with('product')->where('order_code', $order_code)->get();
         $order = Order::where('order_code', $order_code)->get();
         foreach ($order as $key => $ord) {
             $customer_id = $ord->customer_id;
             $shipping_id = $ord->shipping_id;
+            $order_status =$ord->order_status;
         }
         $customer = Customer::where('customer_id', $customer_id)->first();
         $shipping = Shipping::where('shipping_id', $shipping_id)->first();
@@ -67,7 +68,7 @@ class OrderController extends Controller
             $coupon_number = 0;
         }
         
-        return view('admin.view_order', compact('title', 'order', 'order_detail', 'customer', 'shipping', 'coupon_condition', 'coupon_number'));
+        return view('admin.view_order', compact('title', 'order', 'order_status', 'order_detail', 'customer', 'shipping', 'coupon_condition', 'coupon_number'));
     }
 
     public function printOrder($checkout_code)
@@ -243,7 +244,21 @@ class OrderController extends Controller
                     if($key == $key2){
                         $pro_remain = $product_quantity - $qty;
                         $product->product_quantity = $pro_remain;
-                        $product->product_sold = $product_sold +$qty;
+                        $product->product_sold = $product_sold + $qty;
+                        $product->save();
+                    }
+                }
+            }
+        } elseif ($order->order_status != 2 ) {
+            foreach ($data['order_product_id'] as $key => $product_id) {
+                $product = Product::find($product_id);
+                $product_quantity = $product->product_quantity;
+                $product_sold = $product->product_sold;
+                foreach ($data['quantity'] as $key2 => $qty) {
+                    if($key == $key2){
+                        $pro_remain = $product_quantity + $qty;
+                        $product->product_quantity = $pro_remain;
+                        $product->product_sold = $product_sold - $qty;
                         $product->save();
                     }
                 }

@@ -676,21 +676,37 @@
                     order_product_id.push($(this).val());
                 });
 
-                $.ajax({
-                    url: '{{url('/update-order-qty')}}',
-                    method: 'POST',
-                    data: { 
-                        "order_status": order_status,
-                        "order_id": order_id,
-                        "quantity": quantity,
-                        "order_product_id": order_product_id,
-                        "_token":_token, 
-                        "_token": "{{ csrf_token() }}"},
-                    success: function(data){
-                        alert('Cập nhật số lượng thành công!');
-                        location.reload();
-                    }
-                });
+                j = 0;
+                for (let i = 0; i < order_product_id.length; i++) {
+                    var order_qty = $('.order_qty_' + order_product_id[i]).val();//khach dat
+                    var order_qty_storage = $('.order_qty_storage_' + order_product_id[i]).val();//ton kho
+                    
+                    if (parseInt(order_qty) > parseInt(order_qty_storage)) {
+                        j++;
+                        if(j == 1){
+                            alert('Số lượng tồn kho không đủ');
+                        }
+                        $('.color_qty_' + order_product_id[i]).css('background', '#000');
+                    }                    
+                }
+
+                if (j == 0) {
+                    $.ajax({
+                        url: '{{url('/update-order-qty')}}',
+                        method: 'POST',
+                        data: { 
+                            "order_status": order_status,
+                            "order_id": order_id,
+                            "quantity": quantity,
+                            "order_product_id": order_product_id,
+                            "_token":_token, 
+                            "_token": "{{ csrf_token() }}"},
+                        success: function(data){
+                            alert('Cập nhật số lượng thành công!');
+                            location.reload();
+                        }
+                    });                    
+                }
             });
 
             $('.update_quantity_order').click(function() {

@@ -142,7 +142,7 @@
                             $sub_total = $item->product_price * $item->product_qty;
                             $total += $sub_total;
                         @endphp
-                        <tr>
+                        <tr class="color_qty_{{ $item->product_id }}">
                             <td>
                                 <div class="d-flex px-2 py-1">
                                     <p class="text-xs font-weight-bold mb-0">{{ $i }}</p>
@@ -186,17 +186,23 @@
                                     <div class="input-group input-group-static" style="width: 50px">
                                         <input type="number"
                                             class="form-control mb-4 mx-2 order_qty_{{ $item->product_id }}" min="1"
+                                            {{$order_status  == 2 ? 'disabled' : ''}}
                                             value="{{ $item->product_qty }}" name="product_sales_quantity">
                                         
+                                        <input type="hidden" name="order_qty_storage" class="order_qty_storage_{{ $item->product_id }}"
+                                            value="{{ $item->product->product_quantity }}">
+
                                         <input type="hidden" name="order_code" class="order_code"
                                             value="{{ $item->order_code }}">
 
                                         <input type="hidden" name="order_product_id" class="order_product_id"
                                             value="{{ $item->product_id }}">
                                     </div>
-                                    <button class="btn btn-primary btn-sm update_quantity_order"
-                                        data-product_id="{{ $item->product_id }}" name="update_quantity_order">Cập
-                                        nhật</button>
+                                    @if ($order_status != 2)
+                                        <button class="btn btn-primary btn-sm update_quantity_order"
+                                            data-product_id="{{ $item->product_id }}" name="update_quantity_order">Cập
+                                            nhật</button>
+                                    @endif
                                     {{-- </p> --}}
                                 </div>
                             </td>
