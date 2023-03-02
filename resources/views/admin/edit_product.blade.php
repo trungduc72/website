@@ -31,6 +31,8 @@
                                 @error('product_quantity')
                                     <span style="color: red">{{ $message }}</span>
                                 @enderror
+                                <input type="hidden" class="form-control" name="product_sold"
+                                        value={{ $item->product_sold }}>
                                 <div class="input-group input-group-static mt-4">
                                     <label>Giá sản phẩm</label>
                                     <input type="number" min="1" class="form-control" name="product_price"

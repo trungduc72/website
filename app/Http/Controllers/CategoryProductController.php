@@ -33,7 +33,7 @@ class CategoryProductController extends Controller
     {
         $this->AuthLogin();
         $title = 'Danh mục sản phẩm';
-        $all_category_product = DB::table('category_product')->get();
+        $all_category_product = DB::table('category_product')->paginate(6);
         $manager_category_product = view('admin.all_category_product', compact('title'))
                                     ->with('all_category_product', $all_category_product);
         

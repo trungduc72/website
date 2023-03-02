@@ -75,5 +75,6 @@
                 </tbody>
             </table>
         </div>
+        {{$coupon->links('vendor.pagination.bootstrap-4')}}
     </div>
 @endsection

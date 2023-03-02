@@ -119,7 +119,7 @@
                         {{-- <li>Tổng cộng: <span></span></li> --}}
                         </td>
                         <td>
-                            @if (Session::get('customer'))
+                            @if (Session::get('customer_id'))
                                 <a class="btn btn-primary" href="{{ route('checkout') }}">Đặt hàng</a>
                             @else   
                                 <a class="btn btn-primary" href="{{ route('login-checkout') }}">Đặt hàng</a>

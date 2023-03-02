@@ -7,9 +7,10 @@
 @import url(http://fonts.googleapis.com/css?family=Abel);
 
 :root{
-  --primary-color: #168749;
-  --hover-color: #85d585;
+  --primary-color: #2a8b09;
+  --hover-color:#2e722e;
   --black-color: #000;
+  --white-color: #fff;
 }
 
 body {
@@ -74,7 +75,7 @@ a#scrollUp i{
 **************************/
 
 .header_top {
-  background: none repeat scroll 0 0 #bcffd0;
+  background: none repeat scroll 0 0 #2a8b09;
 }
 
 .contactinfo ul li:first-child{
@@ -83,7 +84,7 @@ a#scrollUp i{
 
 .contactinfo ul li a{
   font-size: 12px;
-  color: var(--black-color);
+  color: var(--white-color);
   font-family: 'Roboto', sans-serif;
 }
 
@@ -96,7 +97,7 @@ a#scrollUp i{
 .social-icons ul li a {
   border: 0 none;
   border-radius: 0;
-  color: var(--black-color);
+  color: var(--white-color);
   padding:0px;
 }
 
@@ -191,10 +192,43 @@ a#scrollUp i{
   text-decoration: none;
 }
 
+.form-search{
+    width: 400px;
+    height: 35px;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+    position: relative;
+}
+
+.form-search input{
+  border: none;
+  width: 88%;
+  height: 32px;
+  padding: 10px;
+}
+
+.form-search input:focus{
+ outline: none;
+}
+
+.icon-search{
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  right: 1px;
+  border: none;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+
+.icon-search i{
+  padding-left: 10px;
+  padding-right: 10px;
+}
 
 .shop-menu ul li {
 	display:inline-block;
-  padding-left: 15px;
+  /* padding-left: 15px; */
   padding-right: 15px;
 }
 
@@ -203,7 +237,7 @@ a#scrollUp i{
 }
 
 
-.shop-menu ul li a {
+.shop-menu ul li a, .pull-right-bot span a{
   background: #FFFFFF;
   color: var(--black-color);
   font-family: 'Roboto', sans-serif;
@@ -220,7 +254,7 @@ a#scrollUp i{
 }
 
 
-.shop-menu ul li a:hover {
+.shop-menu ul li a:hover, .pull-right-bot span a:hover {
 	color:var(--primary-color);
 	background:#fff;
 }
@@ -346,13 +380,35 @@ ul.sub-menu {
     transform: translateY(0);
   }
 }
+
+.button-group .button {
+  float: left;
+}
   
+.element-icon span {
+  display: block;
+  text-align: center;
+}
+
+.element-content {
+  text-align: center;
+}
+
+.element ul {
+  background-color: transparent;
+  margin-bottom: 0px;
+  padding-left: 0px;
+  display: flex;
+}
+
 /*************************
 *******Footer CSS******
 **************************/
 
 #footer {
-  background: #F0F0E9;
+  margin-top: 50px;
+  background: #36383a;
+  border-top: 1px solid #e6f9e6;
 }
 
 
@@ -366,7 +422,7 @@ ul.sub-menu {
 }
 
 .companyinfo h2 {
-  color: #B4B1AB;
+  color: var(--white-color);
   font-family: abel;
   font-size: 27px;
   text-transform: uppercase;
@@ -377,7 +433,7 @@ ul.sub-menu {
 }
 
 .companyinfo p {
-  color: #B3B3AD;
+  color: var(--white-color);
   font-family: 'Roboto', sans-serif;
   font-size: 12px;
   font-weight: 300;
@@ -435,7 +491,7 @@ ul.sub-menu {
 }
 
 .video-gallery p {
-  color: #8C8C88;
+  color: var(--white-color);
   font-family: 'Roboto', sans-serif;
   font-size: 12px;
   font-weight: 500;
@@ -443,7 +499,7 @@ ul.sub-menu {
 }
 
 .video-gallery  h2 {
-  color: #8c8c88;
+  color: var(--white-color);
   font-family: 'Roboto', sans-serif;
   font-size: 12px;
   font-weight: 300;
@@ -462,7 +518,7 @@ ul.sub-menu {
 }
 
 .address p {
-  color: #666663;
+  color: var(--white-color);
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   font-weight: 300;
@@ -481,12 +537,13 @@ ul.sub-menu {
 }
 
 .single-widget h2 {
-  color: #666663;
+  color: var(--white-color);
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 22px;
   text-transform: uppercase;
+  position: relative;
 }
 
 .single-widget h2 i{
@@ -494,7 +551,7 @@ ul.sub-menu {
 }
 
 .single-widget ul li a{
-	color: #8C8C88;
+	color: var(--white-color);
 	font-family: 'Roboto', sans-serif;
 	font-size: 14px;
 	font-weight: 300;
@@ -512,24 +569,14 @@ ul.sub-menu {
 
 
 .searchform input {
-  border: 1px solid #DDDDDD;
-  color: #CCCCC6;
-  font-family: 'Roboto', sans-serif;
+  border: 1px solid #ffffff;
+  color: #44a41b;
+  font-family: 'DMSans-Regular', sans-serif;
   font-size: 14px;
   margin-top: 0;
   outline: medium none;
   padding: 7px;
-  width: 212px;
-}
-
-
-.searchform button {
-  background: var(--primary-color);
-  border: medium none;
-  border-radius: 0;
-  margin-left: -5px;
-  margin-top: -3px;
-  padding: 7px 17px;
+  width: 90%;
 }
 
 .searchform button i {
@@ -543,7 +590,7 @@ ul.sub-menu {
 }
 
 .searchform p {
-  color: #8C8C88;
+  color: var(--white-color);
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   font-weight: 300;
@@ -551,12 +598,12 @@ ul.sub-menu {
 }
 
 .footer-bottom {
-  background: #D6D6D0;
+  background: var(--primary-color);
   padding-top: 10px;
 }
 
 .footer-bottom p {
-  color: #363432;
+  color: var(--white-color);
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   margin-left: 15px;
@@ -568,7 +615,25 @@ ul.sub-menu {
   text-decoration: underline;
 }
 
+.footer-visit{
+  padding-left: 0;
+}
 
+.single-widget h2::before {
+  position: absolute;
+  content: "";
+  width: 30%;
+  height: 3px;
+  background-color: #44a41b;
+  top: 150%;
+  left: 0;
+}
+.searchform button {
+  width: 10%;
+  background: #44a41b;
+  border: none !important;
+  padding: 7px 17px;
+}
 /*************************
 ******* Home ******
 **************************/
@@ -1901,7 +1966,9 @@ h2.title {
 
 .form-two, .form-one {
   float: left;
-  width: 47%
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 
@@ -2317,7 +2384,12 @@ h2.title {
   margin-bottom: 15px
 }
 
-
+.pull-right-bot{
+  display: flex;
+  margin-top: 50px; 
+  justify-content: space-around;
+  align-items: center;
+}
 
 .sinlge-post-meta li {
   background:#F0F0E9;

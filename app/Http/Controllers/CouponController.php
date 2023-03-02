@@ -33,7 +33,7 @@ class CouponController extends Controller
     public function listCoupon(){
         $title = "Danh sách mã giảm giá";
 
-        $coupon = Coupon::orderby('coupon_id', 'DESC')->get();
+        $coupon = Coupon::orderby('coupon_id', 'DESC')->paginate(6);
 
         return view('admin.coupon.list_coupon', compact('title', 'coupon'));
     }

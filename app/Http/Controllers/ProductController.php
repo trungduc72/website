@@ -38,7 +38,7 @@ class ProductController extends Controller
         $all_product = DB::table('product')
                         ->join('category_product', 'category_product.category_id','=','product.category_id')
                         ->join('brand', 'brand.brand_id','=','product.brand_id')
-                        ->orderby('product.product_id', 'desc')->get();
+                        ->orderby('product.product_id', 'desc')->paginate(5);
         $manager_product = view('admin.all_product', compact('title'))
                                     ->with('all_product', $all_product);
         
@@ -48,7 +48,6 @@ class ProductController extends Controller
     public function save(Request $request)
     {
         $this->AuthLogin();
-        $title = 'Add Category';
 
         $validate = $request->validate([
             'product_name' => 'required',
@@ -67,6 +66,7 @@ class ProductController extends Controller
         $data = array();
         $data['product_name'] = $request->product_name;
         $data['product_quantity'] = $request->product_quantity;
+        $data['product_sold'] = 0;
         $data['product_price'] = $request->product_price;
         $data['product_desc'] = $request->product_desc;
         $data['product_content'] = $request->product_content;
@@ -148,6 +148,7 @@ class ProductController extends Controller
         $data = array();
         $data['product_name'] = $request->product_name;
         $data['product_quantity'] = $request->product_quantity;
+        $data['product_sold'] = $request->product_sold;
         $data['product_price'] = $request->product_price;
         $data['product_desc'] = $request->product_desc;
         $data['product_content'] = $request->product_content;

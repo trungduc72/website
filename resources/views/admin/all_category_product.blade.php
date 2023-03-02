@@ -73,5 +73,6 @@
                 </tbody>
             </table>
         </div>
+        {{$all_category_product->links('vendor.pagination.bootstrap-4')}}
     </div>
 @endsection

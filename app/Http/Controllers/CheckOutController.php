@@ -94,8 +94,8 @@ class CheckOutController extends Controller
         $meta_keywords = "Thanh toán";
         $url_canonical = $request->url();
 
-        $cate_product = DB::table('category_product')->orderby('category_id', 'desc')->get();
-        $brand_product = DB::table('brand')->orderby('brand_id', 'desc')->get();
+        $cate_product = DB::table('category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $brand_product = DB::table('brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
         $city = City::orderby('matp', 'ASC')->get();
         return view('pages.checkout.checkout', compact('title', 'meta_desc', 'url_canonical', 'meta_keywords', 'city'))

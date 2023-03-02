@@ -77,5 +77,6 @@
                 </tbody>
             </table>
         </div>
+        {{$order->links('vendor.pagination.bootstrap-4')}}
     </div>
 @endsection

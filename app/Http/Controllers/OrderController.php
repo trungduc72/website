@@ -34,7 +34,7 @@ class OrderController extends Controller
         $this->AuthLogin();
         $title = 'Quản lí đơn hàng';
 
-        $order = Order::orderby('created_at', 'DESC')->get();
+        $order = Order::orderby('created_at', 'DESC')->paginate(6);
 
         return view('admin.manage_order', compact('title', 'order'));
     }

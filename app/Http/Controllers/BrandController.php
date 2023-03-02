@@ -31,7 +31,7 @@ class BrandController extends Controller
     {
         $this->AuthLogin();
         $title = 'Thương hiệu sản phẩm';
-        $all_brand = DB::table('brand')->get();
+        $all_brand = DB::table('brand')->paginate(6);
         $manager_brand = view('admin.all_brand', compact('title'))
                                     ->with('all_brand', $all_brand);
         
