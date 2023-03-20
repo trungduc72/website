@@ -83,6 +83,7 @@ class CartController extends Controller
                     'product_name' => $data['cart_product_name'],
                     'product_id' => $data['cart_product_id'],
                     'product_image' => $data['cart_product_image'],
+                    'product_quantity' => $data['cart_product_quantity'],
                     'product_qty' => $data['cart_product_qty'],
                     'product_price' => $data['cart_product_price']
                 );
@@ -94,6 +95,7 @@ class CartController extends Controller
                 'product_name' => $data['cart_product_name'],
                 'product_id' => $data['cart_product_id'],
                 'product_image' => $data['cart_product_image'],
+                'product_quantity' => $data['cart_product_quantity'],
                 'product_qty' => $data['cart_product_qty'],
                 'product_price' => $data['cart_product_price']
             );
@@ -136,10 +138,15 @@ class CartController extends Controller
         $data = $request->all();
         $cart = Session::get('cart');
         if($cart == true){
+            $message = '';
+
             foreach ($data['cart_qty'] as $key => $qty) {
                 foreach ($cart as $session => $value) {
-                    if($value['session_id'] == $key){
+                    if($value['session_id'] == $key && $qty < $cart[$session]['product_quantity']){
                         $cart[$session]['product_qty'] = $qty;
+                        // $message .= 'Cập nhật số lượng: ' + $cart[$session]['product_name'] + ' thành công!';
+                    }elseif ($value['session_id'] == $key && $qty > $cart[$session]['product_quantity']) {
+                        // $message .= 'Cập nhật số lượng: ' + $cart[$session]['product_name'] + ' thất bại!';
                     }
                 }
             }

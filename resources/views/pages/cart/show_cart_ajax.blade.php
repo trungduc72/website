@@ -26,6 +26,7 @@
                         <td class="image">Hình ảnh</td>
                         <td class="description">Tên sản phẩm</td>
                         <td class="price">Giá</td>
+                        <td class="price">Số lượng trong kho</td>
                         <td class="quantity">Số lượng</td>
                         <td class="total">Thành tiền</td>
                         <td>Xóa</td>
@@ -55,6 +56,9 @@
                                     </td>
                                     <td class="cart_price">
                                         <p>{{ number_format($item['product_price']) }}VND</p>
+                                    </td>
+                                    <td class="cart_price">
+                                        <p>{{ number_format($item['product_quantity']) }}</p>
                                     </td>
                                     <td class="cart_quantity">
                                         <div class="cart_quantity_button">

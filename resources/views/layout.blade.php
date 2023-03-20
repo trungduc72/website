@@ -38,7 +38,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Passions+Conflict&display=swap" rel="stylesheet">
 
-    <script src="https://kit.fontawesome.com/5bf87cd97a.js" crossorigin="anonymous"></script>
+    <script src="{{ asset('frontend/js/kit-fontawesome.js') }}" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 </head>
@@ -521,9 +521,14 @@
                 var cart_product_name = $('.cart_product_name_' + id).val();
                 var cart_product_image = $('.cart_product_image_' + id).val();
                 var cart_product_price = $('.cart_product_price_' + id).val();
+                var cart_product_quantity = $('.cart_product_quantity_' + id).val();
                 var cart_product_qty = $('.cart_product_qty_' + id).val();
                 var _token = $('input[name = "_token"]').val();
-                $.ajax({
+
+                if (parseInt(cart_product_qty) > parseInt(cart_product_quantity)){
+                    alert('Vui lòng đặt nhỏ hơn: ' + cart_product_qantity);
+                }else{
+                    $.ajax({
                     url: '{{ url('/add-cart-ajax') }}',
                     method: 'POST',
                     data: {
@@ -531,6 +536,7 @@
                         cart_product_name: cart_product_name,
                         cart_product_image: cart_product_image,
                         cart_product_price: cart_product_price,
+                        cart_product_quantity: cart_product_quantity,
                         cart_product_qty: cart_product_qty,
                         _token: _token
                     },
@@ -547,8 +553,11 @@
                             function() {
                                 window.location.href = "{{ url('/show-cart-ajax') }}";
                             });
-                    }
-                });
+                        }
+                    });
+                }
+
+                
             });
 
             $('.chooses').on('change', function() {

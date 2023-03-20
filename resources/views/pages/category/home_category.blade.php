@@ -29,25 +29,30 @@
                                         style="width: 100%" />
                                     <h2>{{ number_format($item->product_price) }}VND</h2>
                                     <p>{{ $item->product_name }}</p>
-                                    <form >
+                                    <form>
                                         @csrf
-                                        <input type="hidden" value="{{ $item->product_id }}"  class="cart_product_id_{{ $item->product_id }}" />
-                                        <input type="hidden" value="{{ $item->product_name }}" 
-                                                class="cart_product_name_{{ $item->product_id }}" />
-                                        <input type="hidden" value="{{ $item->product_image }}" 
-                                                class="cart_product_image_{{ $item->product_id }}" />
-                                        <input type="hidden" value="{{ $item->product_price }}" 
-                                                class="cart_product_price_{{ $item->product_id }}" />
-                                        <input type="hidden" value="1" class="cart_product_qty_{{ $item->product_id }}" />
-    
+                                        <input type="hidden" value="{{ $item->product_id }}"
+                                            class="cart_product_id_{{ $item->product_id }}" />
+                                        <input type="hidden" value="{{ $item->product_name }}"
+                                            class="cart_product_name_{{ $item->product_id }}" />
+                                        <input type="hidden" value="{{ $item->product_image }}"
+                                            class="cart_product_image_{{ $item->product_id }}" />
+                                        <input type="hidden" value="{{ $item->product_quantity }}"
+                                            class="cart_product_quantity_{{ $item->product_id }}" />
+                                        <input type="hidden" value="{{ $item->product_price }}"
+                                            class="cart_product_price_{{ $item->product_id }}" />
+                                        <input type="hidden" value="1"
+                                            class="cart_product_qty_{{ $item->product_id }}" />
+
                                         <a href='/detail/{{ $item->product_id }}'>
-                                            <img src="{{ URL::to('upload/product/' . $item->product_image) }}" alt=""
-                                                style="width: 100%" />
+                                            <img src="{{ URL::to('upload/product/' . $item->product_image) }}"
+                                                alt="" style="width: 100%" />
                                             <h2>{{ number_format($item->product_price) }}đ</h2>
                                             <p>{{ $item->product_name }}</p>
                                         </a>
-    
-                                        <button type="button" class="btn btn-default add-to-cart" data-id_product="{{ $item->product_id }}"><i
+
+                                        <button type="button" class="btn btn-default add-to-cart"
+                                            data-id_product="{{ $item->product_id }}"><i
                                                 class="fa fa-shopping-cart"></i>Add
                                             to cart</button>
                                     </form>

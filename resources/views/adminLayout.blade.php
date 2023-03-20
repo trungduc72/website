@@ -10,38 +10,11 @@
         @yield('title') | Admin
     </title>
 
-    <meta name="keywords"
-        content="creative tim, updivision, html dashboard, laravel, material, html css dashboard laravel, laravel material dashboard laravel, laravel material dashboard laravel pro, laravel material dashboard, laravel material dashboard pro, material admin, laravel dashboard, laravel dashboard pro, laravel admin, web dashboard, bootstrap 5 dashboard laravel, bootstrap 5, css3 dashboard, bootstrap 5 admin laravel, material dashboard bootstrap 5 laravel, frontend, responsive bootstrap 5 dashboard, material dashboard, material laravel bootstrap 5 dashboard" />
-    <meta name="description"
-        content="Fullstack tool for building Laravel apps with hundreds of UI components and ready-made CRUDs" />
-    <meta itemprop="name" content="Material Dashboard 2 PRO Laravel by Creative Tim & UPDIVISION" />
-    <meta itemprop="description"
-        content="Fullstack tool for building Laravel apps with hundreds of UI components and ready-made CRUDs" />
-    <meta itemprop="image"
-        content="https://s3.amazonaws.com/creativetim_bucket/products/158/original/material-dashboard-pro-laravel.jpg" />
-    <meta name="twitter:card" content="product" />
-    <meta name="twitter:site" content="@creativetim" />
-    <meta name="twitter:title" content="Material Dashboard 2 PRO Laravel by Creative Tim & UPDIVISION" />
-    <meta name="twitter:description"
-        content="Fullstack tool for building Laravel apps with hundreds of UI components and ready-made CRUDs" />
-    <meta name="twitter:creator" content="@creativetim" />
-    <meta name="twitter:image"
-        content="https://s3.amazonaws.com/creativetim_bucket/products/158/original/material-dashboard-pro-laravel.jpg" />
-    <meta property="fb:app_id" content="655968634437471" />
-    <meta property="og:title" content="Material Dashboard 2 PRO Laravel by Creative Tim & UPDIVISION" />
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://www.creative-tim.com/live/material-dashboard-pro-laravel" />
-    <meta property="og:image"
-        content="https://s3.amazonaws.com/creativetim_bucket/products/158/original/material-dashboard-pro-laravel.jpg" />
-    <meta property="og:description"
-        content="Fullstack tool for building Laravel apps with hundreds of UI components and ready-made CRUDs" />
-    <meta property="og:site_name" content="Creative Tim" />
-
     <link rel="stylesheet" type="text/css"
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
 
-    <link href="https://material-dashboard-pro-laravel.creative-tim.com/assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="https://material-dashboard-pro-laravel.creative-tim.com/assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="{{ asset('frontend/backend/css/material-icons.css') }}" rel="stylesheet" />
+    <link href="{{ asset('frontend/backend/css/material-svg.css') }}" rel="stylesheet" />
 
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
 
@@ -419,8 +392,23 @@
                     @yield('admin_content')
                 </div>
             </div>
-
         </div>
+        <footer class="footer py-4  ">
+            <div class="container-fluid">
+                <div class="row align-items-center justify-content-lg-between">
+                    <div class="col-lg-6 mb-lg-0 mb-4">
+                        <div class="copyright text-center text-sm text-muted text-lg-start">
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>,
+                            made with <i class="fa fa-heart" aria-hidden="true"></i> by
+                            DucZunnn for a better web.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </main>
     <div class="fixed-plugin">
         <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
@@ -567,7 +555,7 @@
         integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA=="
         data-cf-beacon='{"rayId":"7810c0fcdb756c09","version":"2022.11.3","r":1,"token":"1b7cbb72744b40c580f8633c6b62637e","si":100}'
         crossorigin="anonymous"></script>
-    
+
     {{-- delivery --}}
     <script src="{{ asset('frontend/js/jquery.js') }}"></script>
     <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
@@ -576,16 +564,18 @@
     <script type="text/javascript">
         $(document).ready(function() {
             fetch_delivery();
-            function fetch_delivery(){
+
+            function fetch_delivery() {
                 var _token = $('input[name = "_token"]').val();
 
                 $.ajax({
-                    url: '{{url('/select-feeship')}}',
+                    url: '{{ url('/select-feeship') }}',
                     method: 'POST',
-                    data: { 
-                        "_token":_token, 
-                        "_token": "{{ csrf_token() }}"},
-                    success: function(data){
+                    data: {
+                        "_token": _token,
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success: function(data) {
                         $('#load_delivery').html(data);
                     }
                 });
@@ -599,113 +589,117 @@
                 var _token = $('input[name = "_token"]').val();
 
                 $.ajax({
-                    url: '{{url('/insert-delivery')}}',
+                    url: '{{ url('/insert-delivery') }}',
                     method: 'POST',
                     data: {
-                        "city": city, 
-                        "province": province, 
-                        "wards": wards, 
-                        "fee_ship": fee_ship, 
-                        "_token":_token, 
-                        "_token": "{{ csrf_token() }}"},
-                    success: function(data){
+                        "city": city,
+                        "province": province,
+                        "wards": wards,
+                        "fee_ship": fee_ship,
+                        "_token": _token,
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success: function(data) {
                         fetch_delivery();
                     }
                 });
 
             });
 
-            $('.choose').on('change', function(){
+            $('.choose').on('change', function() {
                 var action = $(this).attr('id');
                 var ma_id = $(this).val();
                 var _token = $('input[name = "_token"]').val();
                 var result = '';
 
-                if(action == 'city'){
+                if (action == 'city') {
                     result = 'province';
-                } else{
+                } else {
                     result = 'wards';
                 }
 
                 $.ajax({
-                    url: '{{url('/select-delivery')}}',
+                    url: '{{ url('/select-delivery') }}',
                     method: 'POST',
                     data: {
-                        "action": action, 
-                        "ma_id": ma_id, 
-                        "_token":_token, 
-                        "_token": "{{ csrf_token() }}"},
-                    success: function(data){
+                        "action": action,
+                        "ma_id": ma_id,
+                        "_token": _token,
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success: function(data) {
                         $('#' + result).html(data);
                     }
                 });
             });
 
-            $(document).on('blur', '.fee_feeship_edit', function(){
+            $(document).on('blur', '.fee_feeship_edit', function() {
                 var feeship_id = $(this).data('feeship_id');
                 var fee_value = $(this).text();
                 var _token = $('input[name = "_token"]').val();
-                
+
                 $.ajax({
-                    url: '{{url('/update-delivery')}}',
+                    url: '{{ url('/update-delivery') }}',
                     method: 'POST',
                     data: {
-                        "feeship_id": feeship_id, 
+                        "feeship_id": feeship_id,
                         "fee_value": fee_value,
-                        "_token":_token, 
-                        "_token": "{{ csrf_token() }}"},
-                    success: function(data){
+                        "_token": _token,
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success: function(data) {
                         fetch_delivery();
                     }
                 });
             })
 
-            $('.order_details').on('change', function(){
+            $('.order_details').on('change', function() {
                 var order_status = $(this).val();
                 var order_id = $(this).children(":selected").attr("id");
                 var _token = $('input[name = "_token"]').val();
 
                 //lay so luong
                 quantity = [];
-                $('input[name = "product_sales_quantity"]').each(function () {
+                $('input[name = "product_sales_quantity"]').each(function() {
                     quantity.push($(this).val());
                 });
                 //lay product_id
                 order_product_id = [];
-                $('input[name = "order_product_id"]').each(function () {
+                $('input[name = "order_product_id"]').each(function() {
                     order_product_id.push($(this).val());
                 });
 
                 j = 0;
                 for (let i = 0; i < order_product_id.length; i++) {
-                    var order_qty = $('.order_qty_' + order_product_id[i]).val();//khach dat
-                    var order_qty_storage = $('.order_qty_storage_' + order_product_id[i]).val();//ton kho
-                    
+                    var order_qty = $('.order_qty_' + order_product_id[i]).val(); //khach dat
+                    var order_qty_storage = $('.order_qty_storage_' + order_product_id[i]).val(); //ton kho
+
                     if (parseInt(order_qty) > parseInt(order_qty_storage)) {
                         j++;
-                        if(j == 1){
+                        if (j == 1) {
                             alert('Số lượng tồn kho không đủ');
                         }
                         $('.color_qty_' + order_product_id[i]).css('background', '#000');
-                    }                    
+                    }
                 }
 
                 if (j == 0) {
                     $.ajax({
-                        url: '{{url('/update-order-qty')}}',
+                        url: '{{ url('/update-order-qty') }}',
                         method: 'POST',
-                        data: { 
+                        data: {
                             "order_status": order_status,
                             "order_id": order_id,
                             "quantity": quantity,
                             "order_product_id": order_product_id,
-                            "_token":_token, 
-                            "_token": "{{ csrf_token() }}"},
-                        success: function(data){
+                            "_token": _token,
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        success: function(data) {
                             alert('Cập nhật số lượng thành công!');
                             location.reload();
                         }
-                    });                    
+                    });
                 }
             });
 
@@ -716,15 +710,16 @@
                 var _token = $('input[name = "_token"]').val();
 
                 $.ajax({
-                    url: '{{url('/update-qty')}}',
+                    url: '{{ url('/update-qty') }}',
                     method: 'POST',
                     data: {
-                        "order_product_id": order_product_id, 
-                        "order_qty": order_qty, 
-                        "order_code": order_code, 
-                        "_token":_token, 
-                        "_token": "{{ csrf_token() }}"},
-                    success: function(data){
+                        "order_product_id": order_product_id,
+                        "order_qty": order_qty,
+                        "order_code": order_code,
+                        "_token": _token,
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success: function(data) {
                         alert('Thay đổi tình trạng đơn hàng thành công!');
                         location.reload();
                     }

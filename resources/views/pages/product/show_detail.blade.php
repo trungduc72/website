@@ -67,6 +67,8 @@
                             <input type="hidden" value="{{ $item->product_id }}"  class="cart_product_id_{{ $item->product_id }}" />
                             <input type="hidden" value="{{ $item->product_name }}" 
                                     class="cart_product_name_{{ $item->product_id }}" />
+                            <input type="hidden" value="{{ $item->product_quantity }}" 
+                                    class="cart_product_quantity_{{ $item->product_id }}" />
                             <input type="hidden" value="{{ $item->product_image }}" 
                                     class="cart_product_image_{{ $item->product_id }}" />
                             <input type="hidden" value="{{ $item->product_price }}" 
@@ -108,13 +110,13 @@
             <!--category-tab-->
             <div class="col-sm-12">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#details" data-toggle="tab">Mô tả</a></li>
+                    <li><a href="#details" data-toggle="tab">Mô tả</a></li>
                     <li><a href="#companyprofile" data-toggle="tab">Chi tiết</a></li>
-                    <li><a href="#reviews" data-toggle="tab">Đánh giá</a></li>
+                    <li class="active"><a href="#reviews" data-toggle="tab">Đánh giá</a></li>
                 </ul>
             </div>
             <div class="tab-content">
-                <div class="tab-pane fade active in" id="details">
+                <div class="tab-pane fade" id="details">
                     {{ $item->product_desc }}
                 </div>
 
@@ -122,20 +124,34 @@
                     {{ $item->product_content }}
                 </div>
 
-                <div class="tab-pane fade" id="reviews">
+                <div class="tab-pane fade active in" id="reviews">
                     <div class="col-sm-12">
                         <ul>
                             <li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
                             <li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
                             <li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
                         </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore
-                            et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut
-                            aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur.</p>
-                        <p><b>Write Your Review</b></p>
+                        <div class="row style-comment">
+                            <div class="col-md-2">
+                                <img width="61%" src="{{asset('frontend/images/avt.jpg')}}" alt="avt" class="img img-responsive img-thumbnail">
+                            </div>
+                            <div class="col-md-10">
+                                <p style="color: blue">hhh</p>
+                                <p>hhh</p>
+                            </div>
+                        </div>
+                        <p></p>
+                        <div class="row style-comment">
+                            <div class="col-md-2">
+                                <img width="61%" src="{{asset('frontend/images/avt.jpg')}}" alt="avt" class="img img-responsive img-thumbnail">
+                            </div>
+                            <div class="col-md-10">
+                                <p style="color: blue">hhh</p>
+                                <p>hhh</p>
+                            </div>
+                        </div>
+                        <p></p>
+                        <p><b>Viết đánh giá của bạn</b></p>
 
                         <form action="#">
                             <span>

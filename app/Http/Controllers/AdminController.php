@@ -9,6 +9,11 @@ use Session;
 use Illuminate\Support\Facades\Redirect;
 session_start();
 
+use App\Models\Product;
+use App\Models\Order;
+use App\Models\Customer;
+
+
 class AdminController extends Controller
 {
     public function AuthLogin()
@@ -29,13 +34,16 @@ class AdminController extends Controller
     {
         $this->AuthLogin();
         $title = 'Bảng điều khiển';
-        return view('admin.dashboard', compact('title'));
+
+        $product = Product::all()->count();
+        // $post = Post::all()->count();
+        $order = Order::all()->count();
+        $customer = Customer::all()->count(); 
+        return view('admin.dashboard', compact('title', 'product', 'order', 'customer'));
     }
 
     public function login(Request $request)
     {
-        $this->AuthLogin();
-
         $validate = $request->validate([
             'admin_email' => 'required',
             'admin_password' => 'required'
